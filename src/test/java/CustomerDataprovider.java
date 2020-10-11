@@ -1,18 +1,18 @@
-import models.api.BodyRequestToCreateDevice;
-import models.api.BodyResponseCreatedDevice;
+import models.api.Device;
+import org.testng.annotations.DataProvider;
 import services.BasicService;
-import lombok.*;
 
 public class CustomerDataprovider {
 
+    @DataProvider
     public Object[] getCreatedDevice() {
-        return new Object[] {BodyRequestToCreateDevice.builder()
+        return new Device[] { Device.builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
                 .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
                 .locationName(BasicService.DEFAULT_LOCATION)
-                .name("Simma6 ")
+                .name("Simma")
                 .type(BasicService.ACCOUNT_SERIAL_NUMBER)
                 .build()
         };
