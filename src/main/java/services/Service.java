@@ -9,34 +9,6 @@ import static io.restassured.RestAssured.*;
 
 public class Service {
 
-    BodyRequestToCreateDevice bodyRequestToCreateDevice = BodyRequestToCreateDevice.builder()
-            .username("superuser")
-            .password("traverse")
-            .accountSerialNumber(49L)
-            .address("127.0.0.5")
-            .applyAutomationProfiles(true)
-            .automaticTestDiscovery(true)
-            .clearOnOk(false)
-            .comment("")
-            .doNotResolveAddress(false)
-            .model("")
-            .tag1("")
-            .tag2("")
-            .tag3("")
-            .tag4("")
-            .tag5("")
-            .vendor("")
-            .configBackupEnabled(false)
-            .flapPreventionWaitCycles(2L)
-            .locationName("Default Location")
-            .name("Simma2")
-            .processCollectionEnabled(false)
-            .rediscoveryEnabled(false)
-            .showOnSummary(true)
-            .smartNotify(true)
-            .type(0L)
-            .build();
-
 
     public static BodyResponseCreatedDevice createDevice(BodyRequestToCreateDevice device){
         Response response = given()

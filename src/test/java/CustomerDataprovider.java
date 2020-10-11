@@ -1,6 +1,7 @@
 import models.api.BodyRequestToCreateDevice;
 import models.api.BodyResponseCreatedDevice;
 import services.BasicService;
+import lombok.*;
 
 public class CustomerDataprovider {
 
