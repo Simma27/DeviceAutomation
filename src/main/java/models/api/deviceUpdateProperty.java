@@ -1,7 +1,6 @@
 
 package models.api;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import lombok.Builder;
 import lombok.Data;
@@ -10,11 +9,10 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class SearchCriteria {
+public class deviceUpdateProperty {
 
-    private String searchOption;
+    private String propertyName;
 
-    private String searchTerms;
-
-
+    private String propertyValue;
+    
 }
