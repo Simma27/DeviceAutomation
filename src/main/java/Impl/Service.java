@@ -3,7 +3,6 @@ package Impl;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import models.api.Device;
-import models.api.deviceUpdateProperty;
 import services.AuthService;
 import services.BasicService;
 
@@ -12,9 +11,13 @@ import static io.restassured.RestAssured.given;
 
 public class Service implements AuthService {
 
+    private final String CREATE = "/create";
+    private final String DELETE = "/delete";
+    private final String UPDATE = "/update";
+    private final String MOVE = "/move";
+
 
     public static Device createDevice(Device device) {
-
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(device)
@@ -54,6 +57,17 @@ public class Service implements AuthService {
         return null;
     }
 
+    public static Device move(Device device) {
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(device)
+                .post("http://127.0.0.1/api/json/admin/device/move");
+        if (response.statusCode() == 200){
+            return response.as(Device.class);
+        }
+        return null;
+    }
+
     public static Device deleteDevice(Device device) {
         Response response = given()
                 .contentType(ContentType.JSON)
@@ -65,19 +79,4 @@ public class Service implements AuthService {
         }
         return null;
     }
-
-    public static void main(String[] args) {
-
-        deviceUpdateProperty deviceUpdateProperty = models.api.deviceUpdateProperty
-                .builder()
-                .propertyName("SUSPEND")
-                .propertyValue(String.valueOf(true))
-                .build();
-
-        System.out.println(deviceUpdateProperty.getPropertyName());
-        System.out.println(deviceUpdateProperty.getPropertyValue());
-        System.out.println(deviceUpdateProperty.toString());
-    }
-
-
 }

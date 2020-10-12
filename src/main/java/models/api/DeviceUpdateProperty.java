@@ -1,7 +1,5 @@
-
 package models.api;
 
-import com.google.gson.annotations.Expose;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -9,7 +7,7 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class deviceUpdateProperty {
+public class DeviceUpdateProperty {
 
     private String propertyName;
 

@@ -1,4 +1,3 @@
-
 package models.api;
 
 import lombok.Builder;
