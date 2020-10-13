@@ -24,26 +24,26 @@ public class CustomerDataprovider {
 
     @DataProvider
     public Object[] getCreatedDifferentType() {
-        return new Device[]{Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(0)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(1)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(2)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(3)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(4)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(5)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(6)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(7)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(8)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(9)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(10)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(11)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(12)).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(Long.valueOf(13)).build()
+        return new Device[]{Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(0L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(1L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(2L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(3L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(4L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(5L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(6L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(7L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(8L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(9L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(10L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(11L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(12L).build()
+                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(13L).build()
         };
     }
 
     @DataProvider
     public static Object[] getDataToUpdateDevice() {
-        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<DeviceUpdateProperty>();
+        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
         deviceUpdateProperties.add(DeviceUpdateProperty
                 .builder()
                 .propertyName("SUSPEND")
@@ -80,7 +80,7 @@ public class CustomerDataprovider {
 
     @DataProvider
     public static Object[] getDataToUpdateDeviceDifferentLine() {
-        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<DeviceUpdateProperty>();
+        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
         deviceUpdateProperties.add(DeviceUpdateProperty
                 .builder()
                 .propertyName("SUSPEND")

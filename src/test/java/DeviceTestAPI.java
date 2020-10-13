@@ -146,8 +146,8 @@ public class DeviceTestAPI {
         Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getDataToUpdateDeviceDifferentLine", dataProviderClass = CustomerDataprovider.class)
-    public void updateDeviceDifferentLineTest(Device updateDevice) {
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
+    public void updateDeviceAddCommentTest(Device updateDevice) {
         Device createdDevice = Service.createDevice(Device.builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
@@ -234,7 +234,7 @@ public class DeviceTestAPI {
                 .searchOption("DEVICE_SERIAL_NUMBER")
                 .searchTerms(String.valueOf(createdDevice.getResult().getDevice().getSerialNumber()))
                 .build());
-        Device responseMoveDevice = Service.move(Device
+        Device responseMoveDevice = Service.moveDevice(Device
                 .builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
@@ -257,7 +257,7 @@ public class DeviceTestAPI {
         Device createdDevice = Service.createDevice(newDevice);
         assert createdDevice != null;
 
-        Device responseMoveDevice = Service.move(Device
+        Device responseMoveDevice = Service.moveDevice(Device
                 .builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
@@ -288,7 +288,7 @@ public class DeviceTestAPI {
                 .searchTerms(String.valueOf(createdDevice.getResult().getDevice().getSerialNumber()))
                 .build());
 
-        Device responseMoveDevice = Service.move(Device
+        Device responseMoveDevice = Service.moveDevice(Device
                 .builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)

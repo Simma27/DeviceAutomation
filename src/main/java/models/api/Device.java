@@ -6,7 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
-
+/**
+ * The Device configures all devices managed by Traverse.
+ * Each row contains the Department, Device Name, Address, Device type, State (Active or Suspended) and Location.
+ */
 @Data
 @Builder
 @ToString
