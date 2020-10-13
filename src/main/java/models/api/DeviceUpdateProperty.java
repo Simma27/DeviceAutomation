@@ -14,7 +14,6 @@ import lombok.ToString;
 public class DeviceUpdateProperty {
 
     private String propertyName;
-
     private String propertyValue;
     
 }

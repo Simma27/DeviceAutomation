@@ -9,10 +9,7 @@ public class DeviceTestAPI {
     Service service = new Service();
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
-    public void createDeviceTest(Device newDevice) {
-
-        Device createdDevice = service.createDevice(newDevice);
-        assert createdDevice != null;
+    public void createDeviceTest(Device createdDevice) {
         Assert.assertTrue(createdDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertNull(createdDevice.getErrorCode(), "Have error number: " + createdDevice.getErrorCode());
         Assert.assertNull(createdDevice.getErrorMessage(), "Have error message: " + createdDevice.getErrorMessage());
@@ -39,7 +36,7 @@ public class DeviceTestAPI {
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getParamToCreateDevice", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceTwiceTest(Device newDevice) {
         Device similarDeviceOne = service.createDevice(newDevice);
         Device similarDeviceTwo = service.createDevice(newDevice);
@@ -53,7 +50,7 @@ public class DeviceTestAPI {
         service.deleteDevice(similarDeviceOne.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getParamToCreateDevice", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceWithoutName(Device newDevice) {
         newDevice.setName(null);
         Device createdDevice = service.createDevice(newDevice);
@@ -67,8 +64,7 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
-    public void deleteDevice(Device newDevice) {
-        Device createdDevice = service.createDevice(newDevice);
+    public void deleteDevice(Device createdDevice) {
         Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         Assert.assertTrue(responseDeleteDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertNull(responseDeleteDevice.getErrorCode(), "There is a errorCode that should not be");
@@ -102,8 +98,7 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
-    public void deleteSimilarDeviceTwiceTest(Device newDevice) {
-        Device createdDevice = service.createDevice(newDevice);
+    public void deleteSimilarDeviceTwiceTest(Device createdDevice) {
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         Assert.assertFalse(responseDeleteDevice.getSuccess(), "Parameter \"success\" is false");

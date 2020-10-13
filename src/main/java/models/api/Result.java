@@ -13,7 +13,6 @@ import lombok.ToString;
 public class Result {
    
     private Device device;
-   
     private String message;
 
 }

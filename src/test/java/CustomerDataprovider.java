@@ -11,10 +11,10 @@ import static config.DeviceConfig.*;
 
 public class CustomerDataprovider {
 
-    Service service = new Service();
+    static Service service = new Service();
 
     @DataProvider
-    public Object[] getCreatedDevice() {
+    public Object[] getParamToCreateDevice() {
         return new Device[]{Device.builder()
                 .username(USERNAME)
                 .password(PASSWORD)
@@ -25,6 +25,20 @@ public class CustomerDataprovider {
                 .type((long) 0)
                 .build()
         };
+    }
+
+    @DataProvider
+    public Object[][] getCreatedDevice() {
+        Device createdDevice = service.createDevice(Device.builder()
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
+                .address("127.0.0.5")
+                .locationName(DEFAULT_LOCATION)
+                .name("ExampleDevice")
+                .type((long) 0)
+                .build());
+        return new Device[][]{{createdDevice}};
     }
 
     @DataProvider
@@ -44,6 +58,37 @@ public class CustomerDataprovider {
                 , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(12L).build()
                 , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(13L).build()
         };
+    }
+
+    @DataProvider
+    public Object[][] getDataToMoveDevice() {
+        Device createdDevice = service.createDevice(Device.builder()
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
+                .address("127.0.0.5")
+                .locationName(DEFAULT_LOCATION)
+                .name("ExampleDevice")
+                .type((long) 0)
+                .build());
+
+        List<SearchCriteria> moveDevice = new ArrayList<>();
+
+        moveDevice.add(SearchCriteria
+                .builder()
+                .searchOption("DEVICE_SERIAL_NUMBER")
+                .searchTerms(String.valueOf(createdDevice.getResult().getDevice().getSerialNumber()))
+                .build());
+
+        return new Device[][]{{createdDevice
+                , Device
+                .builder()
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
+                .searchCriterias(moveDevice)
+                .build()
+        }};
     }
 
     @DataProvider
@@ -75,7 +120,7 @@ public class CustomerDataprovider {
                 .propertyValue("false")
                 .build());
 
-        Device[][] data ={{Device.builder()
+        return new Device[][]{{Device.builder()
                 .username(USERNAME)
                 .password(PASSWORD)
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
@@ -84,44 +129,11 @@ public class CustomerDataprovider {
                 .name("ExampleDevice")
                 .type((long) 0)
                 .deviceUpdateProperties(deviceUpdateProperties)
-                .build(),Device.builder()
+                .build(), Device.builder()
                 .username(USERNAME)
                 .password(PASSWORD)
                 .deviceUpdateProperties(deviceUpdateProperties)
                 .build()}};
-
-        return data;
-    }
-
-    @DataProvider
-    public Object[][] getDataToMoveDevice() {
-        Device createdDevice = service.createDevice(Device.builder()
-                .username(USERNAME)
-                .password(PASSWORD)
-                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
-                .address("127.0.0.5")
-                .locationName(DEFAULT_LOCATION)
-                .name("ExampleDevice")
-                .type((long) 0)
-                .build());
-
-        List<SearchCriteria> moveDevice = new ArrayList<>();
-
-        moveDevice.add(SearchCriteria
-                .builder()
-                .searchOption("DEVICE_SERIAL_NUMBER")
-                .searchTerms(String.valueOf(createdDevice.getResult().getDevice().getSerialNumber()))
-                .build());
-
-        return new Device[][]{{createdDevice
-                ,Device
-                .builder()
-                .username(USERNAME)
-                .password(PASSWORD)
-                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
-                .searchCriterias(moveDevice)
-                .build()
-        }};
     }
 
 
