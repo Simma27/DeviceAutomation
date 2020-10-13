@@ -24,7 +24,6 @@ public class DeviceTestAPI {
     @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceDifferentType(Device newDevice) {
         Device createdDevice = service.createDevice(newDevice);
-        System.out.println(createdDevice.toString());
         Assert.assertTrue(createdDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertNull(createdDevice.getErrorCode(), "Have error number: " + createdDevice.getErrorCode());
         Assert.assertNull(createdDevice.getErrorMessage(), "Have error message: " + createdDevice.getErrorMessage());
@@ -139,7 +138,6 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
     public void updateDeviceWithoutChanges(Device toCreate, Device updateDevice) {
-
         updateDevice.setDeviceUpdateProperties(null);
         Device createdDevice = service.createDevice(toCreate);
         Device responseUpdateDevice = service.updateDevice(updateDevice);
@@ -154,7 +152,6 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
     public void updateDeviceWithoutSerialNumber(Device toCreate, Device updateDevice) {
-
         updateDevice.setSerialNumber(null);
         Device createdDevice = service.createDevice(toCreate);
         Device responseUpdateDevice = service.updateDevice(updateDevice);
