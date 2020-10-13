@@ -28,7 +28,6 @@ public class Service implements AuthService {
                 .body(device)
                 .post(URI + SERVICE + CREATE);
         if (response.statusCode() == 200) {
-            System.out.println(response.prettyPrint());
             return response.as(Device.class);
         }
         return null;
