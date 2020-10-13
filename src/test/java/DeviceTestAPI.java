@@ -21,8 +21,8 @@ public class DeviceTestAPI {
         Assert.assertTrue(createdDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertNull(createdDevice.getErrorCode(), "Have error number: " + createdDevice.getErrorCode());
         Assert.assertNull(createdDevice.getErrorMessage(), "Have error message: " + createdDevice.getErrorMessage());
-        Assert.assertNotNull(createdDevice.getTimestamp());
-        Assert.assertNotNull(createdDevice.getTimestampStr());
+        Assert.assertNotNull(createdDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(createdDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(createdDevice.getResult().getMessage()
                 , "New NetworkDevice has been created with Serial Number: "
                         + createdDevice.getResult().getDevice().getSerialNumber(), "Device is not created");
@@ -32,11 +32,15 @@ public class DeviceTestAPI {
     @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceDifferentType(Device newDevice) {
         Device createdDevice = service.createDevice(newDevice);
-        Assert.assertNotNull(createdDevice, "");
-        Assert.assertNotNull(createdDevice.getTimestamp());
-        Assert.assertNotNull(createdDevice.getTimestampStr());
-        Assert.assertFalse(createdDevice.getResult().getDevice().getDeviceTypeStr().equalsIgnoreCase("INVALID"), "INVALID");
-        Assert.assertEquals(newDevice.getType(), createdDevice.getResult().getDevice().getDeviceType(), "ASSERT EQUALS");
+        System.out.println(createdDevice.toString());
+        Assert.assertTrue(createdDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertNull(createdDevice.getErrorCode(), "Have error number: " + createdDevice.getErrorCode());
+        Assert.assertNull(createdDevice.getErrorMessage(), "Have error message: " + createdDevice.getErrorMessage());
+        Assert.assertNotNull(createdDevice, "Device is not created!");
+        Assert.assertNotNull(createdDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(createdDevice.getTimestampStr(), "Error, time is null");
+        Assert.assertFalse(createdDevice.getResult().getDevice().getDeviceTypeStr().equalsIgnoreCase("INVALID"), "Non-existent device type");
+        Assert.assertEquals(newDevice.getType(), createdDevice.getResult().getDevice().getDeviceType(), "The types of the request parameter \"DeviceType\" and the created Device type do not match");
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
