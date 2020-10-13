@@ -12,5 +12,5 @@ public class DeviceConfig {
 
     public static final String DEFAULT_LOCATION = "Default Location";
 
-    public static final Long ACCOUNT_SERIAL_NUMBER = 49l;
+    public static final Long ACCOUNT_SERIAL_NUMBER = 49L;
 }

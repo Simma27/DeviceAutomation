@@ -6,6 +6,6 @@ package services;
  */
 public interface BasicService {
 
-    public static final String SERVICE = "/device";
+    String SERVICE = "/device";
 
 }
