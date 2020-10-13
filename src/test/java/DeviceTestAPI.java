@@ -49,13 +49,13 @@ public class DeviceTestAPI {
         Device similarDeviceOne = service.createDevice(newDevice);
         Device similarDeviceTwo = service.createDevice(newDevice);
         assert similarDeviceTwo != null;
-        Assert.assertFalse(similarDeviceTwo.getSuccess());
-        Assert.assertEquals(similarDeviceTwo.getErrorCode(), -100.0);
-        Assert.assertNotNull(similarDeviceTwo.getTimestamp());
-        Assert.assertNotNull(similarDeviceTwo.getTimestampStr());
+        Assert.assertFalse(similarDeviceTwo.getSuccess(),"Parameter \"success\" is false");
+        Assert.assertEquals(similarDeviceTwo.getErrorCode(), -100.0, "Error code is not -100");
+        Assert.assertNotNull(similarDeviceTwo.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(similarDeviceTwo.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(similarDeviceTwo.getErrorMessage(), "Unable to create network device: You already have a device named ExampleDevice");
-        Assert.assertNull(similarDeviceTwo.getResult().getDevice());
-        Assert.assertNull(similarDeviceTwo.getResult().getMessage());
+        Assert.assertNull(similarDeviceTwo.getResult().getDevice(), "There is a device that should not be");
+        Assert.assertNull(similarDeviceTwo.getResult().getMessage(), "There is a message that should not be");
         assert similarDeviceOne != null;
         service.deleteDevice(similarDeviceOne.getResult().getDevice().getSerialNumber());
     }
@@ -65,13 +65,13 @@ public class DeviceTestAPI {
         newDevice.setName(null);
         Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
-        Assert.assertFalse(createdDevice.getSuccess());
-        Assert.assertEquals(createdDevice.getErrorCode(), -100.0);
+        Assert.assertFalse(createdDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertEquals(createdDevice.getErrorCode(), -100.0, "Error code is not -100");
         Assert.assertEquals(createdDevice.getErrorMessage(), "Unable to create network device: Please make sure that all the mandatory properties have been provided! ( type, name, address, locationName)");
-        Assert.assertNotNull(createdDevice.getTimestamp());
-        Assert.assertNotNull(createdDevice.getTimestampStr());
-        Assert.assertNull(createdDevice.getResult().getDevice());
-        Assert.assertNull(createdDevice.getResult().getMessage());
+        Assert.assertNotNull(createdDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(createdDevice.getTimestampStr(), "Error, time is null");
+        Assert.assertNull(createdDevice.getResult().getDevice(),"There is a device that should not be");
+        Assert.assertNull(createdDevice.getResult().getMessage(),"There is a message that should not be");
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
@@ -80,11 +80,11 @@ public class DeviceTestAPI {
         assert createdDevice != null;
         Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         assert responseDeleteDevice != null;
-        Assert.assertTrue(responseDeleteDevice.getSuccess());
-        Assert.assertNull(responseDeleteDevice.getErrorCode());
-        Assert.assertNull(responseDeleteDevice.getErrorMessage());
-        Assert.assertNotNull(responseDeleteDevice.getTimestamp());
-        Assert.assertNotNull(responseDeleteDevice.getTimestampStr());
+        Assert.assertTrue(responseDeleteDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertNull(responseDeleteDevice.getErrorCode(), "There is a errorCode that should not be");
+        Assert.assertNull(responseDeleteDevice.getErrorMessage(),"There is a ErrorMessage that should not be" );
+        Assert.assertNotNull(responseDeleteDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseDeleteDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseDeleteDevice.getResult().getMessage(), "Successful! Total 1 devices have been deleted. ");
     }
 
@@ -94,11 +94,11 @@ public class DeviceTestAPI {
         assert createdDevice != null;
         Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         assert responseDeleteDevice != null;
-        Assert.assertTrue(responseDeleteDevice.getSuccess());
-        Assert.assertNull(responseDeleteDevice.getErrorCode());
-        Assert.assertNull(responseDeleteDevice.getErrorMessage());
-        Assert.assertNotNull(responseDeleteDevice.getTimestamp());
-        Assert.assertNotNull(responseDeleteDevice.getTimestampStr());
+        Assert.assertTrue(responseDeleteDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertNull(responseDeleteDevice.getErrorCode(), "There is a errorCode that should not be");
+        Assert.assertNull(responseDeleteDevice.getErrorMessage(),"There is a ErrorMessage that should not be");
+        Assert.assertNotNull(responseDeleteDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseDeleteDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseDeleteDevice.getResult().getMessage(), "Successful! Total 1 devices have been deleted. ");
     }
 
@@ -106,12 +106,12 @@ public class DeviceTestAPI {
     public void deleteWithoutRequestBody() {
         Device responseDeleteDevice = service.deleteDevice(Device.builder().build());
         assert responseDeleteDevice != null;
-        Assert.assertFalse(responseDeleteDevice.getSuccess());
-        Assert.assertEquals(responseDeleteDevice.getErrorCode(), -1.0);
+        Assert.assertFalse(responseDeleteDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertEquals(responseDeleteDevice.getErrorCode(), -1.0, "Error code is not -1");
         Assert.assertTrue(responseDeleteDevice.getErrorMessage().toString().contains("serialNumber=<null>,searchCriterias=<null>,modelSessionManager=<null>,username=<null>,password=<null>"));
-        Assert.assertNotNull(responseDeleteDevice.getTimestamp());
-        Assert.assertNotNull(responseDeleteDevice.getTimestampStr());
-        Assert.assertNull(responseDeleteDevice.getResult());
+        Assert.assertNotNull(responseDeleteDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseDeleteDevice.getTimestampStr(), "Error, time is null");
+        Assert.assertNull(responseDeleteDevice.getResult(), "There is a Result that should not be");
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
@@ -121,11 +121,11 @@ public class DeviceTestAPI {
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         assert responseDeleteDevice != null;
-        Assert.assertFalse(responseDeleteDevice.getSuccess());
+        Assert.assertFalse(responseDeleteDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertEquals(responseDeleteDevice.getErrorCode(), -4.0);
         Assert.assertEquals(responseDeleteDevice.getErrorMessage(), "No devices matched the search criterias");
-        Assert.assertNotNull(responseDeleteDevice.getTimestamp());
-        Assert.assertNotNull(responseDeleteDevice.getTimestampStr());
+        Assert.assertNotNull(responseDeleteDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseDeleteDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseDeleteDevice.getResult().getMessage(), "Failed");
     }
 
@@ -142,12 +142,11 @@ public class DeviceTestAPI {
                 .build());
         Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
-        System.out.println(responseUpdateDevice.toString());
-        Assert.assertTrue(responseUpdateDevice.getSuccess());
-        Assert.assertNull(responseUpdateDevice.getErrorCode());
-        Assert.assertNull(responseUpdateDevice.getErrorMessage());
-        Assert.assertNotNull(responseUpdateDevice.getTimestamp());
-        Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
+        Assert.assertTrue(responseUpdateDevice.getSuccess(),"Parameter \"success\" is false");
+        Assert.assertNull(responseUpdateDevice.getErrorCode(),"There is a errorCode that should not be");
+        Assert.assertNull(responseUpdateDevice.getErrorMessage(),"There is a errorMessage that should not be");
+        Assert.assertNotNull(responseUpdateDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseUpdateDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
         assert createdDevice != null;
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
@@ -166,12 +165,11 @@ public class DeviceTestAPI {
                 .build());
         Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
-        System.out.println(responseUpdateDevice.toString());
-        Assert.assertTrue(responseUpdateDevice.getSuccess());
-        Assert.assertNull(responseUpdateDevice.getErrorCode());
-        Assert.assertNull(responseUpdateDevice.getErrorMessage());
-        Assert.assertNotNull(responseUpdateDevice.getTimestamp());
-        Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
+        Assert.assertTrue(responseUpdateDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertNull(responseUpdateDevice.getErrorCode(),"There is a errorCode that should not be");
+        Assert.assertNull(responseUpdateDevice.getErrorMessage(),"There is a errorMessage that should not be");
+        Assert.assertNotNull(responseUpdateDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseUpdateDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
         assert createdDevice != null;
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
@@ -193,12 +191,11 @@ public class DeviceTestAPI {
                 .build());
         Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
-        System.out.println(responseUpdateDevice.toString());
-        Assert.assertFalse(responseUpdateDevice.getSuccess());
+        Assert.assertFalse(responseUpdateDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertEquals(responseUpdateDevice.getErrorCode(), -412.0);
         Assert.assertEquals(responseUpdateDevice.getErrorMessage(), "Specify at least one parameter to be modified");
-        Assert.assertNotNull(responseUpdateDevice.getTimestamp());
-        Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
+        Assert.assertNotNull(responseUpdateDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseUpdateDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Failed");
         assert createdDevice != null;
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
@@ -219,12 +216,11 @@ public class DeviceTestAPI {
                 .build());
         Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
-        System.out.println(responseUpdateDevice.toString());
-        Assert.assertTrue(responseUpdateDevice.getSuccess());
-        Assert.assertNull(responseUpdateDevice.getErrorCode());
-        Assert.assertNull(responseUpdateDevice.getErrorMessage());
-        Assert.assertNotNull(responseUpdateDevice.getTimestamp());
-        Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
+        Assert.assertTrue(responseUpdateDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertNull(responseUpdateDevice.getErrorCode(), "There is a errorCode that should not be");
+        Assert.assertNull(responseUpdateDevice.getErrorMessage(), "There is a errorMessage that should not be");
+        Assert.assertNotNull(responseUpdateDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseUpdateDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
         assert createdDevice != null;
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
@@ -249,12 +245,11 @@ public class DeviceTestAPI {
                 .searchCriterias(moveDevice)
                 .build());
 
-        System.out.println(responseMoveDevice.toString());
-        Assert.assertTrue(responseMoveDevice.getSuccess());
-        Assert.assertNull(responseMoveDevice.getErrorCode());
-        Assert.assertNull(responseMoveDevice.getErrorMessage());
-        Assert.assertNotNull(responseMoveDevice.getTimestamp());
-        Assert.assertNotNull(responseMoveDevice.getTimestampStr());
+        Assert.assertTrue(responseMoveDevice.getSuccess(), "Parameter \"success\" is false");
+        Assert.assertNull(responseMoveDevice.getErrorCode(), "There is a errorCode that should not be");
+        Assert.assertNull(responseMoveDevice.getErrorMessage(), "There is a errorMessage that should not be");
+        Assert.assertNotNull(responseMoveDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseMoveDevice.getTimestampStr(), "Error, time is null");
         Assert.assertEquals(responseMoveDevice.getResult().getMessage(), "Total 0 device(s) has(have) been moved to department with name: Core Infrastructure. Total 1 device(s) has(have) been ignored due to same department violation.");
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
@@ -272,13 +267,12 @@ public class DeviceTestAPI {
                 .build());
 
         assert responseMoveDevice != null;
-        System.out.println(responseMoveDevice.toString());
-        Assert.assertFalse(responseMoveDevice.getSuccess());
+        Assert.assertFalse(responseMoveDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertEquals(responseMoveDevice.getErrorCode(), -412.0);
         Assert.assertEquals(responseMoveDevice.getErrorMessage(), "Search criterias can not be null.");
-        Assert.assertNotNull(responseMoveDevice.getTimestamp());
-        Assert.assertNotNull(responseMoveDevice.getTimestampStr());
-        Assert.assertNull(responseMoveDevice.getResult().getMessage());
+        Assert.assertNotNull(responseMoveDevice.getTimestamp(), "Error, time is null");
+        Assert.assertNotNull(responseMoveDevice.getTimestampStr(), "Error, time is null");
+        Assert.assertNull(responseMoveDevice.getResult().getMessage(), "There is a message that should not be");
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
@@ -303,13 +297,12 @@ public class DeviceTestAPI {
                 .build());
 
         assert responseMoveDevice != null;
-        System.out.println(responseMoveDevice.toString());
-        Assert.assertFalse(responseMoveDevice.getSuccess());
+        Assert.assertFalse(responseMoveDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertEquals(responseMoveDevice.getErrorCode(), -412.0);
         Assert.assertEquals(responseMoveDevice.getErrorMessage(), "Destination account serial number is mandatory to be provided.");
-        Assert.assertNotNull(responseMoveDevice.getTimestamp());
-        Assert.assertNotNull(responseMoveDevice.getTimestampStr());
-        Assert.assertNull(responseMoveDevice.getResult().getMessage());
+        Assert.assertNotNull(responseMoveDevice.getTimestamp(),"Error, time is null");
+        Assert.assertNotNull(responseMoveDevice.getTimestampStr(),"Error, time is null");
+        Assert.assertNull(responseMoveDevice.getResult().getMessage(), "There is a message that should not be");
         service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 }
