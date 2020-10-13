@@ -4,7 +4,9 @@ import io.restassured.response.Response;
 import models.api.Device;
 import models.api.Device;
 
-
+/**
+ * Iterface provide main method: Create, Delete, Update, Move devices.
+ */
 public interface AuthService {
 
     public Device createDevice(Device device);

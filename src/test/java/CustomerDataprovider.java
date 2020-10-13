@@ -1,21 +1,22 @@
 import models.api.Device;
 import models.api.DeviceUpdateProperty;
 import org.testng.annotations.DataProvider;
-import services.BasicService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static config.DeviceConfig.*;
 
 public class CustomerDataprovider {
 
     @DataProvider
     public Object[] getCreatedDevice() {
         return new Device[]{Device.builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
-                .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
-                .locationName(BasicService.DEFAULT_LOCATION)
+                .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build()
@@ -24,20 +25,20 @@ public class CustomerDataprovider {
 
     @DataProvider
     public Object[] getCreatedDifferentType() {
-        return new Device[]{Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(0L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(1L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(2L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(3L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(4L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(5L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(6L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(7L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(8L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(9L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(10L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(11L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(12L).build()
-                , Device.builder().username(BasicService.USERNAME).password(BasicService.PASSWORD).accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(BasicService.DEFAULT_LOCATION).name("Simma").type(13L).build()
+        return new Device[]{Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(0L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(1L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(2L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(3L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(4L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(5L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(6L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(7L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(8L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(9L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(10L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(11L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(12L).build()
+                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(13L).build()
         };
     }
 
@@ -71,8 +72,8 @@ public class CustomerDataprovider {
                 .build());
 
         return new Device[]{Device.builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
+                .username(USERNAME)
+                .password(PASSWORD)
                 .deviceUpdateProperties(deviceUpdateProperties)
                 .build()
         };
@@ -113,8 +114,8 @@ public class CustomerDataprovider {
                 .build());
 
         return new Device[]{Device.builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
+                .username(USERNAME)
+                .password(PASSWORD)
                 .deviceUpdateProperties(deviceUpdateProperties)
                 .build()
         };

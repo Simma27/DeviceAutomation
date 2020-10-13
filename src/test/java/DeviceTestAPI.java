@@ -1,13 +1,13 @@
 import models.api.Device;
 import models.api.SearchCriteria;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import Impl.Service;
-import services.BasicService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static config.DeviceConfig.*;
 
 public class DeviceTestAPI {
 
@@ -128,11 +128,11 @@ public class DeviceTestAPI {
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
     public void updateDevice(Device updateDevice) {
         Device createdDevice = service.createDevice(Device.builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
-                .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
-                .locationName(BasicService.DEFAULT_LOCATION)
+                .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
@@ -152,11 +152,11 @@ public class DeviceTestAPI {
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
     public void updateDeviceAddCommentTest(Device updateDevice) {
         Device createdDevice = service.createDevice(Device.builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
-                .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
-                .locationName(BasicService.DEFAULT_LOCATION)
+                .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
@@ -179,11 +179,11 @@ public class DeviceTestAPI {
 
         updateDevice.setDeviceUpdateProperties(null);
         Device createdDevice = service.createDevice(Device.builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
-                .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
-                .locationName(BasicService.DEFAULT_LOCATION)
+                .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
@@ -205,11 +205,11 @@ public class DeviceTestAPI {
 
         updateDevice.setSerialNumber(null);
         Device createdDevice = service.createDevice(Device.builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
-                .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
-                .locationName(BasicService.DEFAULT_LOCATION)
+                .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
@@ -230,7 +230,7 @@ public class DeviceTestAPI {
     public void moveDeviceTest(Device newDevice) {
         Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
-        List<SearchCriteria> moveDevice = new ArrayList<SearchCriteria>();
+        List<SearchCriteria> moveDevice = new ArrayList<>();
 
         moveDevice.add(SearchCriteria
                 .builder()
@@ -239,9 +239,9 @@ public class DeviceTestAPI {
                 .build());
         Device responseMoveDevice = service.moveDevice(Device
                 .builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
-                .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .searchCriterias(moveDevice)
                 .build());
 
@@ -262,9 +262,9 @@ public class DeviceTestAPI {
 
         Device responseMoveDevice = service.moveDevice(Device
                 .builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
-                .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .build());
 
         assert responseMoveDevice != null;
@@ -283,7 +283,7 @@ public class DeviceTestAPI {
         Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
 
-        List<SearchCriteria> moveDevice = new ArrayList<SearchCriteria>();
+        List<SearchCriteria> moveDevice = new ArrayList<>();
 
         moveDevice.add(SearchCriteria
                 .builder()
@@ -293,8 +293,8 @@ public class DeviceTestAPI {
 
         Device responseMoveDevice = service.moveDevice(Device
                 .builder()
-                .username(BasicService.USERNAME)
-                .password(BasicService.PASSWORD)
+                .username(USERNAME)
+                .password(PASSWORD)
                 .searchCriterias(moveDevice)
                 .build());
 
