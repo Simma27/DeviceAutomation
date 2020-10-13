@@ -24,7 +24,7 @@ public class Service implements AuthService {
      * @param device The input is a Device with the parameters we need.
      * @return Response to a request to create a device as a Device class.
      */
-    public static Device createDevice(Device device) {
+    public Device createDevice(Device device) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(device)
@@ -41,7 +41,7 @@ public class Service implements AuthService {
      * @param serialNumber serial number of the Device to be deleted.
      * @return Response to a request to delete Device as a Device class.
      */
-    public static Device deleteDevice(long serialNumber) {
+    public Device deleteDevice(long serialNumber) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(Device.builder()
@@ -62,7 +62,7 @@ public class Service implements AuthService {
      * @param device The input is a Device with the parameters we need.
      * @return Response to a request to update Device as a Device class.
      */
-    public static Device updateDevice(Device device) {
+    public Device updateDevice(Device device) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(device)
@@ -78,7 +78,7 @@ public class Service implements AuthService {
      * @param device The input is a Device with the parameters(Department ID, searchCriteria).
      * @return Response to a request to move Device as a Device class.
      */
-    public static Device moveDevice(Device device) {
+    public Device moveDevice(Device device) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(device)
@@ -94,7 +94,7 @@ public class Service implements AuthService {
      * @param device input is a Device to be removed.
      * @return Response to a request to delete Device as a Device class.
      */
-    public static Device deleteDevice(Device device) {
+    public Device deleteDevice(Device device) {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .body(device)

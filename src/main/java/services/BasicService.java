@@ -1,5 +1,9 @@
 package services;
 
+
+/**
+ * Provides basic parameters for use in the service class and request body.
+ */
 public interface BasicService {
 
     public final String BaseURI =  "http://127.0.0.1/api/json/admin/device";

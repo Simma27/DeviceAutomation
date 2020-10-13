@@ -3,22 +3,15 @@ package services;
 import io.restassured.response.Response;
 import models.api.Device;
 import models.api.Device;
-@Deprecated
+
+
 public interface AuthService {
 
-    public static Device createDevice(Device device) {
-        return null;
-    }
+    public Device createDevice(Device device);
 
-    public static Device deleteDevice(long serialNumber) {
-        return null;
-    }
+    public Device deleteDevice(long serialNumber);
 
-    public static Device updateDevice(Device device) {
-        return null;
-    }
+    public Device updateDevice(Device device);
 
-    public static Device move(Device device) {
-        return null;
-    }
+    public Device moveDevice(Device device);
 }

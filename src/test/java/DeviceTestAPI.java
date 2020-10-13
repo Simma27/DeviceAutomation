@@ -1,6 +1,7 @@
 import models.api.Device;
 import models.api.SearchCriteria;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import Impl.Service;
 import services.BasicService;
@@ -10,10 +11,12 @@ import java.util.List;
 
 public class DeviceTestAPI {
 
+    Service service = new Service();
+
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceTest(Device newDevice) {
 
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
         Assert.assertTrue(createdDevice.getSuccess(), "Parameter \"success\" is false");
         Assert.assertNull(createdDevice.getErrorCode(), "Have error number: " + createdDevice.getErrorCode());
@@ -23,24 +26,24 @@ public class DeviceTestAPI {
         Assert.assertEquals(createdDevice.getResult().getMessage()
                 , "New NetworkDevice has been created with Serial Number: "
                         + createdDevice.getResult().getDevice().getSerialNumber(), "Device is not created");
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceDifferentType(Device newDevice) {
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         Assert.assertNotNull(createdDevice, "");
         Assert.assertNotNull(createdDevice.getTimestamp());
         Assert.assertNotNull(createdDevice.getTimestampStr());
         Assert.assertFalse(createdDevice.getResult().getDevice().getDeviceTypeStr().equalsIgnoreCase("INVALID"), "INVALID");
         Assert.assertEquals(newDevice.getType(), createdDevice.getResult().getDevice().getDeviceType(), "ASSERT EQUALS");
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceTwiceTest(Device newDevice) {
-        Device similarDeviceOne = Service.createDevice(newDevice);
-        Device similarDeviceTwo = Service.createDevice(newDevice);
+        Device similarDeviceOne = service.createDevice(newDevice);
+        Device similarDeviceTwo = service.createDevice(newDevice);
         assert similarDeviceTwo != null;
         Assert.assertFalse(similarDeviceTwo.getSuccess());
         Assert.assertEquals(similarDeviceTwo.getErrorCode(), -100.0);
@@ -50,13 +53,13 @@ public class DeviceTestAPI {
         Assert.assertNull(similarDeviceTwo.getResult().getDevice());
         Assert.assertNull(similarDeviceTwo.getResult().getMessage());
         assert similarDeviceOne != null;
-        Service.deleteDevice(similarDeviceOne.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(similarDeviceOne.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void createDeviceWithoutName(Device newDevice) {
         newDevice.setName(null);
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
         Assert.assertFalse(createdDevice.getSuccess());
         Assert.assertEquals(createdDevice.getErrorCode(), -100.0);
@@ -69,9 +72,9 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void deleteDevice(Device newDevice) {
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
-        Device responseDeleteDevice = Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         assert responseDeleteDevice != null;
         Assert.assertTrue(responseDeleteDevice.getSuccess());
         Assert.assertNull(responseDeleteDevice.getErrorCode());
@@ -83,9 +86,9 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = CustomerDataprovider.class)
     public void deleteDifferentDevice(Device newDevice) {
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
-        Device responseDeleteDevice = Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         assert responseDeleteDevice != null;
         Assert.assertTrue(responseDeleteDevice.getSuccess());
         Assert.assertNull(responseDeleteDevice.getErrorCode());
@@ -97,7 +100,7 @@ public class DeviceTestAPI {
 
     @Test
     public void deleteWithoutRequestBody() {
-        Device responseDeleteDevice = Service.deleteDevice(Device.builder().build());
+        Device responseDeleteDevice = service.deleteDevice(Device.builder().build());
         assert responseDeleteDevice != null;
         Assert.assertFalse(responseDeleteDevice.getSuccess());
         Assert.assertEquals(responseDeleteDevice.getErrorCode(), -1.0);
@@ -109,10 +112,10 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void deleteSimilarDeviceTwiceTest(Device newDevice) {
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
-        Device responseDeleteDevice = Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        Device responseDeleteDevice = service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
         assert responseDeleteDevice != null;
         Assert.assertFalse(responseDeleteDevice.getSuccess());
         Assert.assertEquals(responseDeleteDevice.getErrorCode(), -4.0);
@@ -124,7 +127,7 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
     public void updateDevice(Device updateDevice) {
-        Device createdDevice = Service.createDevice(Device.builder()
+        Device createdDevice = service.createDevice(Device.builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
                 .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
@@ -133,7 +136,7 @@ public class DeviceTestAPI {
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
-        Device responseUpdateDevice = Service.updateDevice(updateDevice);
+        Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
         System.out.println(responseUpdateDevice.toString());
         Assert.assertTrue(responseUpdateDevice.getSuccess());
@@ -143,12 +146,12 @@ public class DeviceTestAPI {
         Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
         assert createdDevice != null;
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
     public void updateDeviceAddCommentTest(Device updateDevice) {
-        Device createdDevice = Service.createDevice(Device.builder()
+        Device createdDevice = service.createDevice(Device.builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
                 .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
@@ -157,7 +160,7 @@ public class DeviceTestAPI {
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
-        Device responseUpdateDevice = Service.updateDevice(updateDevice);
+        Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
         System.out.println(responseUpdateDevice.toString());
         Assert.assertTrue(responseUpdateDevice.getSuccess());
@@ -167,7 +170,7 @@ public class DeviceTestAPI {
         Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
         assert createdDevice != null;
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
 
@@ -175,7 +178,7 @@ public class DeviceTestAPI {
     public void updateDeviceWithoutChanges(Device updateDevice) {
 
         updateDevice.setDeviceUpdateProperties(null);
-        Device createdDevice = Service.createDevice(Device.builder()
+        Device createdDevice = service.createDevice(Device.builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
                 .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
@@ -184,7 +187,7 @@ public class DeviceTestAPI {
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
-        Device responseUpdateDevice = Service.updateDevice(updateDevice);
+        Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
         System.out.println(responseUpdateDevice.toString());
         Assert.assertFalse(responseUpdateDevice.getSuccess());
@@ -194,14 +197,14 @@ public class DeviceTestAPI {
         Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Failed");
         assert createdDevice != null;
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
     public void updateDeviceWithoutSerialNumber(Device updateDevice) {
 
         updateDevice.setSerialNumber(null);
-        Device createdDevice = Service.createDevice(Device.builder()
+        Device createdDevice = service.createDevice(Device.builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
                 .accountSerialNumber(BasicService.ACCOUNT_SERIAL_NUMBER)
@@ -210,7 +213,7 @@ public class DeviceTestAPI {
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
-        Device responseUpdateDevice = Service.updateDevice(updateDevice);
+        Device responseUpdateDevice = service.updateDevice(updateDevice);
         assert responseUpdateDevice != null;
         System.out.println(responseUpdateDevice.toString());
         Assert.assertTrue(responseUpdateDevice.getSuccess());
@@ -220,12 +223,12 @@ public class DeviceTestAPI {
         Assert.assertNotNull(responseUpdateDevice.getTimestampStr());
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
         assert createdDevice != null;
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void moveDeviceTest(Device newDevice) {
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
         List<SearchCriteria> moveDevice = new ArrayList<SearchCriteria>();
 
@@ -234,7 +237,7 @@ public class DeviceTestAPI {
                 .searchOption("DEVICE_SERIAL_NUMBER")
                 .searchTerms(String.valueOf(createdDevice.getResult().getDevice().getSerialNumber()))
                 .build());
-        Device responseMoveDevice = Service.moveDevice(Device
+        Device responseMoveDevice = service.moveDevice(Device
                 .builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
@@ -249,15 +252,15 @@ public class DeviceTestAPI {
         Assert.assertNotNull(responseMoveDevice.getTimestamp());
         Assert.assertNotNull(responseMoveDevice.getTimestampStr());
         Assert.assertEquals(responseMoveDevice.getResult().getMessage(), "Total 0 device(s) has(have) been moved to department with name: Core Infrastructure. Total 1 device(s) has(have) been ignored due to same department violation.");
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void moveDeviceWithoutSearchCriteriaTest(Device newDevice) {
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
 
-        Device responseMoveDevice = Service.moveDevice(Device
+        Device responseMoveDevice = service.moveDevice(Device
                 .builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
@@ -272,12 +275,12 @@ public class DeviceTestAPI {
         Assert.assertNotNull(responseMoveDevice.getTimestamp());
         Assert.assertNotNull(responseMoveDevice.getTimestampStr());
         Assert.assertNull(responseMoveDevice.getResult().getMessage());
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getCreatedDevice", dataProviderClass = CustomerDataprovider.class)
     public void moveDeviceWithoutDepartmentTest(Device newDevice) {
-        Device createdDevice = Service.createDevice(newDevice);
+        Device createdDevice = service.createDevice(newDevice);
         assert createdDevice != null;
 
         List<SearchCriteria> moveDevice = new ArrayList<SearchCriteria>();
@@ -288,7 +291,7 @@ public class DeviceTestAPI {
                 .searchTerms(String.valueOf(createdDevice.getResult().getDevice().getSerialNumber()))
                 .build());
 
-        Device responseMoveDevice = Service.moveDevice(Device
+        Device responseMoveDevice = service.moveDevice(Device
                 .builder()
                 .username(BasicService.USERNAME)
                 .password(BasicService.PASSWORD)
@@ -303,6 +306,6 @@ public class DeviceTestAPI {
         Assert.assertNotNull(responseMoveDevice.getTimestamp());
         Assert.assertNotNull(responseMoveDevice.getTimestampStr());
         Assert.assertNull(responseMoveDevice.getResult().getMessage());
-        Service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        service.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 }
