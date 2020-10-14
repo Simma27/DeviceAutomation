@@ -1,7 +1,7 @@
-import Impl.Service;
-import models.api.Device;
-import models.api.DeviceUpdateProperty;
-import models.api.SearchCriteria;
+import services.DeviceService;
+import models.Device;
+import models.DeviceUpdateProperty;
+import models.SearchCriteria;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import static config.DeviceConfig.*;
 
 public class CustomerDataprovider {
 
-    static Service service = new Service();
+    static DeviceService deviceService = new DeviceService();
 
     @DataProvider
     public Object[] getParamToCreateDevice() {
@@ -29,7 +29,7 @@ public class CustomerDataprovider {
 
     @DataProvider
     public Object[][] getCreatedDevice() {
-        Device createdDevice = service.createDevice(Device.builder()
+        Device createdDevice = deviceService.createDevice(Device.builder()
                 .username(USERNAME)
                 .password(PASSWORD)
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
@@ -62,7 +62,7 @@ public class CustomerDataprovider {
 
     @DataProvider
     public Object[][] getDataToMoveDevice() {
-        Device createdDevice = service.createDevice(Device.builder()
+        Device createdDevice = deviceService.createDevice(Device.builder()
                 .username(USERNAME)
                 .password(PASSWORD)
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)

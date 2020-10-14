@@ -1,19 +1,17 @@
-package Impl;
+package services;
 
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import models.api.Device;
-import services.AuthService;
+import models.Device;
 
 import static config.DeviceConfig.*;
 import static io.restassured.RestAssured.given;
-import static services.BasicService.SERVICE;
 
 /**
  * Service class provides basic functions for working with device.
  * Consist of method: Create, Delete, Update, Move devices.
  */
-public class Service implements AuthService {
+public class DeviceService implements AuthService {
 
     /**
      * The createDevice method sends a request to create Device.
@@ -22,15 +20,18 @@ public class Service implements AuthService {
      * @return Response to a request to create a device as a Device class.
      */
     public Device createDevice(Device device) {
-        final String CREATE = "/create";
-        Response response = given()
+
+        RestAssured.baseURI = "http://127.0.0.1";
+        RestAssured.basePath = "/api/json";
+
+        return given()
                 .contentType(ContentType.JSON)
                 .body(device)
-                .post(URI + SERVICE + CREATE);
-        if (response.statusCode() == 200) {
-            return response.as(Device.class);
-        }
-        return null;
+                .post(CREATEDEVICE)
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Device.class);
     }
 
     /**
@@ -40,20 +41,18 @@ public class Service implements AuthService {
      * @return Response to a request to delete Device as a Device class.
      */
     public Device deleteDevice(long serialNumber) {
-        final String DELETE = "/delete";
-        Response response = given()
+        return given()
                 .contentType(ContentType.JSON)
                 .body(Device.builder()
                         .username(USERNAME)
                         .password(PASSWORD)
                         .serialNumber(serialNumber)
                         .build())
-                .post(URI + SERVICE + DELETE);
-
-        if (response.statusCode() == 200) {
-            return response.as(Device.class);
-        }
-        return null;
+                .post(DELETEDEVICE)
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Device.class);
     }
 
     /**
@@ -63,15 +62,14 @@ public class Service implements AuthService {
      * @return Response to a request to update Device as a Device class.
      */
     public Device updateDevice(Device device) {
-        final String UPDATE = "/update";
-        Response response = given()
+        return given()
                 .contentType(ContentType.JSON)
                 .body(device)
-                .post(URI + SERVICE + UPDATE);
-        if (response.statusCode() == 200) {
-            return response.as(Device.class);
-        }
-        return null;
+                .post(UPDATEDEVICE)
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Device.class);
     }
 
     /**
@@ -81,15 +79,14 @@ public class Service implements AuthService {
      * @return Response to a request to move Device as a Device class.
      */
     public Device moveDevice(Device device) {
-        final String MOVE = "/move";
-        Response response = given()
+        return given()
                 .contentType(ContentType.JSON)
                 .body(device)
-                .post(URI + SERVICE + MOVE);
-        if (response.statusCode() == 200) {
-            return response.as(Device.class);
-        }
-        return null;
+                .post(MOVEDEVICE)
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Device.class);
     }
 
     /**
@@ -99,15 +96,13 @@ public class Service implements AuthService {
      * @return Response to a request to delete Device as a Device class.
      */
     public Device deleteDevice(Device device) {
-        final String DELETE = "/delete";
-        Response response = given()
+        return given()
                 .contentType(ContentType.JSON)
                 .body(device)
-                .post(URI + SERVICE + DELETE);
-
-        if (response.statusCode() == 200) {
-            return response.as(Device.class);
-        }
-        return null;
+                .post(DELETEDEVICE)
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Device.class);
     }
 }
