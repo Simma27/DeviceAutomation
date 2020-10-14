@@ -1,22 +1,13 @@
 
 package models.api.movedevice;
 
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
+@Data
+@Builder
+@ToString
 public class Result {
-
-    @Expose
     private Object message;
-
-    public Object getMessage() {
-        return message;
-    }
-
-    public void setMessage(Object message) {
-        this.message = message;
-    }
-
 }

@@ -2,18 +2,15 @@
 package models.api.deletedevice;
 
 import java.util.List;
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
+
 import config.Autorization;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @Builder
 @ToString
-public class RequestDeviceDelete implements Autorization {
+public class RequestDeviceDelete extends Autorization {
 
     private List<SearchCriteria> searchCriterias;
-
+    private Long serialNumber;
 }

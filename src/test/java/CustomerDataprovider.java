@@ -1,7 +1,8 @@
+import models.api.createdevice.RequestDeviceCreate;
+import models.api.createdevice.ResponseDeviceCreate;
+import models.api.movedevice.RequestDeviceMove;
+import models.api.updatedevice.RequestDeviceUpdate;
 import services.DeviceService;
-import models.Device;
-import models.DeviceUpdateProperty;
-import models.SearchCriteria;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
@@ -14,57 +15,53 @@ public class CustomerDataprovider {
     static DeviceService deviceService = new DeviceService();
 
     @DataProvider
-    public Object[] getParamToCreateDevice() {
-        return new Device[]{Device.builder()
-                .username(USERNAME)
-                .password(PASSWORD)
-                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
-                .address("127.0.0.5")
-                .locationName(DEFAULT_LOCATION)
-                .name("ExampleDevice")
-                .type((long) 0)
-                .build()
+    public Object[] getRequestBodyToCreateDevice() {
+        return new RequestDeviceCreate[]{
+                RequestDeviceCreate.builder()
+                        .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
+                        .address("127.0.0.5")
+                        .locationName(DEFAULT_LOCATION)
+                        .name("ExampleDevice")
+                        .type((long) 0)
+                        .build()
         };
     }
 
     @DataProvider
-    public Object[][] getCreatedDevice() {
-        Device createdDevice = deviceService.createDevice(Device.builder()
-                .username(USERNAME)
-                .password(PASSWORD)
+    public Object[][] getResponseCreatedDevice() {
+        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(RequestDeviceCreate
+                .builder()
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
                 .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
                 .type((long) 0)
                 .build());
-        return new Device[][]{{createdDevice}};
+        return new ResponseDeviceCreate[][]{{createdDevice}};
     }
 
     @DataProvider
     public Object[] getCreatedDifferentType() {
-        return new Device[]{Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(0L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(1L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(2L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(3L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(4L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(5L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(6L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(7L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(8L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(9L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(10L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(11L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(12L).build()
-                , Device.builder().username(USERNAME).password(PASSWORD).accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("Simma").type(13L).build()
+        return new RequestDeviceCreate[]{RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(0L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(1L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(2L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(3L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(4L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(5L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(6L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(7L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(8L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(9L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(10L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(11L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(12L).build()
+                , RequestDeviceCreate.builder().accountSerialNumber(ACCOUNT_SERIAL_NUMBER).address("127.0.0.5").locationName(DEFAULT_LOCATION).name("ExampleDevice").type(13L).build()
         };
     }
 
     @DataProvider
     public Object[][] getDataToMoveDevice() {
-        Device createdDevice = deviceService.createDevice(Device.builder()
-                .username(USERNAME)
-                .password(PASSWORD)
+        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(RequestDeviceCreate.builder()
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
                 .locationName(DEFAULT_LOCATION)
@@ -72,19 +69,17 @@ public class CustomerDataprovider {
                 .type((long) 0)
                 .build());
 
-        List<SearchCriteria> moveDevice = new ArrayList<>();
+        List<models.api.movedevice.SearchCriteria> moveDevice = new ArrayList<>();
 
-        moveDevice.add(SearchCriteria
+        moveDevice.add(models.api.movedevice.SearchCriteria
                 .builder()
                 .searchOption("DEVICE_SERIAL_NUMBER")
-                .searchTerms(String.valueOf(createdDevice.getResult().getDevice().getSerialNumber()))
+                .searchTerms(createdDevice.getResult().getDevice().getSerialNumber())
                 .build());
 
-        return new Device[][]{{createdDevice
-                , Device
+        return new Object[][]{{createdDevice
+                , RequestDeviceMove
                 .builder()
-                .username(USERNAME)
-                .password(PASSWORD)
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .searchCriterias(moveDevice)
                 .build()
@@ -93,47 +88,44 @@ public class CustomerDataprovider {
 
     @DataProvider
     public static Object[] getDataToUpdateDevice() {
-        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
-        deviceUpdateProperties.add(DeviceUpdateProperty
+        List<models.api.updatedevice.DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
+        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
                 .builder()
                 .propertyName("SUSPEND")
                 .propertyValue("true")
                 .build());
-        deviceUpdateProperties.add(DeviceUpdateProperty
+        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
                 .builder()
                 .propertyName("DEVICE_NAME")
                 .propertyValue("ExampleDevice")
                 .build());
-        deviceUpdateProperties.add(DeviceUpdateProperty
+        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
                 .builder()
                 .propertyName("DEVICE_TYPE")
                 .propertyValue("0")
                 .build());
-        deviceUpdateProperties.add(DeviceUpdateProperty
+        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
                 .builder()
                 .propertyName("ADDRESS")
                 .propertyValue("127.0.0.5")
                 .build());
-        deviceUpdateProperties.add(DeviceUpdateProperty
+        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
                 .builder()
                 .propertyName("DO_NOT_RESOLVE_ADDRESS")
                 .propertyValue("false")
                 .build());
 
-        return new Device[][]{{Device.builder()
-                .username(USERNAME)
-                .password(PASSWORD)
+        return new Object[][]{{RequestDeviceCreate.builder()
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address("127.0.0.5")
                 .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
                 .type((long) 0)
-                .deviceUpdateProperties(deviceUpdateProperties)
-                .build(), Device.builder()
-                .username(USERNAME)
-                .password(PASSWORD)
-                .deviceUpdateProperties(deviceUpdateProperties)
-                .build()}};
+                .build(),
+                RequestDeviceUpdate
+                        .builder()
+                        .deviceUpdateProperties(deviceUpdateProperties)
+                        .build()}};
     }
 
 

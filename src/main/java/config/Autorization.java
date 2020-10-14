@@ -1,8 +1,8 @@
 package config;
 
-public interface Autorization {
+public class Autorization {
 
-    public static final String username = "superuser";
+    public final String username = "superuser";
 
-    public static final String password = "traverse";
+    public final String password = "traverse";
 }

@@ -2,33 +2,19 @@
 package models.api.updatedevice;
 
 import java.util.List;
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
+
 import config.Autorization;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
-public class RequestDeviceUpdate implements Autorization {
+@Data
+@Builder
+@ToString
+public class RequestDeviceUpdate extends Autorization {
 
-    @Expose
+    private Long serialNumber;
     private List<DeviceUpdateProperty> deviceUpdateProperties;
-    @Expose
     private List<SearchCriteria> searchCriterias;
-
-    public List<DeviceUpdateProperty> getDeviceUpdateProperties() {
-        return deviceUpdateProperties;
-    }
-
-    public void setDeviceUpdateProperties(List<DeviceUpdateProperty> deviceUpdateProperties) {
-        this.deviceUpdateProperties = deviceUpdateProperties;
-    }
-
-    public List<SearchCriteria> getSearchCriterias() {
-        return searchCriterias;
-    }
-
-    public void setSearchCriterias(List<SearchCriteria> searchCriterias) {
-        this.searchCriterias = searchCriterias;
-    }
 
 }

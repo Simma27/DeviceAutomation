@@ -8,9 +8,8 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class RequestDeviceCreate implements Autorization {
+public class RequestDeviceCreate extends Autorization {
 
-    
     private Long accountSerialNumber;
     
     private String address;
