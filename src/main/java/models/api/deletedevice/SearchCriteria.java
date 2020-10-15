@@ -10,7 +10,6 @@ import lombok.ToString;
 @ToString
 public class SearchCriteria {
 
-    
     private String searchOption;
     
     private String searchTerms;

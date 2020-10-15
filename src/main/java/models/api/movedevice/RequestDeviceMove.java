@@ -12,7 +12,6 @@ import lombok.ToString;
 @ToString
 public class RequestDeviceMove extends Autorization {
 
-
     private Long accountSerialNumber;
 
     private String newDeviceName;

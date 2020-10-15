@@ -1,10 +1,11 @@
-
 package models.api.deletedevice;
 
 import java.util.List;
 
 import config.Autorization;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Builder
@@ -12,5 +13,6 @@ import lombok.*;
 public class RequestDeviceDelete extends Autorization {
 
     private List<SearchCriteria> searchCriterias;
+
     private Long serialNumber;
 }

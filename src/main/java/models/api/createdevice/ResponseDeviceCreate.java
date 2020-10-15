@@ -9,7 +9,6 @@ import lombok.ToString;
 @Builder
 @ToString
 public class ResponseDeviceCreate {
-
     
     private Object errorCode;
     

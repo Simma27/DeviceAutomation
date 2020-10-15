@@ -9,5 +9,7 @@ import lombok.ToString;
 @Builder
 @ToString
 public class Result {
+
     private Object message;
+
 }

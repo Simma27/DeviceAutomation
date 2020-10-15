@@ -1,6 +1,5 @@
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
-import models.api.deletedevice.RequestDeviceDeleteEmpty;
 import models.api.deletedevice.ResponseDeviceDelete;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.movedevice.ResponseDeviceMove;
@@ -14,7 +13,7 @@ public class DeviceTestAPI {
 
     DeviceService deviceService = new DeviceService();
 
-    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceTest(RequestDeviceCreate requestBody) {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
         Assert.assertEquals(createdDevice.getResult().getMessage(), "New NetworkDevice has been created with Serial Number: "
@@ -22,16 +21,17 @@ public class DeviceTestAPI {
         deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceDifferentType(RequestDeviceCreate requestBody) {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
         Assert.assertNotNull(createdDevice, "Device is not created!");
         Assert.assertFalse(createdDevice.getResult().getDevice().getDeviceTypeStr().equalsIgnoreCase("INVALID"), "Non-existent device type");
         Assert.assertEquals(requestBody.getType(), createdDevice.getResult().getDevice().getDeviceType(), "The types of the request parameter \"DeviceType\" and the created Device type do not match");
+
         deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceTwiceTest(RequestDeviceCreate requestBody) {
         ResponseDeviceCreate similarDeviceOne = deviceService.createDevicePositiv(requestBody);
         ResponseDeviceCreate similarDeviceTwo = deviceService.createDeviceNegativ(requestBody);
@@ -42,7 +42,7 @@ public class DeviceTestAPI {
         deviceService.deleteDevicePositiv(similarDeviceOne.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceWithoutName(RequestDeviceCreate requestBody) {
         requestBody.setName(null);
         ResponseDeviceCreate createdDevice = deviceService.createDeviceNegativ(requestBody);
@@ -53,13 +53,13 @@ public class DeviceTestAPI {
         Assert.assertNull(createdDevice.getResult().getMessage(), "Unexpected message, Error message: " + createdDevice.getErrorMessage());
     }
 
-    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
     public void deleteDevice(ResponseDeviceCreate responseDeviceCreate) {
         ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
         Assert.assertEquals(responseDeleteDevice.getResult().getMessage(), "Successful! Total 1 devices have been deleted. ", "Unexpected  message, Error message: " + responseDeleteDevice.getErrorMessage());
     }
 
-    @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = DeviceDataProvider.class)
     public void deleteDifferentDevice(RequestDeviceCreate requestBody) {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
         ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
@@ -69,13 +69,13 @@ public class DeviceTestAPI {
 
     @Test
     public void deleteWithoutRequestBody() {
-        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevice(new RequestDeviceDeleteEmpty());
+        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevice(new Object());
         Assert.assertEquals(responseDeleteDevice.getErrorCode(), -1.0, "Error code is not -1, Error code: " + responseDeleteDevice.getErrorCode());
         Assert.assertTrue(responseDeleteDevice.getErrorMessage().toString().contains("serialNumber=<null>,searchCriterias=<null>,modelSessionManager=<null>,username=<null>,password=<null>"));
         Assert.assertNull(responseDeleteDevice.getResult(), "There is a Result that should not be");
     }
 
-    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
     public void deleteSimilarDeviceTwiceTest(ResponseDeviceCreate responseDeviceCreate) {
         deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
         ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDeviceNegativ(responseDeviceCreate.getResult().getDevice().getSerialNumber());
@@ -86,7 +86,7 @@ public class DeviceTestAPI {
                 ,"Unexpected message, Error message: " + responseDeleteDevice.getErrorMessage());
     }
 
-    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
     public void updateDevice(RequestDeviceCreate requestBody, RequestDeviceUpdate updateDevice) {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
         ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
@@ -95,7 +95,7 @@ public class DeviceTestAPI {
         deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
     public void updateDeviceAddCommentTest(RequestDeviceCreate requestBody, RequestDeviceUpdate updateDevice) {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
         ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
@@ -105,7 +105,7 @@ public class DeviceTestAPI {
     }
 
 
-    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
     public void updateDeviceWithoutChanges(RequestDeviceCreate requestBody, RequestDeviceUpdate updateDevice) {
         updateDevice.setDeviceUpdateProperties(null);
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
@@ -117,7 +117,7 @@ public class DeviceTestAPI {
         deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
     public void updateDeviceWithoutSerialNumber(RequestDeviceCreate requestBody, RequestDeviceUpdate updateDevice) {
         updateDevice.setSerialNumber(null);
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
@@ -127,7 +127,7 @@ public class DeviceTestAPI {
         deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
         ResponseDeviceMove responseMoveDevice = deviceService.moveDevicePositiv(moveDevice);
         Assert.assertEquals(responseMoveDevice.getResult().getMessage(),"Total 0 device(s) has(have) been moved to department with name: Core Infrastructure. Total 1 device(s) has(have) been ignored due to same department violation."
@@ -135,7 +135,7 @@ public class DeviceTestAPI {
         deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceWithoutSearchCriteriaTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
         moveDevice.setSearchCriterias(null);
         ResponseDeviceMove responseMoveDevice = deviceService.moveDeviceNegativ(moveDevice);
@@ -147,7 +147,7 @@ public class DeviceTestAPI {
         deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
     }
 
-    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = CustomerDataprovider.class)
+    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceWithoutDepartmentTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
         moveDevice.setAccountSerialNumber(null);
         ResponseDeviceMove responseMoveDevice = deviceService.moveDeviceNegativ(moveDevice);

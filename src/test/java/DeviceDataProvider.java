@@ -1,6 +1,8 @@
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.movedevice.RequestDeviceMove;
+import models.api.movedevice.SearchCriteria;
+import models.api.updatedevice.DeviceUpdateProperty;
 import models.api.updatedevice.RequestDeviceUpdate;
 import services.DeviceService;
 import org.testng.annotations.DataProvider;
@@ -10,7 +12,7 @@ import java.util.List;
 
 import static config.DeviceConfig.*;
 
-public class CustomerDataprovider {
+public class DeviceDataProvider {
 
     static DeviceService deviceService = new DeviceService();
 
@@ -22,7 +24,7 @@ public class CustomerDataprovider {
                         .address("127.0.0.5")
                         .locationName(DEFAULT_LOCATION)
                         .name("ExampleDevice")
-                        .type((long) 0)
+                        .type(0L)
                         .build()
         };
     }
@@ -35,7 +37,7 @@ public class CustomerDataprovider {
                 .address("127.0.0.5")
                 .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
-                .type((long) 0)
+                .type(0L)
                 .build());
         return new ResponseDeviceCreate[][]{{createdDevice}};
     }
@@ -66,10 +68,10 @@ public class CustomerDataprovider {
                 .address("127.0.0.5")
                 .locationName(DEFAULT_LOCATION)
                 .name("ExampleDevice")
-                .type((long) 0)
+                .type(0L)
                 .build());
 
-        List<models.api.movedevice.SearchCriteria> moveDevice = new ArrayList<>();
+        List<SearchCriteria> moveDevice = new ArrayList<>();
 
         moveDevice.add(models.api.movedevice.SearchCriteria
                 .builder()
@@ -88,7 +90,16 @@ public class CustomerDataprovider {
 
     @DataProvider
     public static Object[] getDataToUpdateDevice() {
-        List<models.api.updatedevice.DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
+
+        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(RequestDeviceCreate.builder()
+                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
+                .address("127.0.0.5")
+                .locationName(DEFAULT_LOCATION)
+                .name("ExampleDevice")
+                .type(0L)
+                .build());
+
+        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
         deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
                 .builder()
                 .propertyName("SUSPEND")
@@ -115,13 +126,7 @@ public class CustomerDataprovider {
                 .propertyValue("false")
                 .build());
 
-        return new Object[][]{{RequestDeviceCreate.builder()
-                .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
-                .address("127.0.0.5")
-                .locationName(DEFAULT_LOCATION)
-                .name("ExampleDevice")
-                .type((long) 0)
-                .build(),
+        return new Object[][]{{createdDevice,
                 RequestDeviceUpdate
                         .builder()
                         .deviceUpdateProperties(deviceUpdateProperties)

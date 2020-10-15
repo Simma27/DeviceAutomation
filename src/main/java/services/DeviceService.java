@@ -1,8 +1,10 @@
 package services;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
@@ -13,6 +15,7 @@ import models.api.movedevice.RequestDeviceMove;
 import models.api.movedevice.ResponseDeviceMove;
 import models.api.updatedevice.RequestDeviceUpdate;
 import models.api.updatedevice.ResponseDeviceUpdate;
+import org.apache.commons.lang3.ObjectUtils;
 
 import static config.DeviceConfig.*;
 import static io.restassured.RestAssured.*;
@@ -23,6 +26,13 @@ import static org.hamcrest.Matchers.*;
  * Consist of method: Create, Delete, Update, Move devices.
  */
 public class DeviceService {
+
+
+    RequestSpecification requestSpecification = new RequestSpecBuilder()
+            .setBaseUri("http://127.0.0.1")
+            .setBasePath("/api/json")
+            .setContentType(ContentType.JSON)
+            .build();
 
 
     ResponseSpecification responseSpec = new ResponseSpecBuilder()
@@ -50,13 +60,10 @@ public class DeviceService {
      */
     public ResponseDeviceCreate createDevicePositiv(RequestDeviceCreate requestBody) {
 
-        RestAssured.baseURI = "http://127.0.0.1";
-        RestAssured.basePath = "/api/json";
-
         return given()
                 .contentType(ContentType.JSON)
                 .body(requestBody)
-                .post(CREATEDEVICE)
+                .post(CREATE_DEVICE)
                 .then()
                 .spec(responseSpec)
                 .extract()
@@ -67,7 +74,7 @@ public class DeviceService {
         return given()
                 .contentType(ContentType.JSON)
                 .body(requestBody)
-                .post(CREATEDEVICE)
+                .post(CREATE_DEVICE)
                 .then()
                 .spec(responseSpecNegativ)
                 .extract()
@@ -86,9 +93,8 @@ public class DeviceService {
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(serialNumber)
                         .build())
-                .post(DELETEDEVICE)
+                .post(DELETE_DEVICE)
                 .then()
-                .statusCode(200)
                 .spec(responseSpec)
                 .extract()
                 .as(ResponseDeviceDelete.class);
@@ -100,9 +106,8 @@ public class DeviceService {
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(serialNumber)
                         .build())
-                .post(DELETEDEVICE)
+                .post(DELETE_DEVICE)
                 .then()
-                .statusCode(200)
                 .spec(responseSpecNegativ)
                 .extract()
                 .as(ResponseDeviceDelete.class);
@@ -118,9 +123,8 @@ public class DeviceService {
         return given()
                 .contentType(ContentType.JSON)
                 .body(requestDeviceUpdate)
-                .post(UPDATEDEVICE)
+                .post(UPDATE_DEVICE)
                 .then()
-                .statusCode(200)
                 .spec(responseSpec)
                 .extract()
                 .as(ResponseDeviceUpdate.class);
@@ -130,9 +134,8 @@ public class DeviceService {
         return given()
                 .contentType(ContentType.JSON)
                 .body(requestDeviceUpdate)
-                .post(UPDATEDEVICE)
+                .post(UPDATE_DEVICE)
                 .then()
-                .statusCode(200)
                 .spec(responseSpecNegativ)
                 .extract()
                 .as(ResponseDeviceUpdate.class);
@@ -146,11 +149,10 @@ public class DeviceService {
      */
     public ResponseDeviceMove moveDevicePositiv(RequestDeviceMove requestDeviceMove) {
         return given()
-                .contentType(ContentType.JSON)
+                .spec(requestSpecification)
                 .body(requestDeviceMove)
-                .post(MOVEDEVICE)
+                .post(MOVE_DEVICE)
                 .then()
-                .statusCode(200)
                 .spec(responseSpec)
                 .extract()
                 .as(ResponseDeviceMove.class);
@@ -160,9 +162,8 @@ public class DeviceService {
         return given()
                 .contentType(ContentType.JSON)
                 .body(requestDeviceMove)
-                .post(MOVEDEVICE)
+                .post(MOVE_DEVICE)
                 .then()
-                .statusCode(200)
                 .spec(responseSpecNegativ)
                 .extract()
                 .as(ResponseDeviceMove.class);
@@ -174,13 +175,12 @@ public class DeviceService {
      * @param requestDeviceDelete input is a Device to be removed.
      * @return Response to a request to delete Device as a Device class.
      */
-    public ResponseDeviceDelete deleteDevice(RequestDeviceDeleteEmpty requestDeviceDelete) {
+    public ResponseDeviceDelete deleteDevice(Object object) {
         return given()
-                .contentType(ContentType.JSON)
-                .body(requestDeviceDelete)
-                .post(DELETEDEVICE)
+                .spec(requestSpecification)
+                .body(object)
+                .post(DELETE_DEVICE)
                 .then()
-                .statusCode(200)
                 .spec(responseSpecNegativ)
                 .extract()
                 .as(ResponseDeviceDelete.class);

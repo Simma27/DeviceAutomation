@@ -1,4 +1,3 @@
-
 package models.api.createdevice;
 
 import lombok.Builder;
@@ -10,10 +9,9 @@ import lombok.ToString;
 @ToString
 public class Result {
 
-    
     private Device device;
-    
+
     private String message;
-    
+
 
 }

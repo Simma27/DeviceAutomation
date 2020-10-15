@@ -11,6 +11,7 @@ import lombok.ToString;
 public class SearchCriteria {
 
     private String searchOption;
+
     private Long searchTerms;
 
 }
