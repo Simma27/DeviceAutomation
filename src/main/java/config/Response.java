@@ -1,15 +1,8 @@
-package models.api.deletedevice;
+package config;
 
-import config.Response;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
 import models.api.createdevice.Result;
 
-@Data
-@Builder
-@ToString
-public class ResponseDeviceDelete {
+public class Response {
 
     private Object errorCode;
 
@@ -22,5 +15,4 @@ public class ResponseDeviceDelete {
     private Long timestamp;
 
     private String timestampStr;
-
 }

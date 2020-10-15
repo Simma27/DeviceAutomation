@@ -1,4 +1,3 @@
-
 package models.api.updatedevice;
 
 import java.util.List;
@@ -13,8 +12,10 @@ import lombok.ToString;
 @ToString
 public class RequestDeviceUpdate extends Autorization {
 
-    private Long serialNumber;
+    private int serialNumber;
+
     private List<DeviceUpdateProperty> deviceUpdateProperties;
+
     private List<SearchCriteria> searchCriterias;
 
 }

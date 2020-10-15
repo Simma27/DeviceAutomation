@@ -13,21 +13,17 @@ public class Device {
 
     private String accountName;
     
-    private Long accountSerialNumber;
-    
-    private Object agentId;
+    private int accountSerialNumber;
     
     private List<Object> applicationProfiles;
     
-    private Object assetId;
-    
-    private Boolean clearOnOk;
+    private boolean clearOnOk;
     
     private String comment;
     
-    private Boolean configBackupEnabled;
+    private boolean configBackupEnabled;
     
-    private Long configBackupFrequency;
+    private int configBackupFrequency;
     
     private String deviceAddress;
     
@@ -35,7 +31,7 @@ public class Device {
     
     private String deviceName;
     
-    private Long deviceType;
+    private int deviceType;
     
     private String deviceTypeStr;
     
@@ -43,47 +39,51 @@ public class Device {
     
     private String eventMgrUrl;
     
-    private Boolean exported;
+    private boolean exported;
     
-    private Long flapPreventionWaitCycles;
+    private int flapPreventionWaitCycles;
     
-    private Boolean isSuspended;
+    private boolean isSuspended;
     
     private Object liveConnectEnabled;
     
     private String locationName;
+
+    private Object agentId;
     
-    private Long locationSerialNumber;
+    private int locationSerialNumber;
     
     private String model;
     
-    private Long monitorConfigCount;
+    private int monitorConfigCount;
     
     private Object organizationId;
+
+    private Object assetId;
     
-    private Boolean processCollectionEnabled;
+    private boolean processCollectionEnabled;
     
-    private Object processCollectorType;
+    private int processCollectorType;
     
-    private Object processMonitorConfig;
+    private int processMonitorConfig;
     
     private Object processMonitorConfigName;
     
-    private Long rediscoveryDeletedTestsAction;
+    private int rediscoveryDeletedTestsAction;
     
-    private Boolean rediscoveryEnabled;
+    private boolean rediscoveryEnabled;
     
-    private Long rediscoveryFrequency;
+    private int rediscoveryFrequency;
     
-    private Long rediscoveryNewTestsAction;
+    private int rediscoveryNewTestsAction;
     
-    private Long rediscoveryUpdatedTestsAction;
+    private int rediscoveryUpdatedTestsAction;
     
-    private Long serialNumber;
+    private int serialNumber;
     
-    private Boolean showOnSummary;
+    private boolean showOnSummary;
     
-    private Boolean smartNotify;
+    private boolean smartNotify;
     
     private String tag1;
     

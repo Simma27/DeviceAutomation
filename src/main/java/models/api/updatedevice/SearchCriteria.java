@@ -1,4 +1,3 @@
-
 package models.api.updatedevice;
 
 import lombok.Builder;
@@ -11,6 +10,7 @@ import lombok.ToString;
 public class SearchCriteria {
 
     private String searchOption;
+
     private String searchTerms;
 
 }

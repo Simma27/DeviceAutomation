@@ -1,6 +1,6 @@
-
 package models.api.updatedevice;
 
+import config.Response;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -8,18 +8,7 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class ResponseDeviceUpdate {
+public class ResponseDeviceUpdate extends Response {
 
-    private Object errorCode;
-    
-    private Object errorMessage;
-    
-    private Result result;
-    
-    private Boolean success;
-    
-    private Long timestamp;
-    
-    private String timestampStr;
 
 }

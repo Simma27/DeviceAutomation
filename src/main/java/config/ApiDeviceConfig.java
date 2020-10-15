@@ -1,6 +1,6 @@
 package config;
 
-    public class DeviceConfig {
+    public class ApiDeviceConfig {
 
         public static final String CREATE_DEVICE = "/admin/device/create";
 
@@ -10,7 +10,4 @@ package config;
 
         public static final String MOVE_DEVICE = "/admin/device/move";
 
-        public static final String DEFAULT_LOCATION = "Default Location";
-
-        public static final Long ACCOUNT_SERIAL_NUMBER = 49L;
     }

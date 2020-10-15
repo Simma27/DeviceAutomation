@@ -13,5 +13,4 @@ public class Result {
 
     private String message;
 
-
 }

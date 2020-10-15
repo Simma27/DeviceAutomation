@@ -1,4 +1,3 @@
-
 package models.api.deletedevice;
 
 import lombok.Builder;

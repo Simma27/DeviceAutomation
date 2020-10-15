@@ -1,4 +1,3 @@
-
 package models.api.movedevice;
 
 import lombok.Builder;

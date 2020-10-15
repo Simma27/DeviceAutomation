@@ -1,4 +1,3 @@
-
 package models.api.updatedevice;
 
 import lombok.Builder;

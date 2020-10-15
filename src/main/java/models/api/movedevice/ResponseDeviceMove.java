@@ -1,6 +1,6 @@
-
 package models.api.movedevice;
 
+import config.Response;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -9,18 +9,6 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class ResponseDeviceMove {
-    
-    private int errorCode;
-    
-    private String errorMessage;
-    
-    private Result result;
-    
-    private Boolean success;
-    
-    private Long timestamp;
-    
-    private String timestampStr;
+public class ResponseDeviceMove extends Response {
 
 }

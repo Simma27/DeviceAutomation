@@ -1,4 +1,3 @@
-
 package models.api.movedevice;
 
 import java.util.List;
@@ -12,12 +11,12 @@ import lombok.ToString;
 @ToString
 public class RequestDeviceMove extends Autorization {
 
-    private Long accountSerialNumber;
+    private int accountSerialNumber;
 
     private String newDeviceName;
 
     private List<SearchCriteria> searchCriterias;
 
-    private Long serialNumber;
+    private int serialNumber;
     
 }

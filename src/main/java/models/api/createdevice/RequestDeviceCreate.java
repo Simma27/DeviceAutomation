@@ -10,23 +10,23 @@ import lombok.ToString;
 @ToString
 public class RequestDeviceCreate extends Autorization {
 
-    private Long accountSerialNumber;
+    private int accountSerialNumber;
     
     private String address;
     
-    private Boolean applyAutomationProfiles;
+    private boolean applyAutomationProfiles;
     
-    private Boolean automaticTestDiscovery;
+    private boolean automaticTestDiscovery;
     
-    private Boolean clearOnOk;
+    private boolean clearOnOk;
     
     private String comment;
     
-    private Boolean configBackupEnabled;
+    private boolean configBackupEnabled;
     
-    private Boolean doNotResolveAddress;
+    private boolean doNotResolveAddress;
     
-    private Long flapPreventionWaitCycles;
+    private int flapPreventionWaitCycles;
     
     private String locationName;
     
@@ -34,13 +34,13 @@ public class RequestDeviceCreate extends Autorization {
     
     private String name;
     
-    private Boolean processCollectionEnabled;
+    private boolean processCollectionEnabled;
     
-    private Boolean rediscoveryEnabled;
+    private boolean rediscoveryEnabled;
     
-    private Boolean showOnSummary;
+    private boolean showOnSummary;
     
-    private Boolean smartNotify;
+    private boolean smartNotify;
     
     private String tag1;
     
@@ -52,7 +52,7 @@ public class RequestDeviceCreate extends Autorization {
     
     private String tag5;
     
-    private Long type;
+    private int type;
     
     private String vendor;
 }
