@@ -11,6 +11,5 @@ public class SearchCriteria {
 
     private String searchOption;
 
-    private Long searchTerms;
-
+    private Object searchTerms;
 }

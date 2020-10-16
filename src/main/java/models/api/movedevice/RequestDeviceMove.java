@@ -1,7 +1,7 @@
 package models.api.movedevice;
 
 import java.util.List;
-import config.Autorization;
+import config.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -9,9 +9,9 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class RequestDeviceMove extends Autorization {
+public class RequestDeviceMove extends AutorizationRequest {
 
-    private int accountSerialNumber;
+    private Object accountSerialNumber;
 
     private String newDeviceName;
 

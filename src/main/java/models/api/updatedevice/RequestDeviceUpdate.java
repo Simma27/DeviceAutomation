@@ -2,7 +2,7 @@ package models.api.updatedevice;
 
 import java.util.List;
 
-import config.Autorization;
+import config.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -10,7 +10,7 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class RequestDeviceUpdate extends Autorization {
+public class RequestDeviceUpdate extends AutorizationRequest {
 
     private int serialNumber;
 

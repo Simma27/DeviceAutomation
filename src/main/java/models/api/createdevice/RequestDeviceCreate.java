@@ -1,6 +1,6 @@
 package models.api.createdevice;
 
-import config.Autorization;
+import config.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class RequestDeviceCreate extends Autorization {
+public class RequestDeviceCreate extends AutorizationRequest {
 
     private int accountSerialNumber;
     

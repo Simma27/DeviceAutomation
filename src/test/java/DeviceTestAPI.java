@@ -1,200 +1,184 @@
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
+import models.api.deletedevice.RequestDeviceDelete;
+import models.api.deletedevice.ResponseDeviceDelete;
+import models.api.movedevice.RequestDeviceMove;
+import models.api.movedevice.ResponseDeviceMove;
+import models.api.updatedevice.RequestDeviceUpdate;
+import models.api.updatedevice.ResponseDeviceUpdate;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import services.DeviceService;
+import services.DeviceType;
+import services.Specification;
 
+import static config.ApiDeviceConfig.*;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+
 
 public class DeviceTestAPI {
 
     DeviceService deviceService = new DeviceService();
-//
-    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
+
+    @Test(dataProvider = "getRequestBodyToCreateDeviceDifferentType", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceTest(RequestDeviceCreate requestBody) {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-        Assert.assertEquals(createdDevice.getResult().getMessage(), "New NetworkDevice has been created with Serial Number: "
-                        + createdDevice.getResult().getDevice().getSerialNumber(), "Device is not created");
+        Assert.assertEquals(createdDevice.getResult().getMessage(),"New NetworkDevice has been created with Serial Number: "
+                        + createdDevice.getResult().getDevice().getSerialNumber());
+        Assert.assertEquals(requestBody.getAccountSerialNumber(),createdDevice.getResult().getDevice().getAccountSerialNumber());
+        Assert.assertEquals(requestBody.getAddress(), createdDevice.getResult().getDevice().getDeviceAddress());
+        Assert.assertEquals(requestBody.getComment(), createdDevice.getResult().getDevice().getComment());
+        Assert.assertEquals(requestBody.getFlapPreventionWaitCycles(), createdDevice.getResult().getDevice().getFlapPreventionWaitCycles());
+        Assert.assertEquals(requestBody.getLocationName(), createdDevice.getResult().getDevice().getLocationName());
+        Assert.assertEquals(requestBody.getModel(), createdDevice.getResult().getDevice().getModel());
+        Assert.assertEquals(requestBody.getName(), createdDevice.getResult().getDevice().getDeviceName());
+        Assert.assertEquals(requestBody.getTag1(), createdDevice.getResult().getDevice().getTag1());
+        Assert.assertEquals(requestBody.getTag2(), createdDevice.getResult().getDevice().getTag2());
+        Assert.assertEquals(requestBody.getTag3(), createdDevice.getResult().getDevice().getTag3());
+        Assert.assertEquals(requestBody.getTag4(), createdDevice.getResult().getDevice().getTag4());
+        Assert.assertEquals(requestBody.getTag5(), createdDevice.getResult().getDevice().getTag5());
+        Assert.assertEquals(requestBody.getType(), createdDevice.getResult().getDevice().getDeviceType());
+        Assert.assertEquals(DeviceType.getDeviceTypeStr(requestBody.getType()), createdDevice.getResult().getDevice().getDeviceTypeStr());
         deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
     }
-//
-//    @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = DeviceDataProvider.class)
-//    public void createDeviceDifferentType(RequestDeviceCreate requestBody) {
-//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-//        Assert.assertNotNull(createdDevice, "Device is not created!");
-//        Assert.assertFalse(createdDevice.getResult().getDevice().getDeviceTypeStr().equalsIgnoreCase("INVALID"), "Non-existent device type");
-//        Assert.assertEquals(requestBody.getType(), createdDevice.getResult().getDevice().getDeviceType(), "The types of the request parameter \"DeviceType\" and the created Device type do not match");
-//
-//        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
-//    }
-//
-//    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void createDeviceTwiceTest(RequestDeviceCreate requestBody) {
-//        ResponseDeviceCreate similarDeviceOne = deviceService.createDevicePositiv(requestBody);
-//        ResponseDeviceCreate similarDeviceTwo = deviceService.createDeviceNegativ(requestBody);
-//        Assert.assertEquals(similarDeviceTwo.getErrorCode(), -100.0, "Error code is not -100");
-//        Assert.assertEquals(similarDeviceTwo.getErrorMessage(), "Unable to create network device: You already have a device named ExampleDevice", "Unexpected error message, Error message: " + similarDeviceTwo.getErrorMessage());
-//        Assert.assertNull(similarDeviceTwo.getResult().getDevice(), "There is a device that should not be");
-//        Assert.assertNull(similarDeviceTwo.getResult().getMessage(), "There is a message that should not be");
-//        deviceService.deleteDevicePositiv(similarDeviceOne.getResult().getDevice().getSerialNumber());
-//    }
-//
-//    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void createDeviceWithoutName(RequestDeviceCreate requestBody) {
-//        requestBody.setName(null);
-//        ResponseDeviceCreate createdDevice = deviceService.createDeviceNegativ(requestBody);
-//        Assert.assertEquals(createdDevice.getErrorCode(), -100.0, "Error code is not -100");
-//        Assert.assertEquals(createdDevice.getErrorMessage(), "Unable to create network device: Please make sure that all the mandatory properties have been provided! ( type, name, address, locationName)"
-//                , "Unexpected error message, Error message: " + createdDevice.getErrorMessage());
-//        Assert.assertNull(createdDevice.getResult().getDevice(), "There is a device that should not be");
-//        Assert.assertNull(createdDevice.getResult().getMessage(), "Unexpected message, Error message: " + createdDevice.getErrorMessage());
-//    }
-//
-//    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void deleteDevice(ResponseDeviceCreate responseDeviceCreate) {
-//        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
-//        Assert.assertEquals(responseDeleteDevice.getResult().getMessage(), "Successful! Total 1 devices have been deleted. ", "Unexpected  message, Error message: " + responseDeleteDevice.getErrorMessage());
-//    }
-//
-//    @Test(dataProvider = "getCreatedDifferentType", dataProviderClass = DeviceDataProvider.class)
-//    public void deleteDifferentDevice(RequestDeviceCreate requestBody) {
-//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-//        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
-//        Assert.assertEquals(responseDeleteDevice.getResult().getMessage(),"Successful! Total 1 devices have been deleted. "
-//                ,"Unexpected message, Error message: " + responseDeleteDevice.getErrorMessage());
-//    }
 
-//    @Test
-//    public void deleteWithoutRequestBody() {
-//        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevice(new Object());
-//        Assert.assertEquals(responseDeleteDevice.getErrorCode(), -1.0, "Error code is not -1, Error code: " + responseDeleteDevice.getErrorCode());
-//        Assert.assertTrue(responseDeleteDevice.getErrorMessage().toString().contains("serialNumber=<null>,searchCriterias=<null>,modelSessionManager=<null>,username=<null>,password=<null>"));
-//        Assert.assertNull(responseDeleteDevice.getResult(), "There is a Result that should not be");
-//    }
-//
-//    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void deleteSimilarDeviceTwiceTest(ResponseDeviceCreate responseDeviceCreate) {
-//        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
-//        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDeviceNegativ(responseDeviceCreate.getResult().getDevice().getSerialNumber());
-//        Assert.assertEquals(responseDeleteDevice.getErrorCode(), -4.0, "Error code is not -1, Error code: " + responseDeleteDevice.getErrorCode());
-//        Assert.assertEquals(responseDeleteDevice.getErrorMessage(),"No devices matched the search criterias"
-//                ,"Unexpected error message, Error message: " + responseDeleteDevice.getErrorMessage());
-//        Assert.assertEquals(responseDeleteDevice.getResult().getMessage(), "Failed"
-//                ,"Unexpected message, Error message: " + responseDeleteDevice.getErrorMessage());
-//    }
-//
-//    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void updateDevice(RequestDeviceCreate requestBody, RequestDeviceUpdate updateDevice) {
-//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-//        ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
-//        Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully"
-//                ,"Unexpected message, Error message: " + responseUpdateDevice.getErrorMessage());
-//        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
-//    }
-//
-//    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void updateDeviceAddCommentTest(RequestDeviceCreate requestBody, RequestDeviceUpdate updateDevice) {
-//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-//        ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
-//        Assert.assertEquals(responseUpdateDevice.getResult().getMessage(),"Updated successfully"
-//                ,"Unexpected message, Error message: " + responseUpdateDevice.getErrorMessage());
-//        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
-//    }
-//
-//
-//    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void updateDeviceWithoutChanges(RequestDeviceCreate requestBody, RequestDeviceUpdate updateDevice) {
-//        updateDevice.setDeviceUpdateProperties(null);
-//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-//        ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDeviceNegativ(updateDevice);
-//        Assert.assertEquals(responseUpdateDevice.getErrorCode(), -412.0, "Error code is not -412, Error code: " + responseUpdateDevice.getErrorCode());
-//        Assert.assertEquals(responseUpdateDevice.getErrorMessage(), "Specify at least one parameter to be modified", "Unexpected error message, Error message: " + responseUpdateDevice.getErrorMessage());
-//        Assert.assertEquals(responseUpdateDevice.getResult().getMessage(),"Failed"
-//                ,"Unexpected message, Error message: " + responseUpdateDevice.getErrorMessage());
-//        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
-//    }
-//
-//    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void updateDeviceWithoutSerialNumber(ResponseDeviceCreate createdDevice, RequestDeviceUpdate updateDevice) {
-//        updateDevice.setSerialNumber(null);
-//        ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
-//        Assert.assertEquals(responseUpdateDevice.getResult().getMessage(),"Updated successfully"
-//                ,"Unexpected message, Error message: " + responseUpdateDevice.getErrorMessage());
-//        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
-//    }
-//
-//    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void moveDeviceTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
-//        ResponseDeviceMove responseMoveDevice = deviceService.moveDevicePositiv(moveDevice);
-//        Assert.assertEquals(responseMoveDevice.getResult().getMessage()
-//                ,"Total 0 device(s) has(have) been moved to department with name: Core Infrastructure. " +
-//                        "Total 1 device(s) has(have) been ignored due to same department violation.");
-//        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
-//    }
-//
-//    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void moveDeviceWithoutSearchCriteriaTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
-//        moveDevice.setSearchCriterias(null);
-//        ResponseDeviceMove responseMoveDevice = deviceService.moveDeviceNegativ(moveDevice);
-//        Assert.assertEquals((responseMoveDevice.getErrorCode()),(-412.0));
-//        Assert.assertEquals(responseMoveDevice.getErrorMessage(),"Search criterias can not be null.");
-//        Assert.assertNull(responseMoveDevice.getResult().getMessage(), "There is a message that should not be");
-//        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
-//    }
-//
-//    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
-//    public void moveDeviceWithoutDepartmentTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
-//        moveDevice.setAccountSerialNumber(null);
-//        ResponseDeviceMove responseMoveDevice = deviceService.moveDeviceNegativ(moveDevice);
-//        Assert.assertEquals(responseMoveDevice.getErrorCode(), -412.0);
-//        Assert.assertEquals(responseMoveDevice.getErrorMessage(),"Destination account serial number is mandatory to be provided.");
-//        Assert.assertNull(responseMoveDevice.getResult().getMessage(), "There is a message that should not be");
-//        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
-//    }
+    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
+    public void createDeviceTwiceTest(RequestDeviceCreate requestBody) {
+        ResponseDeviceCreate DeviceOne = deviceService.createDevicePositiv(requestBody);
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(requestBody)
+                .post(CREATE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecificationNegativ())
+                .body("errorCode", equalTo(-100))
+                .body("errorMessage", containsString("Unable to create network device: You already have a device named " + requestBody.getName()))
+                .body("result.device", equalTo(null))
+                .body("result.message", equalTo(null));
+        deviceService.deleteDevicePositiv(DeviceOne.getResult().getDevice().getSerialNumber());
+    }
 
-//    public ResponseDeviceCreate createDeviceNegativ(RequestDeviceCreate requestBody) {
-//        return given()
-//                .contentType(ContentType.JSON)
-//                .body(requestBody)
-//                .post(CREATE_DEVICE)
-//                .then()
-//                .spec(responseSpecNegativ)
-//                .extract()
-//                .as(ResponseDeviceCreate.class);
-//    }
+    @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
+    public void createDeviceWithoutName(RequestDeviceCreate requestBody) {
+        requestBody.setName(null);
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(requestBody)
+                .post(CREATE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecificationNegativ())
+                .body("errorCode", equalTo(-100))
+                .body("errorMessage", containsString("Unable to create network device: Please make sure that all the mandatory properties have been provided! ( type, name, address, locationName)"))
+                .body("result.device", equalTo(null))
+                .body("result.message", equalTo(null));
+    }
 
-//    public ResponseDeviceDelete deleteDeviceNegativ(long serialNumber) {
-//        return given()
-//                .contentType(ContentType.JSON)
-//                .body(RequestDeviceDelete.builder()
-//                        .serialNumber(serialNumber)
-//                        .build())
-//                .post(DELETE_DEVICE)
-//                .then()
-//                .spec(responseSpecNegativ)
-//                .extract()
-//                .as(ResponseDeviceDelete.class);
-//    }
-//
-//    public ResponseDeviceUpdate updateDeviceNegativ(RequestDeviceUpdate requestDeviceUpdate) {
-//        return given()
-//                .contentType(ContentType.JSON)
-//                .body(requestDeviceUpdate)
-//                .post(UPDATE_DEVICE)
-//                .then()
-//                .spec(responseSpecNegativ)
-//                .extract()
-//                .as(ResponseDeviceUpdate.class);
-//    }
-//
-//    public ResponseDeviceMove moveDeviceNegativ(RequestDeviceMove requestDeviceMove) {
-//        return given()
-//                .contentType(ContentType.JSON)
-//                .body(requestDeviceMove)
-//                .post(MOVE_DEVICE)
-//                .then()
-//                .spec(responseSpecNegativ)
-//                .extract()
-//                .as(ResponseDeviceMove.class);
-//    }
+    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
+    public void deleteDevice(ResponseDeviceCreate createdDevice) {
+//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
+        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
+        Assert.assertEquals(responseDeleteDevice.getResult().getMessage()
+                ,"Successful! Total 1 devices have been deleted. ");
+    }
+
+    @Test
+    public void deleteWithoutRequestBody() {
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(new Object())
+                .post(DELETE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecificationNegativ())
+                .body("errorCode", equalTo(-1))
+                .body("errorMessage", containsString("serialNumber=<null>,searchCriterias=<null>,modelSessionManager=<null>,username=<null>,password=<null>"))
+                .body("result", equalTo(null));
+    }
+
+    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
+    public void deleteSimilarDeviceTwiceTest(ResponseDeviceCreate responseDeviceCreate) {
+        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(RequestDeviceDelete.builder()
+                        .serialNumber(responseDeviceCreate.getResult().getDevice().getSerialNumber())
+                        .build())
+                .post(DELETE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecificationNegativ())
+                .body("errorCode", equalTo(-4))
+                .body("errorMessage", containsString("No devices matched the search criterias"))
+                .body("result.message", equalTo("Failed"));
+    }
+
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
+    public void updateDevice(ResponseDeviceCreate createdDevice, RequestDeviceUpdate updateDevice) {
+        ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
+        Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
+        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
+    }
+
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
+    public void updateDeviceWithoutChanges(ResponseDeviceCreate createdDevice, RequestDeviceUpdate updateDevice) {
+        updateDevice.setDeviceUpdateProperties(null);
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(updateDevice)
+                .post(UPDATE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecificationNegativ())
+                .body("errorCode", equalTo(-412))
+                .body("errorMessage", equalTo("Specify at least one parameter to be modified"))
+                .body("result.message", equalTo("Failed"));
+        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
+    }
+
+    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
+    public void updateDeviceWithoutSerialNumber(ResponseDeviceCreate createdDevice, RequestDeviceUpdate updateDevice) {
+        updateDevice.setSerialNumber(0);
+        ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
+        Assert.assertEquals(responseUpdateDevice.getResult().getMessage(),"Updated successfully");
+        deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
+    }
+
+    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
+    public void moveDeviceTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
+        ResponseDeviceMove responseMoveDevice = deviceService.moveDevicePositiv(moveDevice);
+        Assert.assertEquals(responseMoveDevice.getResult().getMessage()
+                ,"Total 0 device(s) has(have) been moved to department with name: Core Infrastructure. " +
+                        "Total 1 device(s) has(have) been ignored due to same department violation.");
+        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
+    }
+
+    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
+    public void moveDeviceWithoutSearchCriteriaTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
+        moveDevice.setSearchCriterias(null);
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(moveDevice)
+                .post(MOVE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecificationNegativ())
+                .body("errorCode", equalTo(-412))
+                .body("errorMessage", equalTo("Search criterias can not be null."))
+                .body("result.message", equalTo(null));
+        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
+    }
+
+    @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
+    public void moveDeviceWithoutDepartment(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
+        moveDevice.setAccountSerialNumber(null);
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(moveDevice)
+                .post(MOVE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecificationNegativ())
+                .body("errorCode", equalTo(-412))
+                .body("errorMessage", equalTo("Destination account serial number is mandatory to be provided."))
+                .body("result.message", equalTo(null));
+        deviceService.deleteDevicePositiv(responseDeviceCreate.getResult().getDevice().getSerialNumber());
+    }
+
 }

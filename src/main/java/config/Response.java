@@ -1,7 +1,8 @@
 package config;
 
+import lombok.Data;
 import models.api.createdevice.Result;
-
+@Data
 public class Response {
 
     private Object errorCode;

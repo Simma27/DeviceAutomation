@@ -1,5 +1,8 @@
 package config;
 
+/**
+ * 
+ */
     public class ApiDeviceConfig {
 
         public static final String CREATE_DEVICE = "/admin/device/create";

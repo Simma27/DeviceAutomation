@@ -1,5 +1,6 @@
 package models.api.deletedevice;
 
+import config.Enum;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -9,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class SearchCriteria {
 
-    private String searchOption;
+    private Enum searchOption;
     
     private String searchTerms;
 
