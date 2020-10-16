@@ -7,10 +7,10 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class SearchCriteria {
+public class SearchCriteriaUpdate {
 
     private String searchOption;
 
-    private String searchTerms;
+    private int searchTerms;
 
 }

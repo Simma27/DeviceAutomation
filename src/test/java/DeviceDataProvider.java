@@ -12,8 +12,8 @@ import org.testng.annotations.DataProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-import static config.Config.ACCOUNT_SERIAL_NUMBER;
-import static config.Config.DEFAULT_LOCATION;
+import static config.DeviceConfig.ACCOUNT_SERIAL_NUMBER;
+import static config.DeviceConfig.DEFAULT_LOCATION;
 
 public class DeviceDataProvider {
 
@@ -31,18 +31,7 @@ public class DeviceDataProvider {
     }
 
     @DataProvider
-    public Object[] getCreatedDeviceDifferentType() {
-        ResponseDeviceCreate[] deviceCreates = new ResponseDeviceCreate[14];
-        for (int i = 0; i < 14; i++) {
-            RequestDeviceCreate requestDeviceCreate = getRequestParameterDevice();
-            requestDeviceCreate.setType(i);
-            deviceCreates[i] = deviceService.createDevicePositiv(requestDeviceCreate);
-        }
-        return deviceCreates;
-    }
-
-    @DataProvider
-    public Object[] getRequestBodyToCreateDeviceDifferentType() {
+    public Object[] getRequestBodyToCreateDeviceDifferentTypes() {
         RequestDeviceCreate[] deviceCreates = new RequestDeviceCreate[14];
         for (int i = 0; i < 14; i++) {
             RequestDeviceCreate requestDeviceCreate = getRequestParameterDevice();
@@ -53,7 +42,87 @@ public class DeviceDataProvider {
     }
 
     @DataProvider
+    public Object[] getDataToUpdateDevice() {
+
+        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
+
+        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
+
+        deviceUpdateProperties.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("DEVICE_NAME")
+                .propertyValue("ExampleDevice")
+                .build());
+        deviceUpdateProperties.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("DEVICE_TYPE")
+                .propertyValue("0")
+                .build());
+        deviceUpdateProperties.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("ADDRESS")
+                .propertyValue("127.0.0.5")
+                .build());
+        deviceUpdateProperties.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("DO_NOT_RESOLVE_ADDRESS")
+                .propertyValue("false")
+                .build());
+
+        return new Object[][]{{createdDevice, RequestDeviceUpdate
+                .builder()
+                .serialNumber(createdDevice.getResult().getDevice().getSerialNumber())
+                .deviceUpdateProperties(deviceUpdateProperties)
+                .build()}};
+    }
+
+    @DataProvider
+    public Object[] getDataToUpdateDevices() {
+
+        List<DeviceUpdateProperty> deviceUpdateDEVICE_NAME = new ArrayList<>();
+        List<DeviceUpdateProperty> deviceUpdateDEVICE_TYPE = new ArrayList<>();
+        List<DeviceUpdateProperty> deviceUpdateADDRESS = new ArrayList<>();
+        List<DeviceUpdateProperty> deviceUpdateDO_NOT_RESOLVE_ADDRESS = new ArrayList<>();
+
+        deviceUpdateDEVICE_NAME.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("DEVICE_NAME")
+                .propertyValue("ExampleDevice")
+                .build());
+        deviceUpdateDEVICE_TYPE.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("DEVICE_TYPE")
+                .propertyValue("0")
+                .build());
+        deviceUpdateADDRESS.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("ADDRESS")
+                .propertyValue("127.0.0.5")
+                .build());
+        deviceUpdateDO_NOT_RESOLVE_ADDRESS.add(DeviceUpdateProperty
+                .builder()
+                .propertyName("DO_NOT_RESOLVE_ADDRESS")
+                .propertyValue("false")
+                .build());
+
+        return new Object[][]{{RequestDeviceUpdate
+                .builder()
+                .deviceUpdateProperties(deviceUpdateDEVICE_NAME)
+                .build()}, {RequestDeviceUpdate
+                .builder()
+                .deviceUpdateProperties(deviceUpdateDEVICE_TYPE)
+                .build() } , {RequestDeviceUpdate
+                .builder()
+                .deviceUpdateProperties(deviceUpdateADDRESS)
+                .build() }, {RequestDeviceUpdate
+                .builder()
+                .deviceUpdateProperties(deviceUpdateDO_NOT_RESOLVE_ADDRESS)
+                .build() }};
+    }
+
+    @DataProvider
     public Object[][] getDataToMoveDevice() {
+
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
 
         List<SearchCriteria> moveDevice = new ArrayList<>();
@@ -67,51 +136,14 @@ public class DeviceDataProvider {
         return new Object[][]{{createdDevice
                 , RequestDeviceMove
                 .builder()
+                .newDeviceName(RandomStringUtils.randomAlphabetic(8))
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .searchCriterias(moveDevice)
                 .build()
         }};
     }
 
-    @DataProvider
-    public Object[] getDataToUpdateDevice() {
-
-        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
-
-        List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
-        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
-                .builder()
-                .propertyName("SUSPEND")
-                .propertyValue("true")
-                .build());
-        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
-                .builder()
-                .propertyName("DEVICE_NAME")
-                .propertyValue("ExampleDevice")
-                .build());
-        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
-                .builder()
-                .propertyName("DEVICE_TYPE")
-                .propertyValue("0")
-                .build());
-        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
-                .builder()
-                .propertyName("ADDRESS")
-                .propertyValue("127.0.0.5")
-                .build());
-        deviceUpdateProperties.add(models.api.updatedevice.DeviceUpdateProperty
-                .builder()
-                .propertyName("DO_NOT_RESOLVE_ADDRESS")
-                .propertyValue("false")
-                .build());
-
-        return new Object[][]{{createdDevice, RequestDeviceUpdate
-                .builder()
-                .deviceUpdateProperties(deviceUpdateProperties)
-                .build()}};
-    }
-
-    public RequestDeviceCreate getRequestParameterDevice() {
+    public static synchronized RequestDeviceCreate getRequestParameterDevice() {
         return RequestDeviceCreate.builder()
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
                 .address((int) (Math.random() * 255) + "." + (int) (Math.random() * 255) + "." + (int) (Math.random() * 255) + "." + (int) (Math.random() * 255))
@@ -136,6 +168,27 @@ public class DeviceDataProvider {
                 .tag5("tag5")
                 .type(0)
                 .build();
+    }
+
+//    public static ResponseDeviceCreate[] getCreatedDeviceDifferentType() {
+//        ResponseDeviceCreate[] deviceCreates = new ResponseDeviceCreate[14];
+//        for (int i = 0; i < 14; i++) {
+//            RequestDeviceCreate requestDeviceCreate = getRequestParameterDevice();
+//            requestDeviceCreate.setType(i);
+//            deviceCreates[i] = deviceService.createDevicePositiv(requestDeviceCreate);
+//        }
+//        return deviceCreates;
+//    }
+
+//        @DataProvider
+//    public Object[] getCreatedDeviceDifferentTypes() {
+//        return getCreatedDeviceDifferentType();
+//    }
+//
+
+    public static ResponseDeviceCreate getResponseCreatedDevices() {
+        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
+        return createdDevice;
     }
 
 

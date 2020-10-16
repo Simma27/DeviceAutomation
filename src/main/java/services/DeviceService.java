@@ -6,6 +6,7 @@ import models.api.deletedevice.RequestDeviceDelete;
 import models.api.deletedevice.ResponseDeviceDelete;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.movedevice.ResponseDeviceMove;
+import models.api.specification.Specification;
 import models.api.updatedevice.RequestDeviceUpdate;
 import models.api.updatedevice.ResponseDeviceUpdate;
 

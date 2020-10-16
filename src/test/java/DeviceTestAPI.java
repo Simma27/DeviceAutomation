@@ -9,8 +9,8 @@ import models.api.updatedevice.ResponseDeviceUpdate;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import services.DeviceService;
-import services.DeviceType;
-import services.Specification;
+import models.DeviceType;
+import models.api.specification.Specification;
 
 import static config.ApiDeviceConfig.*;
 import static io.restassured.RestAssured.given;
@@ -22,7 +22,7 @@ public class DeviceTestAPI {
 
     DeviceService deviceService = new DeviceService();
 
-    @Test(dataProvider = "getRequestBodyToCreateDeviceDifferentType", dataProviderClass = DeviceDataProvider.class)
+    @Test(dataProvider = "getRequestBodyToCreateDeviceDifferentTypes", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceTest(RequestDeviceCreate requestBody) {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
         Assert.assertEquals(createdDevice.getResult().getMessage(),"New NetworkDevice has been created with Serial Number: "
@@ -75,10 +75,11 @@ public class DeviceTestAPI {
                 .body("result.message", equalTo(null));
     }
 
-    @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
-    public void deleteDevice(ResponseDeviceCreate createdDevice) {
-//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
+    @Test(dataProvider = "getRequestBodyToCreateDeviceDifferentTypes", dataProviderClass = DeviceDataProvider.class)
+    public void deleteDevice(RequestDeviceCreate requestBody){
+        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
         ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
+        System.out.println(responseDeleteDevice.toString());
         Assert.assertEquals(responseDeleteDevice.getResult().getMessage()
                 ,"Successful! Total 1 devices have been deleted. ");
     }
@@ -112,8 +113,10 @@ public class DeviceTestAPI {
                 .body("result.message", equalTo("Failed"));
     }
 
-    @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
-    public void updateDevice(ResponseDeviceCreate createdDevice, RequestDeviceUpdate updateDevice) {
+    @Test(dataProvider = "getDataToUpdateDevices", dataProviderClass = DeviceDataProvider.class)
+    public void updateDevice(RequestDeviceUpdate updateDevice) {
+        ResponseDeviceCreate createdDevice = DeviceDataProvider.getResponseCreatedDevices();
+        updateDevice.setSerialNumber(createdDevice.getResult().getDevice().getSerialNumber());
         ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevicePositiv(updateDevice);
         Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
         deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());

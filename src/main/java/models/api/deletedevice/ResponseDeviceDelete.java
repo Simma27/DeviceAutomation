@@ -1,8 +1,9 @@
 package models.api.deletedevice;
 
 import config.Response;
+import lombok.Data;
 
-
-public class ResponseDeviceDelete extends Response {
+@Data
+public class ResponseDeviceDelete extends Response{
 
 }

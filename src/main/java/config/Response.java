@@ -3,6 +3,9 @@ package config;
 import lombok.Data;
 import models.api.createdevice.Result;
 @Data
+/**
+ * The parent class for the response body.
+ */
 public class Response {
 
     private Object errorCode;

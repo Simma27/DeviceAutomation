@@ -17,6 +17,5 @@ public class RequestDeviceMove extends AutorizationRequest {
 
     private List<SearchCriteria> searchCriterias;
 
-    private int serialNumber;
     
 }
