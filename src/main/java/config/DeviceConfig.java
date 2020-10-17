@@ -1,5 +1,9 @@
 package config;
 
+/**
+ *
+ */
+
 public class DeviceConfig {
 
     public static final String DEFAULT_LOCATION = "Default Location";

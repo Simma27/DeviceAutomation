@@ -1,8 +1,10 @@
 
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
+import models.api.deletedevice.RequestDeviceDelete;
+import models.api.deletedevice.SearchCriteriaDelete;
 import models.api.movedevice.RequestDeviceMove;
-import models.api.movedevice.SearchCriteria;
+import models.api.movedevice.SearchCriteriaMove;
 import models.api.updatedevice.DeviceUpdateProperty;
 import models.api.updatedevice.RequestDeviceUpdate;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -10,6 +12,7 @@ import services.DeviceService;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static config.DeviceConfig.ACCOUNT_SERIAL_NUMBER;
@@ -125,9 +128,9 @@ public class DeviceDataProvider {
 
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
 
-        List<SearchCriteria> moveDevice = new ArrayList<>();
+        List<SearchCriteriaMove> moveDevice = new ArrayList<>();
 
-        moveDevice.add(models.api.movedevice.SearchCriteria
+        moveDevice.add(SearchCriteriaMove
                 .builder()
                 .searchOption("DEVICE_SERIAL_NUMBER")
                 .searchTerms(createdDevice.getResult().getDevice().getSerialNumber())
@@ -138,7 +141,7 @@ public class DeviceDataProvider {
                 .builder()
                 .newDeviceName(RandomStringUtils.randomAlphabetic(8))
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
-                .searchCriterias(moveDevice)
+                .searchCriteriaMoves(moveDevice)
                 .build()
         }};
     }
@@ -189,6 +192,30 @@ public class DeviceDataProvider {
     public static ResponseDeviceCreate getResponseCreatedDevices() {
         ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
         return createdDevice;
+    }
+
+    @DataProvider
+    public static Object[] getCreatedDeviceDifferentType() {
+
+        RequestDeviceDelete[] deviceDeletes = new RequestDeviceDelete[14];
+        ResponseDeviceCreate[] deviceCreates = new ResponseDeviceCreate[14];
+        for (int i = 0; i < 14; i++) {
+            RequestDeviceCreate requestDeviceCreate = getRequestParameterDevice();
+            requestDeviceCreate.setType(i);
+            deviceCreates[i] = deviceService.createDevicePositiv(requestDeviceCreate);
+            SearchCriteriaDelete searchCriteriaDelete = SearchCriteriaDelete
+                    .builder()
+                    .searchOption("DEVICE_SERIAL_NUMBER")
+                    .searchTerms(deviceCreates[i].getResult().getDevice().getSerialNumber())
+                    .build();
+            deviceDeletes[i] = RequestDeviceDelete
+                    .builder()
+                    .serialNumber(deviceCreates[i].getResult().getDevice().getSerialNumber())
+                    .searchCriteriaDeletes(new ArrayList<SearchCriteriaDelete>(Arrays.asList(searchCriteriaDelete)))
+                    .build();
+        }
+        return deviceDeletes;
+//        return new Object[][]{{ deviceDeletes[0]},{  deviceDeletes[1]},{ deviceDeletes[2]},{ deviceDeletes[3]},{  deviceDeletes[4]},{  deviceDeletes[5]},{ deviceDeletes[6]},{ deviceDeletes[7]},{  deviceDeletes[8]},{  deviceDeletes[9]},{ deviceDeletes[10]},{  deviceDeletes[11]},{  deviceDeletes[12]},{  deviceDeletes[13]}};
     }
 
 

@@ -1,7 +1,6 @@
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
-import models.api.deletedevice.ResponseDeviceDelete;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.movedevice.ResponseDeviceMove;
 import models.api.updatedevice.RequestDeviceUpdate;
@@ -75,13 +74,20 @@ public class DeviceTestAPI {
                 .body("result.message", equalTo(null));
     }
 
-    @Test(dataProvider = "getRequestBodyToCreateDeviceDifferentTypes", dataProviderClass = DeviceDataProvider.class)
-    public void deleteDevice(RequestDeviceCreate requestBody){
-        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
-        System.out.println(responseDeleteDevice.toString());
-        Assert.assertEquals(responseDeleteDevice.getResult().getMessage()
-                ,"Successful! Total 1 devices have been deleted. ");
+    @Test(dataProvider = "getCreatedDeviceDifferentType", dataProviderClass = DeviceDataProvider.class)
+    public void deleteDevice(RequestDeviceDelete requestDeviceDelete){
+//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
+//        ResponseDeviceDelete responseDeleteDevice = deviceService.deleteDevicePositiv(createdDevice.getResult().getDevice().getSerialNumber());
+//        System.out.println(responseDeleteDevice.toString());
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(requestDeviceDelete)
+                .post(DELETE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecification())
+                .body("result.message", equalTo("Successful! Total 1 devices have been deleted. "));
+//        Assert.assertEquals(responseDeleteDevice.getResult().getMessage()
+//                ,"Successful! Total 1 devices have been deleted. ");
     }
 
     @Test
@@ -156,7 +162,7 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceWithoutSearchCriteriaTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
-        moveDevice.setSearchCriterias(null);
+        moveDevice.setSearchCriteriaMoves(null);
         given()
                 .spec(Specification.getRequestSpecification())
                 .body(moveDevice)

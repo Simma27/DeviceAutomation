@@ -1,16 +1,16 @@
-package models.api.movedevice;
+package models.api.deletedevice;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
-import models.api.updatedevice.SearchCriteriaUpdate;
 
 @Data
 @Builder
 @ToString
-public class SearchCriteria {
+public class SearchCriteriaDelete {
 
     private String searchOption;
-
+    
     private Object searchTerms;
+
 }
