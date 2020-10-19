@@ -1,4 +1,4 @@
-package models.api.deletedevice;
+package models.api.movedevice;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,10 +7,9 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class SearchCriteriaDelete {
+public class SearchCriteria {
 
     private String searchOption;
-    
-    private Object searchTerms;
 
+    private Object searchTerms;
 }

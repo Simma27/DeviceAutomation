@@ -1,4 +1,4 @@
-package models.api.updatedevice;
+package models.api.deletedevice;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,10 +7,10 @@ import lombok.ToString;
 @Data
 @Builder
 @ToString
-public class SearchCriteriaUpdate {
+public class SearchCriteria {
 
     private String searchOption;
-
-    private int searchTerms;
+    
+    private Object searchTerms;
 
 }

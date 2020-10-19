@@ -41,10 +41,9 @@ public class DeviceService {
      * The deleteDevice method sends a request to delete Device by serial number.
      *
      * @param serialNumber serial number of the Device to be deleted.
-     * @return Response to a request to delete Device as a Device class.
      */
-    public ResponseDeviceDelete deleteDevicePositiv(int serialNumber) {
-        return given()
+    public void deleteDevice(int serialNumber) {
+        given()
                 .spec(Specification.getRequestSpecification())
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(serialNumber)
@@ -62,7 +61,7 @@ public class DeviceService {
      * @param requestDeviceUpdate The input is a Request body with the parameters we need.
      * @return Response to a request to update Device as a Device class.
      */
-    public ResponseDeviceUpdate updateDevicePositiv(RequestDeviceUpdate requestDeviceUpdate) {
+    public ResponseDeviceUpdate updateDevice(RequestDeviceUpdate requestDeviceUpdate) {
         return given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestDeviceUpdate)
@@ -79,7 +78,7 @@ public class DeviceService {
      * @param requestDeviceMove The input is a request body with the parameters(Department ID, searchCriteria).
      * @return Response to a request to move Device as a Device class.
      */
-    public ResponseDeviceMove moveDevicePositiv(RequestDeviceMove requestDeviceMove) {
+    public ResponseDeviceMove moveDevice(RequestDeviceMove requestDeviceMove) {
         return given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestDeviceMove)

@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class RequestDeviceDelete extends AutorizationRequest {
 
-    private List<SearchCriteriaDelete> searchCriteriaDeletes;
+    private List<SearchCriteria> searchCriterias;
 
     private int serialNumber;
 }

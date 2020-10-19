@@ -15,7 +15,7 @@ public class RequestDeviceMove extends AutorizationRequest {
 
     private String newDeviceName;
 
-    private List<SearchCriteriaMove> searchCriteriaMoves;
+    private List<SearchCriteria> searchCriterias;
 
     
 }

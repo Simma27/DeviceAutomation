@@ -16,6 +16,6 @@ public class RequestDeviceUpdate extends AutorizationRequest {
 
     private List<DeviceUpdateProperty> deviceUpdateProperties;
 
-    private List<SearchCriteriaUpdate> searchCriteriaUpdates;
+    private List<SearchCriteria> searchCriterias;
 
 }
