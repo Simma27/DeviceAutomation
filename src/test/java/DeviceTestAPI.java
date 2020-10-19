@@ -1,5 +1,6 @@
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
+import models.api.deletedevice.EmptyRequest;
 import models.api.deletedevice.RequestDeviceDelete;
 import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
@@ -16,6 +17,7 @@ import static config.ApiDeviceConfig.*;
 import static config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.equalTo;
 
 
@@ -25,7 +27,7 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getRequestBodyToCreateDeviceDifferentTypes", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceTest(RequestDeviceCreate requestBody) {
-        ResponseDeviceCreate createdDevice = given()
+        ResponseDeviceCreate responseDeviceCreate = given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestBody)
                 .post(CREATE_DEVICE)
@@ -51,7 +53,7 @@ public class DeviceTestAPI {
                 .body(prefix + "vendor", equalTo(requestBody.getVendor()))
                 .extract()
                 .as(ResponseDeviceCreate.class);
-        deviceService.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
+        deviceService.deleteDevice(responseDeviceCreate.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
@@ -100,7 +102,7 @@ public class DeviceTestAPI {
     public void deleteWithoutRequestBodyTest() {
         given()
                 .spec(Specification.getRequestSpecification())
-                .body(new Object())
+                .body(new EmptyRequest())
                 .post(DELETE_DEVICE)
                 .then()
                 .spec(Specification.getResponseSpecificationNegativ())

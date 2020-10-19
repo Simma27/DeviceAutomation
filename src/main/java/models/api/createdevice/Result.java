@@ -1,16 +1,32 @@
 package models.api.createdevice;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
 
-@Data
-@Builder
-@ToString
+@Generated("net.hexar.json2pojo")
+@SuppressWarnings("unused")
 public class Result {
 
+    @Expose
     private Device device;
-
+    @Expose
     private String message;
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 
 }

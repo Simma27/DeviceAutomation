@@ -1,14 +1,21 @@
 package models.api.deletedevice;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import com.google.gson.annotations.Expose;
 
-@Data
-@Builder
-@ToString
+import models.api.createdevice.Device;
+
 public class Result {
 
+    @Expose
     private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 
 }
