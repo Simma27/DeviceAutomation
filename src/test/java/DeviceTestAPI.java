@@ -2,9 +2,7 @@ import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
 import models.api.movedevice.RequestDeviceMove;
-import models.api.movedevice.ResponseDeviceMove;
 import models.api.updatedevice.RequestDeviceUpdate;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import services.DeviceService;
 import models.DeviceType;
@@ -48,30 +46,12 @@ public class DeviceTestAPI {
                 .body(prefix + "vendor", equalTo(requestBody.getVendor()))
                 .extract()
                 .as(ResponseDeviceCreate.class);
-
-//        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(requestBody);
-//        Assert.assertEquals(createdDevice.getResult().getMessage(),"New NetworkDevice has been created with Serial Number: "
-//                        + createdDevice.getResult().getDevice().getSerialNumber());
-//        Assert.assertEquals(requestBody.getAccountSerialNumber(),createdDevice.getResult().getDevice().getAccountSerialNumber());
-//        Assert.assertEquals(requestBody.getAddress(), createdDevice.getResult().getDevice().getDeviceAddress());
-//        Assert.assertEquals(requestBody.getComment(), createdDevice.getResult().getDevice().getComment());
-//        Assert.assertEquals(requestBody.getFlapPreventionWaitCycles(), createdDevice.getResult().getDevice().getFlapPreventionWaitCycles());
-//        Assert.assertEquals(requestBody.getLocationName(), createdDevice.getResult().getDevice().getLocationName());
-//        Assert.assertEquals(requestBody.getModel(), createdDevice.getResult().getDevice().getModel());
-//        Assert.assertEquals(requestBody.getName(), createdDevice.getResult().getDevice().getDeviceName());
-//        Assert.assertEquals(requestBody.getTag1(), createdDevice.getResult().getDevice().getTag1());
-//        Assert.assertEquals(requestBody.getTag2(), createdDevice.getResult().getDevice().getTag2());
-//        Assert.assertEquals(requestBody.getTag3(), createdDevice.getResult().getDevice().getTag3());
-//        Assert.assertEquals(requestBody.getTag4(), createdDevice.getResult().getDevice().getTag4());
-//        Assert.assertEquals(requestBody.getTag5(), createdDevice.getResult().getDevice().getTag5());
-//        Assert.assertEquals(requestBody.getType(), createdDevice.getResult().getDevice().getDeviceType());
-//        Assert.assertEquals(DeviceType.getDeviceTypeStr(requestBody.getType()), createdDevice.getResult().getDevice().getDeviceTypeStr());
         deviceService.deleteDevice(createdDevice.getResult().getDevice().getSerialNumber());
     }
 
     @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceTwiceTest(RequestDeviceCreate requestBody) {
-        ResponseDeviceCreate DeviceOne = deviceService.createDevicePositiv(requestBody);
+        ResponseDeviceCreate DeviceOne = deviceService.createDevice(requestBody);
         given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestBody)
@@ -142,9 +122,6 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getDataToUpdateDevices", dataProviderClass = DeviceDataProvider.class)
     public void updateDeviceTest(RequestDeviceUpdate updateDevice) {
-//        ResponseDeviceUpdate responseUpdateDevice = deviceService.updateDevice(updateDevice);
-//        Assert.assertEquals(responseUpdateDevice.getResult().getMessage(), "Updated successfully");
-        System.out.println(updateDevice.toString());
         given()
                 .spec(Specification.getRequestSpecification())
                 .body(updateDevice)
@@ -152,7 +129,7 @@ public class DeviceTestAPI {
                 .then()
                 .spec(Specification.getResponseSpecification())
                 .body("result.message", equalTo("Updated successfully"));
-//        deviceService.deleteDevice(updateDevice.getSerialNumber());
+        deviceService.deleteDevice(updateDevice.getSerialNumber());
     }
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
@@ -185,11 +162,14 @@ public class DeviceTestAPI {
 
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceTest(ResponseDeviceCreate responseDeviceCreate, RequestDeviceMove moveDevice) {
-        System.out.println(moveDevice.toString());
-        ResponseDeviceMove responseMoveDevice = deviceService.moveDevice(moveDevice);
-        Assert.assertEquals(responseMoveDevice.getResult().getMessage()
-                ,"Total 0 device(s) has(have) been moved to department with name: Core Infrastructure. " +
-                        "Total 1 device(s) has(have) been ignored due to same department violation.");
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(moveDevice)
+                .post(MOVE_DEVICE)
+                .then()
+                .spec(Specification.getResponseSpecification())
+                .body("result.message", equalTo("Total 0 device(s) has(have) been moved to department with name: Core Infrastructure. " +
+                        "Total 1 device(s) has(have) been ignored due to same department violation."));
         deviceService.deleteDevice(responseDeviceCreate.getResult().getDevice().getSerialNumber());
     }
 

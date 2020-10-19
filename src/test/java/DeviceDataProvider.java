@@ -10,7 +10,6 @@ import services.DeviceService;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class DeviceDataProvider {
 
     @DataProvider
     public Object[][] getResponseCreatedDevice() {
-        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
+        ResponseDeviceCreate createdDevice = deviceService.createDevice(getRequestParameterDevice());
         return new ResponseDeviceCreate[][]{{createdDevice}};
     }
 
@@ -53,16 +52,16 @@ public class DeviceDataProvider {
         for (int i = 0; i < 14; i++) {
             RequestDeviceCreate requestDeviceCreate = getRequestParameterDevice();
             requestDeviceCreate.setType(i);
-            deviceCreates[i] = deviceService.createDevicePositiv(requestDeviceCreate);
+            deviceCreates[i] = deviceService.createDevice(requestDeviceCreate);
             models.api.deletedevice.SearchCriteria searchCriteria = models.api.deletedevice.SearchCriteria
                     .builder()
-                    .searchOption("DEVICE_SERIAL_NUMBER")
+                    .searchOption(DEVICE_SERIAL_NUMBER)
                     .searchTerms(deviceCreates[i].getResult().getDevice().getSerialNumber())
                     .build();
             deviceDeletes[i] = RequestDeviceDelete
                     .builder()
                     .serialNumber(deviceCreates[i].getResult().getDevice().getSerialNumber())
-                    .searchCriterias(new ArrayList<>(Arrays.asList(searchCriteria)))
+                    .searchCriterias(new ArrayList<>(Collections.singletonList(searchCriteria)))
                     .build();
         }
         return deviceDeletes;
@@ -116,7 +115,7 @@ public class DeviceDataProvider {
     @DataProvider
     public  Object[][] getDataToMoveDevice() {
 
-        ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
+        ResponseDeviceCreate createdDevice = deviceService.createDevice(getRequestParameterDevice());
 
         List<SearchCriteria> moveDevice = new ArrayList<>();
 
@@ -165,13 +164,13 @@ public class DeviceDataProvider {
     }
 
     public static ResponseDeviceCreate getResponseCreatedDevices() {
-        return deviceService.createDevicePositiv(getRequestParameterDevice());
+        return deviceService.createDevice(getRequestParameterDevice());
     }
 
         @DataProvider
         public Object[] getDataToUpdateDevice() {
 
-            ResponseDeviceCreate createdDevice = deviceService.createDevicePositiv(getRequestParameterDevice());
+            ResponseDeviceCreate createdDevice = deviceService.createDevice(getRequestParameterDevice());
 
             List<DeviceUpdateProperty> deviceUpdateProperties = new ArrayList<>();
 

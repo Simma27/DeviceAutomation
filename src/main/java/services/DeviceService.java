@@ -4,13 +4,18 @@ import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
 import models.api.deletedevice.ResponseDeviceDelete;
+import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.movedevice.ResponseDeviceMove;
 import models.api.specification.Specification;
 import models.api.updatedevice.RequestDeviceUpdate;
 import models.api.updatedevice.ResponseDeviceUpdate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static config.ApiDeviceConfig.*;
+import static config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
 import static io.restassured.RestAssured.given;
 
 /**
@@ -25,7 +30,7 @@ public class DeviceService {
      * @param requestBody The input is a body with the parameters we need.
      * @return Response to a request to create a device as a Device class.
      */
-    public ResponseDeviceCreate createDevicePositiv(RequestDeviceCreate requestBody) {
+    public ResponseDeviceCreate createDevice(RequestDeviceCreate requestBody) {
 
         return given()
                 .spec(Specification.getRequestSpecification())
@@ -47,6 +52,11 @@ public class DeviceService {
                 .spec(Specification.getRequestSpecification())
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(serialNumber)
+                        .searchCriterias(new ArrayList<>(Arrays.asList(SearchCriteria
+                                .builder()
+                                .searchOption(DEVICE_SERIAL_NUMBER)
+                                .searchTerms(serialNumber)
+                                .build())))
                         .build())
                 .post(DELETE_DEVICE)
                 .then()
