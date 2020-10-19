@@ -117,7 +117,7 @@ public class DeviceTestAPI {
                 .spec(Specification.getRequestSpecification())
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(responseDeviceCreate.getResult().getDevice().getSerialNumber())
-                        .searchCriterias(new ArrayList<>(Collections.singletonList(SearchCriteria
+                        .searchCriterias(new ArrayList<SearchCriteria>(Collections.singletonList(SearchCriteria
                                 .builder()
                                 .searchOption(DEVICE_SERIAL_NUMBER)
                                 .searchTerms(responseDeviceCreate.getResult().getDevice().getSerialNumber())
