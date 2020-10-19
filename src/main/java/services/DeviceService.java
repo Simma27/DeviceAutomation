@@ -52,7 +52,7 @@ public class DeviceService {
                 .spec(Specification.getRequestSpecification())
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(serialNumber)
-                        .searchCriterias(new ArrayList<>(Arrays.asList(SearchCriteria
+                        .searchCriterias(new ArrayList<SearchCriteria>(Arrays.asList(SearchCriteria
                                 .builder()
                                 .searchOption(DEVICE_SERIAL_NUMBER)
                                 .searchTerms(serialNumber)

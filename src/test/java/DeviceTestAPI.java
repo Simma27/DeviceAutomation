@@ -1,9 +1,11 @@
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
+import models.api.deletedevice.RequestDeviceDeleteEmpty;
 import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.updatedevice.RequestDeviceUpdate;
+import org.codehaus.groovy.runtime.NullObject;
 import org.testng.annotations.Test;
 import services.DeviceService;
 import models.DeviceType;
@@ -100,7 +102,7 @@ public class DeviceTestAPI {
     public void deleteWithoutRequestBodyTest() {
         given()
                 .spec(Specification.getRequestSpecification())
-                .body(new Object())
+                .body(new RequestDeviceDeleteEmpty())
                 .post(DELETE_DEVICE)
                 .then()
                 .spec(Specification.getResponseSpecificationNegativ())
