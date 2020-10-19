@@ -197,7 +197,7 @@ public class DeviceDataProvider {
 
             return new Object[][]{{createdDevice, RequestDeviceUpdate
                     .builder()
-//                    .serialNumber(createdDevice.getResult().getDevice().getSerialNumber())
+                    .serialNumber(createdDevice.getResult().getDevice().getSerialNumber())
                     .deviceUpdateProperties(deviceUpdateProperties)
                     .build()}};
         }

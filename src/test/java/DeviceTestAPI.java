@@ -17,7 +17,6 @@ import static config.ApiDeviceConfig.*;
 import static config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.equalTo;
 
 
