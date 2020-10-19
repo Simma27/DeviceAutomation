@@ -1,6 +1,7 @@
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
+import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.updatedevice.RequestDeviceUpdate;
 import org.testng.annotations.Test;
@@ -8,7 +9,11 @@ import services.DeviceService;
 import models.DeviceType;
 import models.api.specification.Specification;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import static config.ApiDeviceConfig.*;
+import static config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
@@ -81,7 +86,7 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getRequestsToDeleteDeviceDifferentType", dataProviderClass = DeviceDataProvider.class)
-    public void deleteDeviceTest(RequestDeviceDelete requestDeviceDelete){
+    public void deleteDeviceTest(RequestDeviceDelete requestDeviceDelete) {
         given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestDeviceDelete)
@@ -111,6 +116,11 @@ public class DeviceTestAPI {
                 .spec(Specification.getRequestSpecification())
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(responseDeviceCreate.getResult().getDevice().getSerialNumber())
+                        .searchCriterias(new ArrayList<>(Collections.singletonList(SearchCriteria
+                                .builder()
+                                .searchOption(DEVICE_SERIAL_NUMBER)
+                                .searchTerms(responseDeviceCreate.getResult().getDevice().getSerialNumber())
+                                .build())))
                         .build())
                 .post(DELETE_DEVICE)
                 .then()
