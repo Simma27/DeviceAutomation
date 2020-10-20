@@ -11,7 +11,6 @@ import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.IntStream;
 
 import static config.DeviceConfig.ACCOUNT_SERIAL_NUMBER;
 import static config.DeviceConfig.DEFAULT_LOCATION;
