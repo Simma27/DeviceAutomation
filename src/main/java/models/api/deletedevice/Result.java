@@ -1,12 +1,7 @@
 package models.api.deletedevice;
 
-import com.google.gson.annotations.Expose;
-
-import models.api.createdevice.Device;
-
 public class Result {
-
-    @Expose
+     
     private String message;
 
     public String getMessage() {

@@ -1,101 +1,96 @@
-
 package models.api.createdevice;
 
 import java.util.List;
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
 
-@Generated("net.hexar.json2pojo")
-@SuppressWarnings("unused")
 public class Device {
 
-    @Expose
+    
     private String accountName;
-    @Expose
+    
     private Long accountSerialNumber;
-    @Expose
+    
     private Object agentId;
-    @Expose
+    
     private List<Object> applicationProfiles;
-    @Expose
+    
     private Object assetId;
-    @Expose
+    
     private Boolean clearOnOk;
-    @Expose
+    
     private String comment;
-    @Expose
+    
     private Boolean configBackupEnabled;
-    @Expose
+    
     private Long configBackupFrequency;
-    @Expose
+    
     private String deviceAddress;
-    @Expose
+    
     private String deviceDetailUrl;
-    @Expose
+    
     private String deviceName;
-    @Expose
+    
     private Long deviceType;
-    @Expose
+    
     private String deviceTypeStr;
-    @Expose
+    
     private String deviceUpdateUrl;
-    @Expose
+    
     private String eventMgrUrl;
-    @Expose
+    
     private Boolean exported;
-    @Expose
+    
     private Long flapPreventionWaitCycles;
-    @Expose
+    
     private Boolean isSuspended;
-    @Expose
+    
     private Object liveConnectEnabled;
-    @Expose
+    
     private String locationName;
-    @Expose
+    
     private Long locationSerialNumber;
-    @Expose
+    
     private String model;
-    @Expose
+    
     private Long monitorConfigCount;
-    @Expose
+    
     private Object organizationId;
-    @Expose
+    
     private Boolean processCollectionEnabled;
-    @Expose
+    
     private Object processCollectorType;
-    @Expose
+    
     private Object processMonitorConfig;
-    @Expose
+    
     private Object processMonitorConfigName;
-    @Expose
+    
     private Long rediscoveryDeletedTestsAction;
-    @Expose
+    
     private Boolean rediscoveryEnabled;
-    @Expose
+    
     private Long rediscoveryFrequency;
-    @Expose
+    
     private Long rediscoveryNewTestsAction;
-    @Expose
+    
     private Long rediscoveryUpdatedTestsAction;
-    @Expose
+    
     private int serialNumber;
-    @Expose
+    
     private Boolean showOnSummary;
-    @Expose
+    
     private Boolean smartNotify;
-    @Expose
+    
     private String tag1;
-    @Expose
+    
     private String tag2;
-    @Expose
+    
     private String tag3;
-    @Expose
+    
     private String tag4;
-    @Expose
+    
     private String tag5;
-    @Expose
+    
     private String vendor;
-    @Expose
+    
     private Object virtualMachine;
 
     public String getAccountName() {

@@ -1,6 +1,5 @@
 package models.api.deletedevice;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.JsonAdapter;
 
 @JsonAdapter(EmptyRequest.class)

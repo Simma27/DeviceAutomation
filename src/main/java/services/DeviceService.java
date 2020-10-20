@@ -11,8 +11,7 @@ import models.api.specification.Specification;
 import models.api.updatedevice.RequestDeviceUpdate;
 import models.api.updatedevice.ResponseDeviceUpdate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 import static config.ApiDeviceConfig.*;
 import static config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
@@ -35,7 +34,7 @@ public class DeviceService {
         return given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestBody)
-                .post(CREATE_DEVICE)
+                .post(CREATE_DEVICE.getPath())
                 .then()
                 .spec(Specification.getResponseSpecification())
                 .extract()
@@ -52,13 +51,24 @@ public class DeviceService {
                 .spec(Specification.getRequestSpecification())
                 .body(RequestDeviceDelete.builder()
                         .serialNumber(serialNumber)
-                        .searchCriterias(new ArrayList<>(Arrays.asList(SearchCriteria
+                        .searchCriterias(Collections.singletonList(SearchCriteria
                                 .builder()
-                                .searchOption(DEVICE_SERIAL_NUMBER)
+                                .searchOption(DEVICE_SERIAL_NUMBER.name())
                                 .searchTerms(serialNumber)
-                                .build())))
+                                .build()))
                         .build())
-                .post(DELETE_DEVICE)
+                .post(DELETE_DEVICE.getPath())
+                .then()
+                .spec(Specification.getResponseSpecification())
+                .extract()
+                .as(ResponseDeviceDelete.class);
+    }
+
+    public void deleteDevice(RequestDeviceDelete requestDeviceDelete) {
+        given()
+                .spec(Specification.getRequestSpecification())
+                .body(requestDeviceDelete)
+                .post(DELETE_DEVICE.getPath())
                 .then()
                 .spec(Specification.getResponseSpecification())
                 .extract()
@@ -75,7 +85,7 @@ public class DeviceService {
         return given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestDeviceUpdate)
-                .post(UPDATE_DEVICE)
+                .post(UPDATE_DEVICE.getPath())
                 .then()
                 .spec(Specification.getResponseSpecification())
                 .extract()
@@ -92,7 +102,7 @@ public class DeviceService {
         return given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestDeviceMove)
-                .post(MOVE_DEVICE)
+                .post(MOVE_DEVICE.getPath())
                 .then()
                 .spec(Specification.getResponseSpecification())
                 .extract()

@@ -1,7 +1,7 @@
 package config;
 
 /**
- * The class contains constants for use when forming RequesDeviceCreate.
+ * The class contains constants for use when forming RequestDeviceCreate.
  */
 
 public class DeviceConfig {
