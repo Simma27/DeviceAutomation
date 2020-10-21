@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
@@ -21,16 +22,19 @@ public class DeviceDataProvider {
     static DeviceService deviceService = new DeviceService();
 
     @DataProvider
+    @Step("Get request body to create device")
     public Object[] getRequestBodyToCreateDevice() {
         return new Object[]{getRequestParameterDevice()};
     }
 
     @DataProvider
+    @Step("Get response body created device")
     public Object[] getResponseCreatedDevice() {
         return new ResponseDeviceCreate[]{deviceService.createDevice(getRequestParameterDevice())};
     }
 
     @DataProvider
+    @Step("Get request body to create device different type")
     public Object[] getRequestBodyToCreateDeviceDifferentTypes() {
         RequestDeviceCreate[] deviceCreates = new RequestDeviceCreate[14];
         for (int i = 0; i < 14; i++) {
@@ -42,6 +46,7 @@ public class DeviceDataProvider {
     }
 
     @DataProvider
+    @Step("Get request body to delete device different type")
     public Object[] getRequestsToDeleteDeviceDifferentType() {
 
         RequestDeviceDelete[] deviceDeletes = new RequestDeviceDelete[14];
@@ -150,11 +155,11 @@ public class DeviceDataProvider {
                 .build()
         };
     }
-
+    @Step("Create response created device")
     private synchronized static ResponseDeviceCreate getResponseCreatedDevices() {
         return deviceService.createDevice(getRequestParameterDevice());
     }
-
+    @Step("Create device different type with request")
     private synchronized static RequestDeviceCreate getRequestParameterDevice() {
         return RequestDeviceCreate.builder()
                 .accountSerialNumber(ACCOUNT_SERIAL_NUMBER)
