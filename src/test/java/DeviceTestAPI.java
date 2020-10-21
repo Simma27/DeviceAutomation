@@ -36,7 +36,6 @@ public class DeviceTestAPI {
     @Story("Device test for create, delete, update, move.")
     @Severity(SeverityLevel.CRITICAL)
     @Flaky
-    @Owner("Simma")
     public void start() {
         System.out.println("А мы начинаем!!!");
     }
@@ -81,7 +80,6 @@ public class DeviceTestAPI {
     @Story("Test create device(negativ)")
     @Severity(SeverityLevel.NORMAL)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceTwiceTest(RequestDeviceCreate requestBody) {
         deviceService.createDevice(requestBody);
@@ -102,7 +100,6 @@ public class DeviceTestAPI {
     @Story("Test create device(negativ)")
     @Severity(SeverityLevel.NORMAL)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
     public void createDeviceWithoutNameTest(RequestDeviceCreate requestBody) {
         requestBody.setName(null);
@@ -123,7 +120,6 @@ public class DeviceTestAPI {
     @Story("Test remove device(positiv)")
     @Severity(SeverityLevel.MINOR)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getRequestsToDeleteDeviceDifferentType", dataProviderClass = DeviceDataProvider.class)
     public void deleteDeviceTest(RequestDeviceDelete requestDeviceDelete) {
         given()
@@ -140,7 +136,6 @@ public class DeviceTestAPI {
     @Story("Test remove device(negativ)")
     @Severity(SeverityLevel.TRIVIAL)
     @Flaky
-    @Owner("Simma")
     @Test
     public void deleteWithoutRequestBodyTest() {
         given()
@@ -159,7 +154,6 @@ public class DeviceTestAPI {
     @Story("Test remove device(negativ)")
     @Severity(SeverityLevel.TRIVIAL)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
     public void deleteSimilarDeviceTwiceTest(ResponseDeviceCreate responseDeviceCreate) {
         deviceService.deleteDevice(responseDeviceCreate.getResult().getDevice().getSerialNumber());
@@ -186,7 +180,6 @@ public class DeviceTestAPI {
     @Story("Test update device(positiv)")
     @Severity(SeverityLevel.BLOCKER)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getDataToUpdateDevices", dataProviderClass = DeviceDataProvider.class)
     public void updateDeviceTest(RequestDeviceUpdate updateDevice) {
         given()
@@ -203,7 +196,6 @@ public class DeviceTestAPI {
     @Story("Test update device(negativ)")
     @Severity(SeverityLevel.CRITICAL)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
     public void updateDeviceWithoutChangesTest(RequestDeviceUpdate updateDevice) {
         updateDevice.setDeviceUpdateProperties(null);
@@ -223,7 +215,6 @@ public class DeviceTestAPI {
     @Story("Test update device(negativ)")
     @Severity(SeverityLevel.NORMAL)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
     public void updateDeviceWithoutSerialNumberTest(RequestDeviceUpdate updateDevice) {
         updateDevice.setSerialNumber(0);
@@ -241,7 +232,6 @@ public class DeviceTestAPI {
     @Story("Test move device(positiv)")
     @Severity(SeverityLevel.MINOR)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceTest(RequestDeviceMove moveDevice) {
         given()
@@ -259,7 +249,6 @@ public class DeviceTestAPI {
     @Story("Test move device(negativ)")
     @Severity(SeverityLevel.TRIVIAL)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceWithoutSearchCriteriaTest(RequestDeviceMove moveDevice) {
         moveDevice.setSearchCriterias(null);
@@ -279,7 +268,6 @@ public class DeviceTestAPI {
     @Story("Test move device(negativ)")
     @Severity(SeverityLevel.BLOCKER)
     @Flaky
-    @Owner("Simma")
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
     public void moveDeviceWithoutDepartmentTest(RequestDeviceMove moveDevice) {
         moveDevice.setAccountSerialNumber(null);
@@ -301,7 +289,6 @@ public class DeviceTestAPI {
     @Story("The end.")
     @Severity(SeverityLevel.CRITICAL)
     @Flaky
-    @Owner("Simma")
     public void cleanDevice() {deviceService.deleteDevice(RequestDeviceDelete.builder().build());}
 
 }

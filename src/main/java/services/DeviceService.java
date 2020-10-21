@@ -1,9 +1,10 @@
 package services;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
-import models.api.deletedevice.ResponseDeviceDelete;
 import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.movedevice.ResponseDeviceMove;
@@ -29,6 +30,8 @@ public class DeviceService {
      * @param requestBody The input is a body with the parameters we need.
      * @return Response to a request to create a device as a Device class.
      */
+    @Step("Get response body created device {requestBody}")
+    @Description(useJavaDoc = true)
     public ResponseDeviceCreate createDevice(RequestDeviceCreate requestBody) {
 
         return given()
@@ -46,6 +49,8 @@ public class DeviceService {
      *
      * @param serialNumber serial number of the Device to be deleted.
      */
+    @Step("Delete device SN # {serialNumber}")
+    @Description(useJavaDoc = true)
     public void deleteDevice(int serialNumber) {
         given()
                 .spec(Specification.getRequestSpecification())
@@ -59,20 +64,17 @@ public class DeviceService {
                         .build())
                 .post(DELETE_DEVICE.getPath())
                 .then()
-                .spec(Specification.getResponseSpecification())
-                .extract()
-                .as(ResponseDeviceDelete.class);
+                .spec(Specification.getResponseSpecification());
     }
-
+    @Step("Delete device")
+    @Description(useJavaDoc = true)
     public void deleteDevice(RequestDeviceDelete requestDeviceDelete) {
         given()
                 .spec(Specification.getRequestSpecification())
                 .body(requestDeviceDelete)
                 .post(DELETE_DEVICE.getPath())
                 .then()
-                .spec(Specification.getResponseSpecification())
-                .extract()
-                .as(ResponseDeviceDelete.class);
+                .spec(Specification.getResponseSpecification());
     }
 
     /**
@@ -81,6 +83,7 @@ public class DeviceService {
      * @param requestDeviceUpdate The input is a Request body with the parameters we need.
      * @return Response to a request to update Device as a Device class.
      */
+    @Step("Get response body updated device {requestDeviceUpdate}")
     public ResponseDeviceUpdate updateDevice(RequestDeviceUpdate requestDeviceUpdate) {
         return given()
                 .spec(Specification.getRequestSpecification())
@@ -98,6 +101,7 @@ public class DeviceService {
      * @param requestDeviceMove The input is a request body with the parameters(Department ID, searchCriteria).
      * @return Response to a request to move Device as a Device class.
      */
+    @Step("Get response body moved device {requestDeviceMove}")
     public ResponseDeviceMove moveDevice(RequestDeviceMove requestDeviceMove) {
         return given()
                 .spec(Specification.getRequestSpecification())
