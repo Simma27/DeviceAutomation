@@ -1,3 +1,4 @@
+import io.qameta.allure.*;
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.EmptyRequest;
@@ -6,6 +7,7 @@ import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.updatedevice.RequestDeviceUpdate;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import services.DeviceService;
 import config.DeviceType;
@@ -19,14 +21,34 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-
+@Feature("My Feature")
+@Owner("Simma")
 public class DeviceTestAPI {
     
     private static final String PREFIX = "result.device.";
     
     DeviceService deviceService = new DeviceService();
 
+    @BeforeSuite
+    @Step("!!!Start!!!")
+    @Description("Start our test")
+    @Epic("Start tests")
+    @Story("Device test for create, delete, update, move.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Flaky
+    @Owner("Simma")
+    public void start() {
+        System.out.println("А мы начинаем!!!");
+    }
+
     @Test(dataProvider = "getRequestBodyToCreateDeviceDifferentTypes", dataProviderClass = DeviceDataProvider.class)
+    @Step("Create device different type with request")
+    @Description("Check the possibility to create Device different type.")
+    @Epic("Create Drvice")
+    @Story("Test create device")
+    @Severity(SeverityLevel.CRITICAL)
+    @Flaky
+    @Owner("Simma")
     public void createDeviceTest(RequestDeviceCreate requestBody) {
         given()
                 .spec(Specification.getRequestSpecification())
@@ -56,7 +78,14 @@ public class DeviceTestAPI {
                 .as(ResponseDeviceCreate.class);
     }
 
+    @Step("Create device twice with request  ")
+    @Description("Check the possibility to create Device twice.")
+    @Epic("Create Drvice")
+    @Story("Test create device(negativ)")
+    @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
+    @Flaky
+    @Owner("Simma")
     public void createDeviceTwiceTest(RequestDeviceCreate requestBody) {
         deviceService.createDevice(requestBody);
         given()
@@ -71,7 +100,14 @@ public class DeviceTestAPI {
                 .body("result.message", equalTo(null));
     }
 
+    @Step("Create device without name with request type ")
+    @Description("Check the possibility to create Device without DeviceName.")
+    @Epic("Create Drvice")
+    @Story("Test create device(negativ)")
+    @Severity(SeverityLevel.NORMAL)
     @Test(dataProvider = "getRequestBodyToCreateDevice", dataProviderClass = DeviceDataProvider.class)
+    @Flaky
+    @Owner("Simma")
     public void createDeviceWithoutNameTest(RequestDeviceCreate requestBody) {
         requestBody.setName(null);
         given()
@@ -87,6 +123,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getRequestsToDeleteDeviceDifferentType", dataProviderClass = DeviceDataProvider.class)
+    @Step("Delete device different type ")
+    @Description("Check the possibility to delete Device different type.")
+    @Epic("Delete Device")
+    @Story("Test remove device(positiv)")
+    @Severity(SeverityLevel.MINOR)
+    @Flaky
+    @Owner("Simma")
     public void deleteDeviceTest(RequestDeviceDelete requestDeviceDelete) {
         given()
                 .spec(Specification.getRequestSpecification())
@@ -98,6 +141,13 @@ public class DeviceTestAPI {
     }
 
     @Test
+    @Step("Delete device without request body")
+    @Description("Check the possibility to delete without request body.")
+    @Epic("Delete Device")
+    @Story("Test remove device(negativ)")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Flaky
+    @Owner("Simma")
     public void deleteWithoutRequestBodyTest() {
         given()
                 .spec(Specification.getRequestSpecification())
@@ -111,6 +161,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getResponseCreatedDevice", dataProviderClass = DeviceDataProvider.class)
+    @Step("Delete device twice")
+    @Description("Check the possibility to delete device twice.")
+    @Epic("Delete Device")
+    @Story("Test remove device(negativ)")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Flaky
+    @Owner("Simma")
     public void deleteSimilarDeviceTwiceTest(ResponseDeviceCreate responseDeviceCreate) {
         deviceService.deleteDevice(responseDeviceCreate.getResult().getDevice().getSerialNumber());
         given()
@@ -132,6 +189,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getDataToUpdateDevices", dataProviderClass = DeviceDataProvider.class)
+    @Step("Update device")
+    @Description("Check the possibility to update device with request.")
+    @Epic("Update Device")
+    @Story("Test update device(positiv)")
+    @Severity(SeverityLevel.BLOCKER)
+    @Flaky
+    @Owner("Simma")
     public void updateDeviceTest(RequestDeviceUpdate updateDevice) {
         given()
                 .spec(Specification.getRequestSpecification())
@@ -143,6 +207,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
+    @Step("Update device without changes")
+    @Description("Check the possibility to update device without changes with request.")
+    @Epic("Update Device")
+    @Story("Test update device(negativ)")
+    @Severity(SeverityLevel.CRITICAL)
+    @Flaky
+    @Owner("Simma")
     public void updateDeviceWithoutChangesTest(RequestDeviceUpdate updateDevice) {
         updateDevice.setDeviceUpdateProperties(null);
         given()
@@ -157,6 +228,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getDataToUpdateDevice", dataProviderClass = DeviceDataProvider.class)
+    @Step("Update device without SN")
+    @Description("Check the possibility to update device without SN with request.")
+    @Epic("Update Device")
+    @Story("Test update device(negativ)")
+    @Severity(SeverityLevel.NORMAL)
+    @Flaky
+    @Owner("Simma")
     public void updateDeviceWithoutSerialNumberTest(RequestDeviceUpdate updateDevice) {
         updateDevice.setSerialNumber(0);
         given()
@@ -169,6 +247,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
+    @Step("Move device")
+    @Description("Check the possibility to move device with request.")
+    @Epic("Move Device")
+    @Story("Test move device(positiv)")
+    @Severity(SeverityLevel.MINOR)
+    @Flaky
+    @Owner("Simma")
     public void moveDeviceTest(RequestDeviceMove moveDevice) {
         given()
                 .spec(Specification.getRequestSpecification())
@@ -181,6 +266,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
+    @Step("Move device without search criteria with request ")
+    @Description("Check the possibility to move device without search criteria.")
+    @Epic("Move Device")
+    @Story("Test move device(negativ)")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Flaky
+    @Owner("Simma")
     public void moveDeviceWithoutSearchCriteriaTest(RequestDeviceMove moveDevice) {
         moveDevice.setSearchCriterias(null);
         given()
@@ -195,6 +287,13 @@ public class DeviceTestAPI {
     }
 
     @Test(dataProvider = "getDataToMoveDevice", dataProviderClass = DeviceDataProvider.class)
+    @Step("Move device without Department with request ")
+    @Description("Check the possibility to move device without Department.")
+    @Epic("Move Device")
+    @Story("Test move device(negativ)")
+    @Severity(SeverityLevel.BLOCKER)
+    @Flaky
+    @Owner("Simma")
     public void moveDeviceWithoutDepartmentTest(RequestDeviceMove moveDevice) {
         moveDevice.setAccountSerialNumber(null);
         given()
@@ -209,6 +308,13 @@ public class DeviceTestAPI {
     }
 
     @AfterSuite
+    @Step("Remove all devices which was created in suite.")
+    @Description("!!!Remove all devices!!!")
+    @Epic("Finalize")
+    @Story("The end.")
+    @Severity(SeverityLevel.CRITICAL)
+    @Flaky
+    @Owner("Simma")
     public void cleanDevice() {deviceService.deleteDevice(RequestDeviceDelete.builder().build());}
 
 }
