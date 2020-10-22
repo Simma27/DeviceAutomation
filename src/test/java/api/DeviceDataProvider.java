@@ -1,11 +1,13 @@
+package api;
+
 import io.qameta.allure.Step;
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
 import models.api.movedevice.RequestDeviceMove;
-import models.api.movedevice.SearchCriteria;
 import models.api.updatedevice.DeviceUpdateProperty;
 import models.api.updatedevice.RequestDeviceUpdate;
+import models.api.updatedevice.SearchCriteria;
 import org.apache.commons.lang3.RandomStringUtils;
 import services.DeviceService;
 import org.testng.annotations.DataProvider;
@@ -50,20 +52,18 @@ public class DeviceDataProvider {
     public Object[] getRequestsToDeleteDeviceDifferentType() {
 
         RequestDeviceDelete[] deviceDeletes = new RequestDeviceDelete[14];
-        ResponseDeviceCreate[] deviceCreates = new ResponseDeviceCreate[14];
 
         for (int i = 0; i < 14; i++) {
             RequestDeviceCreate requestDeviceCreate = getRequestParameterDevice();
             requestDeviceCreate.setType(i);
-            deviceCreates[i] = deviceService.createDevice(requestDeviceCreate);
-            models.api.deletedevice.SearchCriteria searchCriteria = models.api.deletedevice.SearchCriteria
+            ResponseDeviceCreate responseDeviceCreate = deviceService.createDevice(requestDeviceCreate);
+            SearchCriteria searchCriteria = SearchCriteria
                     .builder()
                     .searchOption(DEVICE_SERIAL_NUMBER.name())
-                    .searchTerms(deviceCreates[i].getResult().getDevice().getSerialNumber())
+                    .searchTerms(responseDeviceCreate.getResult().getDevice().getSerialNumber())
                     .build();
             deviceDeletes[i] = RequestDeviceDelete
                     .builder()
-                    .serialNumber(deviceCreates[i].getResult().getDevice().getSerialNumber())
                     .searchCriterias(Collections.singletonList(searchCriteria))
                     .build();
         }

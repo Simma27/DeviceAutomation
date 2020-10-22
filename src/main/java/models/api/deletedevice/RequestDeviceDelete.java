@@ -6,6 +6,7 @@ import config.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import models.api.updatedevice.SearchCriteria;
 
 @Data
 @Builder

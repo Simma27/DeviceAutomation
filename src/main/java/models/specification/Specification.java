@@ -1,4 +1,4 @@
-package models.api.specification;
+package models.specification;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;

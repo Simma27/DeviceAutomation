@@ -5,10 +5,10 @@ import io.qameta.allure.Step;
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.RequestDeviceDelete;
-import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.movedevice.ResponseDeviceMove;
-import models.api.specification.Specification;
+import models.api.updatedevice.SearchCriteria;
+import models.specification.Specification;
 import models.api.updatedevice.RequestDeviceUpdate;
 import models.api.updatedevice.ResponseDeviceUpdate;
 

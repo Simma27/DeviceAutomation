@@ -3,22 +3,22 @@
 <suite name="All Test Suite">
     <test name="parallel thread-count = 5" parallel="methods" thread-count="5">
         <classes>
-            <class name="DeviceTestAPI"></class>
+            <class name="api.DeviceTestAPI"></class>
         </classes>
     </test>
     <test name="parallel thread-count = 10" parallel="methods" thread-count="10">
         <classes>
-            <class name="DeviceTestAPI"></class>
+            <class name="api.DeviceTestAPI"></class>
         </classes>
     </test>
     <test name="parallel thread-count = 2" parallel="methods" thread-count="2">
         <classes>
-            <class name="DeviceTestAPI"></class>
+            <class name="api.DeviceTestAPI"></class>
         </classes>
     </test>
     <test name="parallel thread-count = 100" parallel="methods" thread-count="100">
         <classes>
-            <class name="DeviceTestAPI"></class>
+            <class name="api.DeviceTestAPI"></class>
         </classes>
     </test>
 </suite>

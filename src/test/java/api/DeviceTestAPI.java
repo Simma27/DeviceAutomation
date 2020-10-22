@@ -1,17 +1,19 @@
+package api;
+
 import io.qameta.allure.*;
 import models.api.createdevice.RequestDeviceCreate;
 import models.api.createdevice.ResponseDeviceCreate;
 import models.api.deletedevice.EmptyRequest;
 import models.api.deletedevice.RequestDeviceDelete;
-import models.api.deletedevice.SearchCriteria;
 import models.api.movedevice.RequestDeviceMove;
 import models.api.updatedevice.RequestDeviceUpdate;
+import models.api.updatedevice.SearchCriteria;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import services.DeviceService;
 import config.DeviceType;
-import models.api.specification.Specification;
+import models.specification.Specification;
 
 import java.util.Collections;
 
@@ -70,9 +72,7 @@ public class DeviceTestAPI {
                 .body(PREFIX + "tag3", equalTo(requestBody.getTag3()))
                 .body(PREFIX + "tag4", equalTo(requestBody.getTag4()))
                 .body(PREFIX + "tag5", equalTo(requestBody.getTag5()))
-                .body(PREFIX + "vendor", equalTo(requestBody.getVendor()))
-                .extract()
-                .as(ResponseDeviceCreate.class);
+                .body(PREFIX + "vendor", equalTo(requestBody.getVendor()));
     }
 
     @Description("Check the possibility to create Device twice.")
