@@ -25,7 +25,7 @@ public class DeviceDataProvider {
 
     @DataProvider
     @Step("Get request body to create device")
-    public Object[] getRequestBodyToCreateDevice() {
+    public synchronized Object[] getRequestBodyToCreateDevice() {
         return new Object[]{getRequestParameterDevice()};
     }
 
@@ -112,7 +112,7 @@ public class DeviceDataProvider {
     }
 
     @DataProvider
-    public Object[] getDataToUpdateDevice() {
+    public synchronized Object[] getDataToUpdateDevice() {
         return new Object[]{RequestDeviceUpdate
                 .builder()
                 .serialNumber(getResponseCreatedDevices().getResult().getDevice().getSerialNumber())
@@ -142,7 +142,7 @@ public class DeviceDataProvider {
 
 
     @DataProvider
-    public Object[] getDataToMoveDevice() {
+    public synchronized Object[] getDataToMoveDevice() {
         return new RequestDeviceMove[]{RequestDeviceMove
                 .builder()
                 .newDeviceName(RandomStringUtils.randomAlphabetic(8))

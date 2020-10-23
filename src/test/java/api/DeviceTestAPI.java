@@ -13,7 +13,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import services.DeviceService;
 import config.DeviceType;
-import models.specification.Specification;
+import models.api.specification.Specification;
 
 import java.util.Collections;
 
