@@ -11,7 +11,7 @@ import models.api.updatedevice.SearchCriteria;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import services.DeviceService;
+import services.device.DeviceService;
 import config.DeviceType;
 import models.api.specification.Specification;
 

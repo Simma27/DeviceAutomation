@@ -1,4 +1,4 @@
-package services;
+package services.device;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;

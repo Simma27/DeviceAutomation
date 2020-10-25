@@ -1,5 +1,6 @@
 package models.ui;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -14,6 +15,7 @@ public class HomePage extends PageObject {
         super(driver);
     }
 
+    @Step("Navigate to auntefication page")
     public AuthenficationPage signIn() {
         submitSignInButton.click();
         return new AuthenficationPage(driver);

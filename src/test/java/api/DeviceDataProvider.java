@@ -9,7 +9,7 @@ import models.api.updatedevice.DeviceUpdateProperty;
 import models.api.updatedevice.RequestDeviceUpdate;
 import models.api.updatedevice.SearchCriteria;
 import org.apache.commons.lang3.RandomStringUtils;
-import services.DeviceService;
+import services.device.DeviceService;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
