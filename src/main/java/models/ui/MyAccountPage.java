@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Page for managing my account.
  */
-public class MyAccountPage extends PageObject {
+public class MyAccountPage extends BasePage {
 
     @FindBy(css = ".img-responsive:nth-child(1)")
     private WebElement topOfTheScreenBanner;

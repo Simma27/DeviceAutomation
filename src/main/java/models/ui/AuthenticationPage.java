@@ -9,20 +9,20 @@ import org.openqa.selenium.support.FindBy;
 /**
  * The page where you can create an account or log in with an existing one.
  */
-public class AuthenficationPage extends PageObject {
+public class AuthenticationPage extends BasePage  {
 
     @FindBy(id = "email_create")
     private WebElement newAccount;
     @FindBy(css = "#SubmitCreate > span")
     private WebElement submitCreateAnAccountButton;
 
-    public AuthenficationPage(WebDriver driver) {
+
+    public AuthenticationPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("Enter account name")
     public void enterAccountName(String accountName) {
-        newAccount.clear();
         newAccount.sendKeys(accountName + "@gmail.com");
     }
 

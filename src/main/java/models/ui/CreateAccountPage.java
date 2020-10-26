@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Profile filling page for creating a new account.
+ * The class describes the page for creating and registering a new account.
  */
-public class CreateAccountPage extends PageObject {
+public class CreateAccountPage extends BasePage {
 
     @FindBy(id = "id_gender1")
     private WebElement mister;
@@ -163,12 +163,12 @@ public class CreateAccountPage extends PageObject {
     }
 
     @Step("Enter phone number {0}.")
-    public void enterPhoneNumber(String phone_number) {
+    public void enterHomePhoneNumber(String phone_number) {
         phone.sendKeys(phone_number);
     }
 
     @Step("Enter mobile phone number {0}.")
-    public void enterPhoneMobileNumber(String phone_mobile_number) { phoneMobile.sendKeys(phone_mobile_number); }
+    public void enterMobilePhoneNumber(String phone_mobile_number) { phoneMobile.sendKeys(phone_mobile_number); }
 
     @Step("Enter assign an address alias for future reference. {0}.")
     public void enterAlias(String alias_name) {

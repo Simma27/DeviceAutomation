@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * Site home page.
  * http://automationpractice.com/index.php
  */
-public class HomePage extends PageObject {
+public class HomePage extends BasePage {
 
     @FindBy(linkText = "Sign in")
     private WebElement submitSignInButton;
@@ -20,9 +20,9 @@ public class HomePage extends PageObject {
     }
 
     @Step("Navigate to auntefication page")
-    public AuthenficationPage signIn() {
+    public AuthenticationPage signIn() {
         submitSignInButton.click();
-        return new AuthenficationPage(driver);
+        return new AuthenticationPage(driver);
     }
 
 }
