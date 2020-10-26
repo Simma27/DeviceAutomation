@@ -25,19 +25,19 @@ public class ServiceUI {
      * @return MyAccountPage when page upon successful account creation
      */
     public MyAccountPage fillPersonalInformation(CreateAccountPage accountPage, boolean isMister,
-           String customer_firstname, String customer_lastname, String password, String day, String month, String year,
+           String customerFirstname, String customerLastname, String password, String day, String month, String year,
            boolean checkbox, boolean optin, String firstname, String lastname, String company, String address1,
-           String address2, String city, String state, String postcode, String other, String phone, String phone_mobile,
+           String address2, String city, String state, String postcode, String other, String phone, String phoneMobile,
            String alias) {
         accountPage.isMister(isMister);
-        accountPage.enterCustomerFirstName(customer_firstname);
-        accountPage.enterCustomerLastName(customer_lastname);
+        accountPage.enterCustomerFirstName(customerFirstname);
+        accountPage.enterCustomerLastName(customerLastname);
         accountPage.enterPassword(password);
         accountPage.enterBirthdayDay(day);
         accountPage.enterBirthdayMonth(month);
         accountPage.enterBirthdayYear(year);
-        accountPage.choseSign_up_for_our_newsletter(checkbox);
-        accountPage.choseReceive_special_offers_from_our_partners(optin);
+        accountPage.choseSignUpForOurNewsletter(checkbox);
+        accountPage.choseReceiveSpecialOffersFromOurPartners(optin);
         accountPage.enterFirstName(firstname);
         accountPage.enterLastName(lastname);
         accountPage.enterCompanyName(company);
@@ -48,7 +48,7 @@ public class ServiceUI {
         accountPage.enterPostcode(postcode);
         accountPage.enterOther(other);
         accountPage.enterPhoneNumber(phone);
-        accountPage.enterPhoneMobileNumber(phone_mobile);
+        accountPage.enterPhoneMobileNumber(phoneMobile);
         accountPage.enterAlias(alias);
         return accountPage.register();
     }

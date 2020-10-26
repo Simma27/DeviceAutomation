@@ -15,9 +15,9 @@ public class CreateAccountPage extends PageObject {
     @FindBy(id = "id_gender2")
     private WebElement missis;
     @FindBy(id = "customer_firstname")
-    private WebElement customer_firstname;
+    private WebElement customerFirstname;
     @FindBy(id = "customer_lastname")
-    private WebElement customer_lastname;
+    private WebElement customerLastname;
     @FindBy(id = "passwd")
     private WebElement password;
     @FindBy(id = "days")
@@ -53,7 +53,7 @@ public class CreateAccountPage extends PageObject {
     @FindBy(id = "phone")
     private WebElement phone;
     @FindBy(id = "phone_mobile")
-    private WebElement phone_mobile;
+    private WebElement phoneMobile;
     @FindBy(id = "alias")
     private WebElement alias;
     @FindBy(css = "#submitAccount > span")
@@ -70,12 +70,12 @@ public class CreateAccountPage extends PageObject {
 
     @Step("Enter customer first name {0}.")
     public void enterCustomerFirstName(String customerFirstName) {
-        customer_firstname.sendKeys(customerFirstName);
+        customerFirstname.sendKeys(customerFirstName);
     }
 
     @Step("Enter customer last name {0}.")
     public void enterCustomerLastName(String customerLastName) {
-        customer_lastname.sendKeys(customerLastName);
+        customerLastname.sendKeys(customerLastName);
     }
 
     @Step("Enter password {0}.")
@@ -99,15 +99,15 @@ public class CreateAccountPage extends PageObject {
     }
 
     @Step("Chose Sign up for our newsletter.")
-    public void choseSign_up_for_our_newsletter(boolean sign_up_for_our_newsletter) {
-        if (sign_up_for_our_newsletter) {
+    public void choseSignUpForOurNewsletter(boolean signUpGorOurNewsletter) {
+        if (signUpGorOurNewsletter) {
             checkbox.click();
         }
     }
 
     @Step("Chose Receive special offers from our partners.")
-    public void choseReceive_special_offers_from_our_partners(boolean receive_special_offers_from_our_partners) {
-        if (receive_special_offers_from_our_partners) {
+    public void choseReceiveSpecialOffersFromOurPartners(boolean receiveSpecialOffersFromOurPartners) {
+        if (receiveSpecialOffersFromOurPartners) {
            optin.click();
         }
     }
@@ -168,7 +168,7 @@ public class CreateAccountPage extends PageObject {
     }
 
     @Step("Enter mobile phone number {0}.")
-    public void enterPhoneMobileNumber(String phone_mobile_number) { phone_mobile.sendKeys(phone_mobile_number); }
+    public void enterPhoneMobileNumber(String phone_mobile_number) { phoneMobile.sendKeys(phone_mobile_number); }
 
     @Step("Enter assign an address alias for future reference. {0}.")
     public void enterAlias(String alias_name) {

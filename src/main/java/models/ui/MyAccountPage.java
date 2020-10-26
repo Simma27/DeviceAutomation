@@ -11,19 +11,19 @@ import org.openqa.selenium.support.FindBy;
 public class MyAccountPage extends PageObject {
 
     @FindBy(css = ".img-responsive:nth-child(1)")
-    private WebElement top_of_the_screen_banner;
+    private WebElement topOfTheScreenBanner;
     @FindBy(css = "[alt='My Store']")
-    private WebElement main_logo_banner;
+    private WebElement mainLogoBanner;
     @FindBy(css = "#searchbox")
     private WebElement searchbox;
     @FindBy(css = ".page-heading")
-    private WebElement my_account_logo;
+    private WebElement myAccountLogo;
     @FindBy(css = ".nav")
-    private WebElement menu_line;
+    private WebElement menuLine;
     @FindBy(css = ".shop-phone > strong")
-    private WebElement phone_number;
+    private WebElement phoneNumber;
     @FindBy(css = ".navigation_page")
-    private WebElement navigation_page;
+    private WebElement navigationPage;
     @FindBy(css = ".info-account")
     private WebElement info;
 
@@ -32,38 +32,38 @@ public class MyAccountPage extends PageObject {
     }
 
     @Step("Top of the screen banner is displayed")
-    public boolean top_of_the_screen_banner_is_displayed() {
-        return top_of_the_screen_banner.isDisplayed();
+    public boolean topOfTheScreenBannerIsDisplayed() {
+        return topOfTheScreenBanner.isDisplayed();
     }
 
     @Step("Main logo is displayed")
-    public boolean main_logo_is_displayed() {
-        return main_logo_banner.isDisplayed();
+    public boolean mainLogoIsDisplayed() {
+        return mainLogoBanner.isDisplayed();
     }
 
     @Step("Searchbox is displayed")
-    public boolean searchbox_is_displayed() {
+    public boolean searchboxIsDisplayed() {
         return searchbox.isDisplayed();
     }
 
     @Step("My account logo is displayed")
-    public boolean my_account_logo_is_displayed() {
-        return my_account_logo.isDisplayed();
+    public boolean myAccountLogoIsDisplayed() {
+        return myAccountLogo.isDisplayed();
     }
 
     @Step("Menu line is displayed")
-    public boolean menu_line_is_displayed() {
-        return menu_line.isDisplayed();
+    public boolean menuLineIsDisplayed() {
+        return menuLine.isDisplayed();
     }
 
     @Step("Get internet shop phone number")
     public String getPhoneNumber() {
-        return phone_number.getText();
+        return phoneNumber.getText();
     }
 
     @Step("Navigation page is displayed")
-    public boolean navigation_is_displayed() {
-        return navigation_page.isDisplayed();
+    public boolean navigationIsDisplayed() {
+        return navigationPage.isDisplayed();
     }
 
     @Step("Get info from page")
