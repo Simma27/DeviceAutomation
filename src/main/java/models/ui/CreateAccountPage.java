@@ -100,12 +100,16 @@ public class CreateAccountPage extends PageObject {
 
     @Step("Chose Sign up for our newsletter.")
     public void choseSign_up_for_our_newsletter(boolean sign_up_for_our_newsletter) {
-        (sign_up_for_our_newsletter ? checkbox : null).click();
+        if (sign_up_for_our_newsletter) {
+            checkbox.click();
+        }
     }
 
     @Step("Chose Receive special offers from our partners.")
     public void choseReceive_special_offers_from_our_partners(boolean receive_special_offers_from_our_partners) {
-        (receive_special_offers_from_our_partners ? optin : null).click();
+        if (receive_special_offers_from_our_partners) {
+           optin.click();
+        }
     }
 
     @Step("Enter first name {0}.")
