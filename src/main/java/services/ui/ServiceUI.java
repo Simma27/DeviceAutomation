@@ -8,12 +8,22 @@ import models.ui.MyAccountPage;
  * Сlass providing methods for UI testing
  */
 public class ServiceUI {
-
+    /**
+     * Method to create a new account and switch to CreateAccountPage.
+     * @param authenficationPage The page where you can create an account or log in with an existing one.
+     * @param accountName is name new Account.
+     * @return page next to home page when want to create new account.
+     */
     public CreateAccountPage createNewAccount(AuthenficationPage authenficationPage, String accountName) {
         authenficationPage.enterAccountName(accountName);
         return authenficationPage.submitCreateNewAccount();
     }
 
+    /**
+     * Method to fill in profile data for a new account.
+     * param personal user data
+     * @return MyAccountPage when page upon successful account creation
+     */
     public MyAccountPage fillPersonalInformation(CreateAccountPage accountPage, boolean isMister,
            String customer_firstname, String customer_lastname, String password, String day, String month, String year,
            boolean checkbox, boolean optin, String firstname, String lastname, String company, String address1,
