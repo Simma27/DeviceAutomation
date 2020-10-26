@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * The page where you can create an account or log in with an existing one.
+ */
 public class AuthenficationPage extends PageObject {
 
     @FindBy(id = "email_create")

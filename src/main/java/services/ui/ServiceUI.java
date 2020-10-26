@@ -4,6 +4,9 @@ import models.ui.AuthenficationPage;
 import models.ui.CreateAccountPage;
 import models.ui.MyAccountPage;
 
+/**
+ * Сlass providing methods for UI testing
+ */
 public class ServiceUI {
 
     public CreateAccountPage createNewAccount(AuthenficationPage authenficationPage, String accountName) {

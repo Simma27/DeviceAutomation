@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * Page for managing my account.
+ */
 public class MyAccountPage extends PageObject {
 
     @FindBy(css = ".img-responsive:nth-child(1)")

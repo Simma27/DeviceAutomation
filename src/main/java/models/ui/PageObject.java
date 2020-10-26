@@ -3,6 +3,9 @@ package models.ui;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Page Object encapsulates.
+ */
 public class PageObject {
 
     protected WebDriver driver;

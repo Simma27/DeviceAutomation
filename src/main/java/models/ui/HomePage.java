@@ -6,6 +6,10 @@ import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * Site home page.
+ * http://automationpractice.com/index.php
+ */
 public class HomePage extends PageObject {
 
     @FindBy(linkText = "Sign in")
