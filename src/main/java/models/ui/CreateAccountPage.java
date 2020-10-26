@@ -56,6 +56,10 @@ public class CreateAccountPage extends PageObject {
     @FindBy(css = "#submitAccount > span")
     private WebElement submitRegisterButton;
 
+    public CreateAccountPage(WebDriver driver) {
+        super(driver);
+    }
+
     @Step("Gender men is {0}.")
     public void isMister(boolean gender) {
         (gender ? mister : missis).click();
@@ -157,9 +161,7 @@ public class CreateAccountPage extends PageObject {
     }
 
     @Step("Enter mobile phone number {0}.")
-    public void enterPhoneMobileNumber(String phone_mobile_number) {
-        phone_mobile.sendKeys(phone_mobile_number);
-    }
+    public void enterPhoneMobileNumber(String phone_mobile_number) { phone_mobile.sendKeys(phone_mobile_number); }
 
     @Step("Enter assign an address alias for future reference. {0}.")
     public void enterAlias(String alias_name) {
@@ -172,7 +174,4 @@ public class CreateAccountPage extends PageObject {
         return new MyAccountPage(driver);
     }
 
-    public CreateAccountPage(WebDriver driver) {
-        super(driver);
-    }
 }

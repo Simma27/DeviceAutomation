@@ -12,6 +12,10 @@ public class AuthenficationPage extends PageObject {
     @FindBy(css = "#SubmitCreate > span")
     private WebElement submitCreateAnAccountButton;
 
+    public AuthenficationPage(WebDriver driver) {
+        super(driver);
+    }
+
     @Step("Enter account name")
     public void enterAccountName(String accountName) {
         newAccount.clear();
@@ -22,10 +26,6 @@ public class AuthenficationPage extends PageObject {
     public CreateAccountPage submitCreateNewAccount() {
         submitCreateAnAccountButton.click();
         return new CreateAccountPage(driver);
-    }
-
-    public AuthenficationPage(WebDriver driver) {
-        super(driver);
     }
 
 }

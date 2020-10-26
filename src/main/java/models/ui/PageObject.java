@@ -7,16 +7,16 @@ public class PageObject {
 
     protected WebDriver driver;
 
-    public PageObject(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
-
     public String getTitle() {
         return driver.getTitle();
     }
 
     public String getCurrentURL() {
         return driver.getCurrentUrl();
+    }
+
+    public PageObject(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 }
