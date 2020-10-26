@@ -34,9 +34,9 @@ public class CreateAccountTest {
 
     @Test
     public void newAccountTest() {
-        String account_name = RandomString.make(5);
-        String customer_firstname = "Ivan";
-        String customer_lastname = "Ivanov";
+        String accountName = RandomString.make(5);
+        String customerFirstname = "Ivan";
+        String customerLastname = "Ivanov";
         String password = "11111";
         String day = "1";
         String month = "January";
@@ -51,13 +51,13 @@ public class CreateAccountTest {
         String postcode = "33131";
         String other = "Additional information";
         String phone = "+375441111111";
-        String phone_mobile = "+375292222222";
+        String phoneMobile = "+375292222222";
         String alias = "18, Baker street";
         AuthenficationPage authenficationPage = homePage.signIn();
-        CreateAccountPage accountPage = serviceUI.createNewAccount(authenficationPage, account_name);
-        MyAccountPage myAccountPage = serviceUI.fillPersonalInformation(accountPage,true, customer_firstname,
-                customer_lastname, password, day, month, year, true, true, firstname, lastname,
-                company, address1, address2, city, state, postcode, other, phone, phone_mobile, alias);
+        CreateAccountPage accountPage = serviceUI.createNewAccount(authenficationPage, accountName);
+        MyAccountPage myAccountPage = serviceUI.fillPersonalInformation(accountPage,true, customerFirstname,
+                customerLastname, password, day, month, year, true, true, firstname, lastname,
+                company, address1, address2, city, state, postcode, other, phone, phoneMobile, alias);
 
         Assert.assertEquals(myAccountPage.getTitle(),"My account - My Store" );
         Assert.assertEquals(myAccountPage.getCurrentURL(),
