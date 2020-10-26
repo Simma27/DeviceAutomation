@@ -41,9 +41,19 @@ public class MyAccountPage extends PageObject {
         return main_logo_banner.isDisplayed();
     }
 
+    @Step("Searchbox is displayed")
+    public boolean searchbox_is_displayed() {
+        return searchbox.isDisplayed();
+    }
+
     @Step("My account logo is displayed")
     public boolean my_account_logo_is_displayed() {
         return my_account_logo.isDisplayed();
+    }
+
+    @Step("Menu line is displayed")
+    public boolean menu_line_is_displayed() {
+        return menu_line.isDisplayed();
     }
 
     @Step("Get internet shop phone number")

@@ -64,7 +64,9 @@ public class CreateAccountTest {
                 "http://automationpractice.com/index.php?controller=my-account");
         Assert.assertTrue(myAccountPage.top_of_the_screen_banner_is_displayed());
         Assert.assertTrue(myAccountPage.main_logo_is_displayed());
+        Assert.assertTrue(myAccountPage.searchbox_is_displayed());
         Assert.assertTrue(myAccountPage.my_account_logo_is_displayed());
+        Assert.assertTrue(myAccountPage.menu_line_is_displayed());
         Assert.assertTrue(myAccountPage.navigation_is_displayed());
         Assert.assertEquals(myAccountPage.getPhoneNumber(), "0123-456-789");
         Assert.assertEquals(myAccountPage.getInfoText(),
