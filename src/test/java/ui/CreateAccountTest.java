@@ -1,7 +1,7 @@
 package ui;
 
 import models.ui.MyAccountPage;
-import models.ui.model.DriverProvider;
+import models.ui.providers.DriverProvider;
 import models.ui.model.PersonalInformation;
 import net.bytebuddy.utility.RandomString;
 import org.testng.Assert;

@@ -2,7 +2,7 @@ package services.ui;
 
 import models.ui.AuthenticationPage;
 import models.ui.HomePage;
-import models.ui.model.DriverProvider;
+import models.ui.providers.DriverProvider;
 
 /**
  * Class provide methods to work with My Account page.

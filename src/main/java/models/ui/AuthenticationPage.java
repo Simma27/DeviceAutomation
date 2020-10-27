@@ -1,7 +1,7 @@
 package models.ui;
 
 import io.qameta.allure.Step;
-import models.ui.model.DriverProvider;
+import models.ui.providers.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

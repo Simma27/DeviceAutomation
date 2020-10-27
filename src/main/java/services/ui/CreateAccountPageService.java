@@ -2,7 +2,7 @@ package services.ui;
 
 import models.ui.CreateAccountPage;
 import models.ui.MyAccountPage;
-import models.ui.model.DriverProvider;
+import models.ui.providers.DriverProvider;
 import models.ui.model.PersonalInformation;
 
 /**

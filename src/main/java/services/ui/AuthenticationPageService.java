@@ -1,7 +1,7 @@
 package services.ui;
 
 import models.ui.AuthenticationPage;
-import models.ui.model.DriverProvider;
+import models.ui.providers.DriverProvider;
 
 
 /**
