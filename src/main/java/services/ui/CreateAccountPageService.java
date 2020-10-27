@@ -1,7 +1,7 @@
 package services.ui;
 
-import models.ui.CreateAccountPage;
-import models.ui.MyAccountPage;
+import models.ui.pages.CreateAccountPage;
+import models.ui.pages.MyAccountPage;
 import models.ui.providers.DriverProvider;
 import models.ui.model.PersonalInformation;
 
