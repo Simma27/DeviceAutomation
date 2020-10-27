@@ -10,6 +10,7 @@ import models.ui.model.DriverProvider;
 public class HomePageService {
     /**
      * The method switch to Authentication page.
+     *
      * @return the page following the home page for authentication.
      */
     public AuthenticationPage sighIn() {

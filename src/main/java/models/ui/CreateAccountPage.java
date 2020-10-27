@@ -1,6 +1,7 @@
 package models.ui;
 
 import io.qameta.allure.Step;
+import models.ui.model.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ public class CreateAccountPage extends BasePage {
     private WebElement missis;
     @FindBy(id = "customer_firstname")
     private WebElement customerFirstname;
-    @FindBy(id = "customer_lastname")
+    @FindBy(css = "#customer_lastname")
     private WebElement customerLastname;
     @FindBy(id = "passwd")
     private WebElement password;
@@ -108,7 +109,7 @@ public class CreateAccountPage extends BasePage {
     @Step("Chose Receive special offers from our partners.")
     public void choseReceiveSpecialOffersFromOurPartners(boolean receiveSpecialOffersFromOurPartners) {
         if (receiveSpecialOffersFromOurPartners) {
-           optin.click();
+            optin.click();
         }
     }
 
@@ -168,7 +169,9 @@ public class CreateAccountPage extends BasePage {
     }
 
     @Step("Enter mobile phone number {0}.")
-    public void enterMobilePhoneNumber(String phone_mobile_number) { phoneMobile.sendKeys(phone_mobile_number); }
+    public void enterMobilePhoneNumber(String phone_mobile_number) {
+        phoneMobile.sendKeys(phone_mobile_number);
+    }
 
     @Step("Enter assign an address alias for future reference. {0}.")
     public void enterAlias(String alias_name) {
@@ -178,7 +181,7 @@ public class CreateAccountPage extends BasePage {
     @Step("Account registration {0}.")
     public MyAccountPage register() {
         submitRegisterButton.click();
-        return new MyAccountPage(driver);
+        return new MyAccountPage(DriverProvider.getDriver());
     }
 
 }

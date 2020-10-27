@@ -12,7 +12,8 @@ public class CreateAccountPageService {
 
     /**
      * The method fills in the profile data for a new account and registers the account.
-     * @param personalInformation is
+     *
+     * @param personalInformation is model with personal information for new account.
      * @return the page following the CreateAccountPage for managing my account.
      */
     public MyAccountPage registrationNewAccount(PersonalInformation personalInformation) {

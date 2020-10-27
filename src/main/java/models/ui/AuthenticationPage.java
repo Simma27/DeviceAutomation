@@ -1,6 +1,7 @@
 package models.ui;
 
 import io.qameta.allure.Step;
+import models.ui.model.DriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * The page where you can create an account or log in with an existing one.
  */
-public class AuthenticationPage extends BasePage  {
+public class AuthenticationPage extends BasePage {
 
     @FindBy(id = "email_create")
     private WebElement newAccount;
@@ -29,7 +30,7 @@ public class AuthenticationPage extends BasePage  {
     @Step("Create new account")
     public CreateAccountPage submitCreateNewAccount() {
         submitCreateAnAccountButton.click();
-        return new CreateAccountPage(driver);
+        return new CreateAccountPage(DriverProvider.getDriver());
     }
 
 }

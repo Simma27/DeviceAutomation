@@ -190,7 +190,7 @@ public class PersonalInformation {
             return this;
         }
 
-        public Builder  withBirthdayYear(String  birthdayYear) {
+        public Builder withBirthdayYear(String birthdayYear) {
             personalInformation.year = birthdayYear;
             return this;
         }
