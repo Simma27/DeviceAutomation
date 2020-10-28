@@ -1,7 +1,7 @@
 package services.ui;
 
-import models.ui.pages.AuthenticationPage;
-import models.ui.pages.HomePage;
+import pages.AuthenticationPage;
+import pages.HomePage;
 import models.ui.providers.DriverProvider;
 
 /**
@@ -13,7 +13,7 @@ public class HomePageService {
      *
      * @return the page following the home page for authentication.
      */
-    public AuthenticationPage sighIn() {
+    public static AuthenticationPage sighIn() {
         HomePage homePage = new HomePage(DriverProvider.getDriver());
         return homePage.signIn();
     }

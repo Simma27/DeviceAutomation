@@ -1,29 +1,24 @@
 package ui;
 
-import models.ui.pages.MyAccountPage;
-import models.ui.providers.DriverProvider;
 import models.ui.model.PersonalInformation;
+import models.ui.providers.DriverProvider;
 import net.bytebuddy.utility.RandomString;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import services.ui.AuthenticationPageService;
-import services.ui.CreateAccountPageService;
-import services.ui.HomePageService;
+import pages.MyAccountPage;
+
+import static services.ui.AuthenticationPageService.initiationСreateNewAccount;
+import static services.ui.CreateAccountPageService.registrationNewAccount;
+import static services.ui.HomePageService.sighIn;
 
 public class CreateAccountTest {
 
-    private HomePageService homePageService;
-    private CreateAccountPageService createAccountPageService;
-    private AuthenticationPageService authenticationPageService;
 
     @BeforeMethod
     public void setup() {
         DriverProvider.setUp();
-        homePageService = new HomePageService();
-        createAccountPageService = new CreateAccountPageService();
-        authenticationPageService = new AuthenticationPageService();
     }
 
     @Test
@@ -50,9 +45,10 @@ public class CreateAccountTest {
                 .withMobilePhoneNumber("+375292222222")
                 .withAlias("18, Baker street")
                 .build();
-        homePageService.sighIn();
-        authenticationPageService.initiationСreateNewAccount(accountName);
-        MyAccountPage myAccountPage = createAccountPageService.registrationNewAccount(personalInformation);
+        // Is it possible to use static methods of the service?
+        sighIn();
+        initiationСreateNewAccount(accountName);
+        MyAccountPage myAccountPage = registrationNewAccount(personalInformation);
 
         Assert.assertEquals(myAccountPage.getTitle(),"My account - My Store" );
         Assert.assertEquals(myAccountPage.getCurrentURL(),

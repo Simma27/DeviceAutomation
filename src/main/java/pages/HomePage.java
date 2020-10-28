@@ -1,4 +1,4 @@
-package models.ui.pages;
+package pages;
 
 import io.qameta.allure.Step;
 import models.ui.providers.DriverProvider;

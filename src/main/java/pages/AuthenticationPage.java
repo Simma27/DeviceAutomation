@@ -1,4 +1,4 @@
-package models.ui.pages;
+package pages;
 
 import io.qameta.allure.Step;
 import models.ui.providers.DriverProvider;
@@ -16,7 +16,6 @@ public class AuthenticationPage extends BasePage {
     private WebElement newAccount;
     @FindBy(css = "#SubmitCreate > span")
     private WebElement submitCreateAnAccountButton;
-
 
     public AuthenticationPage(WebDriver driver) {
         super(driver);

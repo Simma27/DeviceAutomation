@@ -1,9 +1,9 @@
 package services.ui;
 
-import models.ui.pages.CreateAccountPage;
-import models.ui.pages.MyAccountPage;
-import models.ui.providers.DriverProvider;
 import models.ui.model.PersonalInformation;
+import pages.CreateAccountPage;
+import pages.MyAccountPage;
+import models.ui.providers.DriverProvider;
 
 /**
  * Class provide methods to work with page "Create new an account".
@@ -16,7 +16,7 @@ public class CreateAccountPageService {
      * @param personalInformation is model with personal information for new account.
      * @return the page following the CreateAccountPage for managing my account.
      */
-    public MyAccountPage registrationNewAccount(PersonalInformation personalInformation) {
+    public static MyAccountPage registrationNewAccount(PersonalInformation personalInformation) {
         CreateAccountPage accountPage = new CreateAccountPage(DriverProvider.getDriver());
         accountPage.isMister(personalInformation.isMister());
         accountPage.enterCustomerFirstName(personalInformation.getCustomerFirstname());
