@@ -13,7 +13,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class HomePage extends BasePage {
 
-    @FindBy(linkText = "Sign in")
+    @FindBy(css = ".login")
     private WebElement submitSignInButton;
 
     public HomePage(WebDriver driver) {

@@ -14,7 +14,7 @@ public class MyAccountPage extends BasePage {
     private WebElement topOfTheScreenBanner;
     @FindBy(css = "[alt='My Store']")
     private WebElement mainLogoBanner;
-    @FindBy(css = "#searchbox")
+    @FindBy(id = "searchbox")
     private WebElement searchbox;
     @FindBy(css = ".page-heading")
     private WebElement myAccountLogo;

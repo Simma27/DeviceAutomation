@@ -17,7 +17,7 @@ public class CreateAccountPage extends BasePage {
     private WebElement missis;
     @FindBy(id = "customer_firstname")
     private WebElement customerFirstname;
-    @FindBy(css = "#customer_lastname")
+    @FindBy(id = "customer_lastname")
     private WebElement customerLastname;
     @FindBy(id = "passwd")
     private WebElement password;
@@ -27,7 +27,7 @@ public class CreateAccountPage extends BasePage {
     private WebElement month;
     @FindBy(id = "years")
     private WebElement year;
-    @FindBy(css = "[type='checkbox']")
+    @FindBy(id = "newsletter")
     private WebElement checkbox;
     @FindBy(id = "optin")
     private WebElement optin;
