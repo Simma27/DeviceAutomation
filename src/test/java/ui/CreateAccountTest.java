@@ -15,7 +15,6 @@ import static services.ui.HomePageService.sighIn;
 
 public class CreateAccountTest {
 
-
     @BeforeMethod
     public void setup() {
         DriverProvider.setUp();
