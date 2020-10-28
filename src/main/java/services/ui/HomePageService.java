@@ -1,8 +1,7 @@
 package services.ui;
 
-import pages.AuthenticationPage;
-import pages.HomePage;
 import models.ui.providers.DriverProvider;
+import pages.HomePage;
 
 /**
  * Class provide methods to work with My Account page.
@@ -10,11 +9,9 @@ import models.ui.providers.DriverProvider;
 public class HomePageService {
     /**
      * The method switch to Authentication page.
-     *
-     * @return the page following the home page for authentication.
      */
-    public static AuthenticationPage sighIn() {
+    public static void sighIn() {
         HomePage homePage = new HomePage(DriverProvider.getDriver());
-        return homePage.signIn();
+        homePage.signIn();
     }
 }

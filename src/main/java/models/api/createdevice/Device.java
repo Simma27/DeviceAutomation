@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Device {
 
-    
     private String accountName;
     
     private Long accountSerialNumber;

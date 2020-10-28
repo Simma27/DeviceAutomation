@@ -1,5 +1,6 @@
 package ui;
 
+import io.qameta.allure.Story;
 import models.ui.model.PersonalInformation;
 import models.ui.providers.DriverProvider;
 import net.bytebuddy.utility.RandomString;
@@ -21,6 +22,7 @@ public class CreateAccountTest {
     }
 
     @Test
+    @Story("UI test")
     public void newAccountTest() {
         String accountName = RandomString.make(5);
         PersonalInformation personalInformation = new PersonalInformation.Builder()
