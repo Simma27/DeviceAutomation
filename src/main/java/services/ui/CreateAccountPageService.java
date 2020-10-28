@@ -27,8 +27,6 @@ public class CreateAccountPageService {
         accountPage.enterBirthdayYear(personalInformation.getYear());
         accountPage.choseSignUpForOurNewsletter(personalInformation.isSignUpGorOurNewsletter());
         accountPage.choseReceiveSpecialOffersFromOurPartners(personalInformation.isReceiveSpecialOffersFromOurPartners());
-        accountPage.enterFirstName(personalInformation.getFirstname());
-        accountPage.enterLastName(personalInformation.getLastname());
         accountPage.enterCompanyName(personalInformation.getCompany());
         accountPage.enterAdress1(personalInformation.getAddress1());
         accountPage.enterAdress2(personalInformation.getAddress2());
