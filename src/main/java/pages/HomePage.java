@@ -14,14 +14,10 @@ public class HomePage extends BasePage {
     private WebElement submitSignInButton;
     @FindBy(css = ".sf-menu > li:nth-child(2) > a:nth-child(1)")
     private WebElement dressesButton;
-
-
     @FindBy(css = ".sf-menu > li:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)")
     private WebElement casualDressesButton;
-
-    public HomePage() {
-        super();
-    }
+    @FindBy(css = "[title='Contact Us']")
+    private WebElement contactUsButton;
 
     @Step
     public CatalogPage submitCasualDresses () {
@@ -41,6 +37,11 @@ public class HomePage extends BasePage {
     public AuthenticationPage signIn() {
         submitSignInButton.click();
         return new AuthenticationPage();
+    }
+
+    @Step
+    public void contactUs() {
+        contactUsButton.click();
     }
 
 

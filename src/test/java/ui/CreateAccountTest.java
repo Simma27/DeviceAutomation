@@ -5,6 +5,7 @@ import models.ui.PersonalInformation;
 import net.bytebuddy.utility.RandomString;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.ContactUsPage;
 import pages.MyAccountPage;
 import pages.PaymentPage;
 import services.ui.AddressesPageService;
@@ -15,9 +16,9 @@ import static config.ui.AccountData.PASSWORD_EMAIL;
 import static services.ui.AuthenticationPageService.initiationСreateNewAccount;
 import static services.ui.AuthenticationPageService.logIn;
 import static services.ui.CatalogPageService.goToPurchase;
+import static services.ui.ContactUsPageService.sendMessage;
 import static services.ui.CreateAccountPageService.registrationNewAccount;
-import static services.ui.HomePageService.sighIn;
-import static services.ui.HomePageService.submitCasualDresses;
+import static services.ui.HomePageService.*;
 import static services.ui.PaymentPageService.registrationOfPurchase;
 import static services.ui.ShippingPageService.delivery;
 
@@ -70,6 +71,7 @@ public class CreateAccountTest extends BaseTest {
 
     @Test
     public void orderCasualDressTest() {
+
         sighIn();
         logIn(EMAIL_ADDRESS, PASSWORD_EMAIL);
         submitCasualDresses();
@@ -83,7 +85,53 @@ public class CreateAccountTest extends BaseTest {
         Assert.assertEquals(page.getMessage(), "Your order will be sent as soon as we receive payment.");
     }
 
+    @Test
     public void sendEmailToCustomerService() {
+        String accountName = RandomString.make(5);
+        PersonalInformation personalInformation = new PersonalInformation.Builder()
+                .withGender(true)
+                .withCustomerFirstName("Ivan")
+                .withCustomerLastName("Ivanov")
+                .withPassword("11111")
+                .withBirthdayDay("1")
+                .withBirthdayMonth("January")
+                .withBirthdayYear("2020")
+                .withSignUpForOurNewsletter(true)
+                .withReceiveSpecialOffersFromOurPartners(true)
+                .withCompany("Kaseya")
+                .withAddress1("701 Brickell Avenue")
+                .withAddress2("26 W 17th Street, New York")
+                .withCity("Miami")
+                .withState("Florida")
+                .withPostcode("33131")
+                .withAdditionalInformation("Additional information")
+                .withHomePhoneNumber("+375441111111")
+                .withMobilePhoneNumber("+375292222222")
+                .withAlias("18, Baker street")
+                .build();
+        //Steps
+        sighIn();
+        initiationСreateNewAccount(accountName);
+        MyAccountPage myAccountPage = registrationNewAccount(personalInformation);
+        submitCasualDresses();
+        goToPurchase();
+        ShoppingCartSummaryPageService.submitProceedToCheckoutButton();
+        AddressesPageService.submitProceedToCheckoutButton();
+        delivery();
+        PaymentPage page = registrationOfPurchase();
+//        sighIn();
+//        logIn(EMAIL_ADDRESS, PASSWORD_EMAIL);
+        contactUs();
+        ContactUsPage contactUsPage = sendMessage();
+        Assert.assertEquals(contactUsPage.getResultMessage().getText(),
+                "Your message has been successfully sent to our team.");
+//        getDriver().findElement(By.id("id_contact")).click();
+//        getDriver().findElement(By.cssSelector("#id_contact option[value='2']")).click();
+
+
+
+
+
 //        WebDriver driver;
 //        driver.findElement(By.cssSelector("#contact-link > a:nth-child(1)")).click();
 //        Actions actions = new Actions(driver);

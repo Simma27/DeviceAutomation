@@ -23,4 +23,9 @@ public class HomePageService {
         actions.moveToElement(homePage.getDressesButton())
                 .moveToElement(homePage.getCasualDressesButton()).click().build().perform();
     }
+
+    public static void contactUs() {
+        HomePage homePage = new HomePage();
+        homePage.contactUs();
+    }
 }

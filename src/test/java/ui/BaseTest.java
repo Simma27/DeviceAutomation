@@ -5,7 +5,6 @@ import org.testng.annotations.BeforeMethod;
 
 import static config.ui.URLconfig.AUTOMATION_PRACTICE;
 import static providers.DriverProvider.getDriver;
-import static providers.DriverProvider.tearDown;
 
 public class BaseTest {
 
@@ -16,7 +15,7 @@ public class BaseTest {
 
     @AfterMethod
     public void finish() {
-        tearDown();
+//        tearDown();
     }
 
 }
