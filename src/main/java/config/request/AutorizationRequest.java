@@ -1,4 +1,4 @@
-package config;
+package config.request;
 
 /**
  * The parent class for the request body, with username and password fields for authorization.

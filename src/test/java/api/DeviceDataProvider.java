@@ -9,15 +9,15 @@ import models.api.updatedevice.DeviceUpdateProperty;
 import models.api.updatedevice.RequestDeviceUpdate;
 import models.api.updatedevice.SearchCriteria;
 import org.apache.commons.lang3.RandomStringUtils;
-import services.device.DeviceService;
 import org.testng.annotations.DataProvider;
+import services.device.DeviceService;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static config.DeviceConfig.ACCOUNT_SERIAL_NUMBER;
-import static config.DeviceConfig.DEFAULT_LOCATION;
-import static config.UpdateDeviceConfig.*;
+import static config.device.DeviceConfig.ACCOUNT_SERIAL_NUMBER;
+import static config.device.DeviceConfig.DEFAULT_LOCATION;
+import static config.device.UpdateDeviceConfig.*;
 
 public class DeviceDataProvider {
 

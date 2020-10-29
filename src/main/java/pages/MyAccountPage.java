@@ -1,7 +1,6 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -27,8 +26,8 @@ public class MyAccountPage extends BasePage {
     @FindBy(css = ".info-account")
     private WebElement info;
 
-    public MyAccountPage(WebDriver driver) {
-        super(driver);
+    public MyAccountPage() {
+        super();
     }
 
     @Step("Top of the screen banner is displayed")
@@ -42,7 +41,7 @@ public class MyAccountPage extends BasePage {
     }
 
     @Step("Searchbox is displayed")
-    public boolean searchboxIsDisplayed() {
+    public boolean searchBoxIsDisplayed() {
         return searchbox.isDisplayed();
     }
 

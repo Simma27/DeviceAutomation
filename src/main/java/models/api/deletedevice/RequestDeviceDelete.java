@@ -2,11 +2,11 @@ package models.api.deletedevice;
 
 import java.util.List;
 
-import config.AutorizationRequest;
+import models.api.updatedevice.SearchCriteria;
+import config.request.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
-import models.api.updatedevice.SearchCriteria;
 
 @Data
 @Builder

@@ -1,4 +1,4 @@
-package config;
+package config.request;
 
 import models.api.createdevice.Result;
 /**

@@ -1,7 +1,7 @@
-package models.ui.model;
+package models.ui;
 
 /**
- * Class describe page with personal information when create new account.
+ * Class describe model personal information when create new account.
  */
 public class PersonalInformation {
 

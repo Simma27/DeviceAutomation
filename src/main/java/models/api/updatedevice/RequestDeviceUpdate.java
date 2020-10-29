@@ -1,11 +1,11 @@
 package models.api.updatedevice;
 
-import java.util.List;
-
-import config.AutorizationRequest;
+import config.request.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+
+import java.util.List;
 
 @Data
 @Builder

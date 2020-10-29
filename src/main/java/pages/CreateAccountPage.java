@@ -1,8 +1,6 @@
 package pages;
 
 import io.qameta.allure.Step;
-import models.ui.providers.DriverProvider;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -60,8 +58,8 @@ public class CreateAccountPage extends BasePage {
     @FindBy(css = "#submitAccount > span")
     private WebElement submitRegisterButton;
 
-    public CreateAccountPage(WebDriver driver) {
-        super(driver);
+    public CreateAccountPage() {
+        super();
     }
 
     @Step("Gender men is {0}.")
@@ -181,7 +179,7 @@ public class CreateAccountPage extends BasePage {
     @Step("Account registration {0}.")
     public MyAccountPage register() {
         submitRegisterButton.click();
-        return new MyAccountPage(DriverProvider.getDriver());
+        return new MyAccountPage();
     }
 
 }

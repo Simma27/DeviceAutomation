@@ -14,8 +14,8 @@ import models.api.updatedevice.ResponseDeviceUpdate;
 
 import java.util.Collections;
 
-import static config.ApiDeviceConfig.*;
-import static config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
+import static config.device.ApiDeviceConfig.*;
+import static config.device.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
 import static io.restassured.RestAssured.given;
 
 /**

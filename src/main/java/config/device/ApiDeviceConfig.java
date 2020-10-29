@@ -1,4 +1,4 @@
-package config;
+package config.device;
 
 /**
  * Enum class contains constant path for use when forming request.

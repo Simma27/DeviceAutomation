@@ -1,4 +1,4 @@
-package config;
+package config.device;
 
 /**
  * The class contains constants for use when forming RequestDeviceCreate.

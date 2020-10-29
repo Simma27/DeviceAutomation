@@ -1,4 +1,4 @@
-package config;
+package config.device;
 
 /**\
  * The enum contains constants for use when forming RequestDeviceUpdate.

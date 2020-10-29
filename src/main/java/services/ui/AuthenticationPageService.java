@@ -1,7 +1,6 @@
 package services.ui;
 
 import pages.AuthenticationPage;
-import models.ui.providers.DriverProvider;
 
 
 /**
@@ -14,9 +13,16 @@ public class AuthenticationPageService {
      * @param accountEmail is email address for new account.
      */
     public static void initiationСreateNewAccount(String accountEmail) {
-        AuthenticationPage authenticationPage = new AuthenticationPage(DriverProvider.getDriver());
+        AuthenticationPage authenticationPage = new AuthenticationPage();
         authenticationPage.enterAccountName(accountEmail);
         authenticationPage.submitCreateNewAccount();
+    }
+
+    public static void logIn(String emailAddress, String password) {
+        AuthenticationPage authenticationPage = new AuthenticationPage();
+        authenticationPage.enterEmailAddress(emailAddress);
+        authenticationPage.enterPassword(password);
+        authenticationPage.submitSignIn();
     }
 
 }

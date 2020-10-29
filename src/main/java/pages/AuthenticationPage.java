@@ -1,8 +1,6 @@
 package pages;
 
 import io.qameta.allure.Step;
-import models.ui.providers.DriverProvider;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,9 +13,15 @@ public class AuthenticationPage extends BasePage {
     private WebElement newAccount;
     @FindBy(css = "#SubmitCreate > span")
     private WebElement submitCreateAnAccountButton;
+    @FindBy(id = "email")
+    private WebElement email;
+    @FindBy(id = "passwd")
+    private WebElement passwd;
+    @FindBy(css = "#SubmitLogin > span")
+    private WebElement signInButton;
 
-    public AuthenticationPage(WebDriver driver) {
-        super(driver);
+    public AuthenticationPage() {
+        super();
     }
 
     @Step("Enter account name")
@@ -25,10 +29,27 @@ public class AuthenticationPage extends BasePage {
         newAccount.sendKeys(accountName + "@gmail.com");
     }
 
+    @Step
+    public void enterEmailAddress(String emailAddress) {
+        email.sendKeys(emailAddress);
+    }
+
+    @Step
+    public void enterPassword(String password) {
+        passwd.sendKeys(password);
+    }
+
     @Step("Create new account")
     public CreateAccountPage submitCreateNewAccount() {
         submitCreateAnAccountButton.click();
-        return new CreateAccountPage(DriverProvider.getDriver());
+        return new CreateAccountPage();
     }
+
+    @Step("Log in")
+    public MyAccountPage submitSignIn() {
+        signInButton.click();
+        return new MyAccountPage();
+    }
+
 
 }

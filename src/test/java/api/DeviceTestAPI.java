@@ -12,13 +12,13 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import services.device.DeviceService;
-import config.DeviceType;
+import config.device.DeviceType;
 import models.api.specification.Specification;
 
 import java.util.Collections;
 
-import static config.ApiDeviceConfig.*;
-import static config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
+import static config.device.ApiDeviceConfig.*;
+import static config.device.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.equalTo;

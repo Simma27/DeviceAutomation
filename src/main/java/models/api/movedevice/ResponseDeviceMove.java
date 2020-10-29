@@ -1,6 +1,6 @@
 package models.api.movedevice;
 
-import config.Response;
+import config.request.Response;
 
 public class ResponseDeviceMove extends Response {
 

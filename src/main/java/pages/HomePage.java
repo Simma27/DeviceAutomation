@@ -1,10 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
-import models.ui.providers.DriverProvider;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -15,15 +12,37 @@ public class HomePage extends BasePage {
 
     @FindBy(css = ".login")
     private WebElement submitSignInButton;
+    @FindBy(css = ".sf-menu > li:nth-child(2) > a:nth-child(1)")
+    private WebElement dressesButton;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
+
+    @FindBy(css = ".sf-menu > li:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)")
+    private WebElement casualDressesButton;
+
+    public HomePage() {
+        super();
+    }
+
+    @Step
+    public CatalogPage submitCasualDresses () {
+        casualDressesButton.click();
+        return new CatalogPage();
+    }
+
+    public WebElement getDressesButton() {
+        return dressesButton;
+    }
+
+    public WebElement getCasualDressesButton() {
+        return casualDressesButton;
     }
 
     @Step("Navigate to auntefication page")
     public AuthenticationPage signIn() {
         submitSignInButton.click();
-        return new AuthenticationPage(DriverProvider.getDriver());
+        return new AuthenticationPage();
     }
+
+
 
 }

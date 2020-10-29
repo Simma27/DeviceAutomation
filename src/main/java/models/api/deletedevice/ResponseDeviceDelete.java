@@ -1,6 +1,6 @@
 package models.api.deletedevice;
 
-import config.Response;
+import config.request.Response;
 
 public class ResponseDeviceDelete extends Response {
 
