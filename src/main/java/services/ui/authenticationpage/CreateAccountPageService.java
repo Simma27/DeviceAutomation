@@ -1,4 +1,4 @@
-package services.ui;
+package services.ui.authenticationpage;
 
 import models.ui.PersonalInformation;
 import pages.CreateAccountPage;

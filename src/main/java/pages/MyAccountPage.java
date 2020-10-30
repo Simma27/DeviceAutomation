@@ -25,6 +25,16 @@ public class MyAccountPage extends BasePage {
     private WebElement navigationPage;
     @FindBy(css = ".info-account")
     private WebElement info;
+    @FindBy(css = ".icon-heart")
+    private WebElement myWishlistButton;
+    @FindBy(css = ".table.table-bordered td a[onclick*='javascript:WishlistManage']:first-of-type")
+    private WebElement getwishlistButton;
+    @FindBy(id = "s_title")
+    private WebElement productName;
+    @FindBy(id = "quantity_2_7")
+    private WebElement quantity;
+    @FindBy(css = "#priority_2_7 > option:nth-child(2)")
+    private WebElement priority;
 
     public MyAccountPage() {
         super();
@@ -68,6 +78,29 @@ public class MyAccountPage extends BasePage {
     @Step("Get info from page")
     public String getInfoText() {
         return info.getText();
+    }
+
+
+    public String getProductName() {
+        return productName.getText();
+    }
+
+    public String getQuantity() {
+        return quantity.getAttribute("value");
+    }
+
+    public String getPriority() {
+        return priority.getText();
+    }
+
+    public MyAccountPage submitMyWishlistButton() {
+        myWishlistButton.click();
+        return new MyAccountPage();
+    }
+
+    public MyAccountPage submitGetwishlistButton() {
+        getwishlistButton.click();
+        return new MyAccountPage();
     }
 
 }

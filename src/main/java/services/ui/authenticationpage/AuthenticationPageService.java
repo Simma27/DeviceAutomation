@@ -1,4 +1,4 @@
-package services.ui;
+package services.ui.authenticationpage;
 
 import pages.AuthenticationPage;
 
@@ -25,4 +25,6 @@ public class AuthenticationPageService {
         authenticationPage.submitSignIn();
     }
 
+    public static class FadedShortSleeveTshirtsPageService {
+    }
 }
