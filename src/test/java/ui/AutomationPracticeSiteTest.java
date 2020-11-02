@@ -19,16 +19,20 @@ import static ui.services.authentication.AuthenticationPageService.initiationСr
 import static ui.services.authentication.AuthenticationPageService.logIn;
 import static ui.services.authentication.CreateAccountPageService.registrationNewAccount;
 import static ui.services.main.ContactUsPageService.sendMessage;
+import static ui.services.main.HomePageService.*;
 import static ui.services.main.MyAccountPageService.getWishlist;
 import static ui.services.main.MyAccountPageService.removeWishlist;
 import static ui.services.payment.PaymentPageService.registrationOfPurchase;
 import static ui.services.payment.ShippingPageService.delivery;
 import static ui.services.product.BlousePageService.addToWishList;
 import static ui.services.product.BlousePageService.quitMessage;
+import static ui.services.product.CatalogPageService.*;
 import static ui.services.product.FadedShortSleeveTshirtsPageService.writeReview;
+import static ui.services.product.PrintedSummerDressPageService.*;
 import static ui.services.product.SummerDressesPageService.goToPrintedSummerDress;
 
 @Epic("Automation practice site test")
+@Test(threadPoolSize = 6, invocationCount = 6)
 public class AutomationPracticeSiteTest extends BaseTest {
 
     @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeDataProvider.class)
@@ -152,7 +156,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Description("Check the possibility Printed Summer Dress page display for different colour dress")
     @Severity(SeverityLevel.NORMAL)
     @Flaky
-    public void printedSummerDressPageTest() {
+    public void differentColourPrintedSummerDressPageTest() {
         submitSummerDresses();
         goToPrintedSummerDress();
         PrintedSummerDressPage page = chooseBlackColour();

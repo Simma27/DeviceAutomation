@@ -8,6 +8,7 @@ import org.testng.annotations.Listeners;
 import ui.listener.ScreenshotListener;
 
 import static ui.config.URLconfig.AUTOMATION_PRACTICE;
+import static ui.providers.DriverProvider.*;
 
 @Listeners({ScreenshotListener.class})
 public abstract class BaseTest {
@@ -16,7 +17,7 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setup() {
-        driver initializeDriver();
+        driver =  initializeDriver();
         getDriver().get(AUTOMATION_PRACTICE.getUrl());
     }
 
