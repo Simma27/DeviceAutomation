@@ -26,7 +26,7 @@ public class ScreenshotListener extends TestListenerAdapter {
             try {
                 String reportDirectory = new File(System.getProperty("user.dir")).getAbsolutePath() +
                         "/target/surefire-reports";
-                File destFile = new File((String) reportDirectory + "/failure_screenshots/" +
+                File destFile = new File(reportDirectory + "/failure_screenshots/" +
                         methodName + "_" + formater.format(calendar.getTime()) + ".png");
                 FileUtils.copyFile(scrFile, destFile);
                 Allure.addAttachment("My attachment", FileUtils.openInputStream(scrFile));
