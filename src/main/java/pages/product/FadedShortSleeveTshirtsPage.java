@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.main.BasePage;
 
+import static providers.DriverProvider.getDriver;
+
 /**
  * The class describe WebElements Faded Short Sleeve T-shirts page.
  */

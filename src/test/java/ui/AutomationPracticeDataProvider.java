@@ -4,9 +4,9 @@ import models.ui.PersonalInformation;
 import net.bytebuddy.utility.RandomString;
 import org.testng.annotations.DataProvider;
 
-public class AutomationPracticeProvider {
+public class AutomationPracticeDataProvider {
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] getPersonalInformation() {
         return new Object[][]{{new PersonalInformation.Builder()
                 .withGender(true)

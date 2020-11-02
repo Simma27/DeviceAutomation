@@ -5,7 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import pages.product.PrintedSummerDressPage;
 import pages.product.SummerDressesPage;
 
-import static pages.main.BasePage.getDriver;
+import static providers.DriverProvider.getDriver;
 
 public class SummerDressesPageService {
     @Step

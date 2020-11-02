@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.interactions.Actions;
 import pages.product.CatalogPage;
 
-import static pages.main.BasePage.getDriver;
+import static providers.DriverProvider.getDriver;
 
 /**
  * The class consist of methods to work with Catalog, switch to another product page.

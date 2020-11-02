@@ -5,7 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import pages.main.HomePage;
 import pages.main.MyAccountPage;
 
-import static pages.main.BasePage.getDriver;
+import static providers.DriverProvider.getDriver;
 
 /**
  * Class provide methods to work with My Account page.

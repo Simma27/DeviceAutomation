@@ -37,7 +37,7 @@ import static services.ui.product.SummerDressesPageService.goToPrintedSummerDres
 @Listeners({ScreenshotListener.class})
 public class AutomationPracticeSiteTest extends BaseTest {
 
-    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeProvider.class, threadPoolSize = 3)
+    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeDataProvider.class, threadPoolSize = 3)
     @Story("Create new account")
     @Description("Check possibility to create new account")
     @Severity(SeverityLevel.CRITICAL)
@@ -81,7 +81,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
         Assert.assertEquals(page.getMessage(), "Your order will be sent as soon as we receive payment.");
     }
 
-    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeProvider.class, threadPoolSize = 3)
+    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeDataProvider.class, threadPoolSize = 3)
     @Story("Send email to customer service")
     @Description("Check the possibility to send email to Customer Service")
     @Severity(SeverityLevel.NORMAL)
