@@ -1,6 +1,6 @@
 package models.api.createdevice;
 
-import config.request.AutorizationRequest;
+import config.device.request.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;

@@ -1,6 +1,6 @@
 package models.api.updatedevice;
 
-import config.request.Response;
+import config.device.request.Response;
 
 public class ResponseDeviceUpdate extends Response {
 

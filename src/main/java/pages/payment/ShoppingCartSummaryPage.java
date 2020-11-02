@@ -1,0 +1,19 @@
+package pages.payment;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import pages.main.BasePage;
+
+/**
+ * The class describe WebElements Shopping Cart Summary page.
+ */
+public class ShoppingCartSummaryPage extends BasePage {
+
+    @FindBy(css = ".standard-checkout > span")
+    private WebElement proceedToCheckoutButton;
+
+    public WebElement getProceedToCheckoutButton() {
+        return proceedToCheckoutButton;
+    }
+
+}

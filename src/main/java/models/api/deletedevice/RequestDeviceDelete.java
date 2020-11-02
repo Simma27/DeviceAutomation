@@ -3,7 +3,7 @@ package models.api.deletedevice;
 import java.util.List;
 
 import models.api.updatedevice.SearchCriteria;
-import config.request.AutorizationRequest;
+import config.device.request.AutorizationRequest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;

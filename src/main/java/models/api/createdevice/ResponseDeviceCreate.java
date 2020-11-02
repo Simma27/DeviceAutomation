@@ -1,6 +1,6 @@
 package models.api.createdevice;
 
-import config.request.Response;
+import config.device.request.Response;
 
 public class ResponseDeviceCreate extends Response {
 
