@@ -1,23 +1,23 @@
 package api;
 
 import io.qameta.allure.Step;
-import models.api.createdevice.RequestDeviceCreate;
-import models.api.createdevice.ResponseDeviceCreate;
-import models.api.deletedevice.RequestDeviceDelete;
-import models.api.movedevice.RequestDeviceMove;
-import models.api.updatedevice.DeviceUpdateProperty;
-import models.api.updatedevice.RequestDeviceUpdate;
-import models.api.updatedevice.SearchCriteria;
+import device.models.api.createdevice.RequestDeviceCreate;
+import device.models.api.createdevice.ResponseDeviceCreate;
+import device.models.api.deletedevice.RequestDeviceDelete;
+import device.models.api.movedevice.RequestDeviceMove;
+import device.models.api.updatedevice.DeviceUpdateProperty;
+import device.models.api.updatedevice.RequestDeviceUpdate;
+import device.models.api.updatedevice.SearchCriteria;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.DataProvider;
-import services.device.DeviceService;
+import device.services.DeviceService;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static config.device.DeviceConfig.ACCOUNT_SERIAL_NUMBER;
-import static config.device.DeviceConfig.DEFAULT_LOCATION;
-import static config.device.UpdateDeviceConfig.*;
+import static device.config.DeviceConfig.ACCOUNT_SERIAL_NUMBER;
+import static device.config.DeviceConfig.DEFAULT_LOCATION;
+import static device.config.UpdateDeviceConfig.*;
 
 public class DeviceDataProvider {
 

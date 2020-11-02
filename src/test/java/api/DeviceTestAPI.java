@@ -1,24 +1,24 @@
 package api;
 
 import io.qameta.allure.*;
-import models.api.createdevice.RequestDeviceCreate;
-import models.api.createdevice.ResponseDeviceCreate;
-import models.api.deletedevice.EmptyRequest;
-import models.api.deletedevice.RequestDeviceDelete;
-import models.api.movedevice.RequestDeviceMove;
-import models.api.updatedevice.RequestDeviceUpdate;
-import models.api.updatedevice.SearchCriteria;
+import device.models.api.createdevice.RequestDeviceCreate;
+import device.models.api.createdevice.ResponseDeviceCreate;
+import device.models.api.deletedevice.EmptyRequest;
+import device.models.api.deletedevice.RequestDeviceDelete;
+import device.models.api.movedevice.RequestDeviceMove;
+import device.models.api.updatedevice.RequestDeviceUpdate;
+import device.models.api.updatedevice.SearchCriteria;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import services.device.DeviceService;
-import config.device.DeviceType;
-import models.api.specification.Specification;
+import device.services.DeviceService;
+import device.config.DeviceType;
+import device.models.api.specification.Specification;
 
 import java.util.Collections;
 
-import static config.device.ApiDeviceConfig.*;
-import static config.device.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
+import static device.config.ApiDeviceConfig.*;
+import static device.config.UpdateDeviceConfig.DEVICE_SERIAL_NUMBER;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.equalTo;

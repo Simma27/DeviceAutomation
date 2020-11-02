@@ -5,20 +5,18 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import providers.ScreenshotListener;
+import ui.listener.ScreenshotListener;
 
-import static config.ui.URLconfig.AUTOMATION_PRACTICE;
-import static providers.DriverProvider.*;
+import static ui.config.URLconfig.AUTOMATION_PRACTICE;
 
 @Listeners({ScreenshotListener.class})
 public abstract class BaseTest {
 
     WebDriver driver;
 
-
     @BeforeMethod
     public void setup() {
-        driver = initializeDriver();
+        driver initializeDriver();
         getDriver().get(AUTOMATION_PRACTICE.getUrl());
     }
 
@@ -26,4 +24,5 @@ public abstract class BaseTest {
     public void finish(ITestResult result) {
         tearDown();
     }
+
 }

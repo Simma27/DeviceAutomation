@@ -1,0 +1,60 @@
+package device.config;
+
+/**\
+ * The enum contains constants for use when forming RequestDeviceUpdate.
+ */
+public enum UpdateDeviceConfig {
+
+    DEVICE_SERIAL_NUMBER,
+
+    SUSPEND,
+
+    DEVICE_NAME,
+
+    DEVICE_TYPE,
+
+    ADDRESS,
+
+    DO_NOT_RESOLVE_ADDRESS,
+
+    VENDOR,
+
+    MODEL,
+
+    TAG_1,
+
+    TAG_2,
+
+    TAG_3,
+
+    TAG_4,
+
+    TAG_5,
+
+    COMMENT,
+
+    SHOW_ON_SUMMARY,
+
+    CLEAR_ON_OK,
+
+    FLAP_PREVENTION_WAIT_CYCLES,
+
+    SMART_NOTIFY,
+
+    REDISCOVERY_ENABLED,
+
+    REDISCOVERY_FREQUENCY,
+
+    REDISCOVERY_NEW_TESTS_ACTION,
+
+    REDISCOVERY_UPDATED_TESTS_ACTION,
+
+    REDISCOVERY_DELETED_TESTS_ACTION,
+
+    APPLICATION_PROFILES,
+
+    CONFIG_BACKUP_ENABLED,
+
+    PROCESS_COLLECTION_ENABLED;
+
+}

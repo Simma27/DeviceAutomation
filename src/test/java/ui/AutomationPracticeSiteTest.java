@@ -1,43 +1,37 @@
 package ui;
 
 import io.qameta.allure.*;
-import models.ui.PersonalInformation;
+import ui.models.PersonalInformation;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.main.ContactUsPage;
-import pages.main.MyAccountPage;
-import pages.payment.PaymentPage;
-import pages.product.BlousePage;
-import pages.product.FadedShortSleeveTshirtsPage;
-import pages.product.PrintedSummerDressPage;
-import providers.ScreenshotListener;
-import services.ui.payment.AddressesPageService;
-import services.ui.payment.ShoppingCartSummaryPageService;
+import ui.pages.main.ContactUsPage;
+import ui.pages.main.MyAccountPage;
+import ui.pages.payment.PaymentPage;
+import ui.pages.product.BlousePage;
+import ui.pages.product.FadedShortSleeveTshirtsPage;
+import ui.pages.product.PrintedSummerDressPage;
+import ui.services.payment.AddressesPageService;
+import ui.services.payment.ShoppingCartSummaryPageService;
 
-import static config.ui.AccountData.EMAIL_ADDRESS;
-import static config.ui.AccountData.PASSWORD_EMAIL;
-import static services.ui.authentication.AuthenticationPageService.initiationСreateNewAccount;
-import static services.ui.authentication.AuthenticationPageService.logIn;
-import static services.ui.authentication.CreateAccountPageService.registrationNewAccount;
-import static services.ui.main.ContactUsPageService.sendMessage;
-import static services.ui.main.HomePageService.*;
-import static services.ui.main.MyAccountPageService.getWishlist;
-import static services.ui.main.MyAccountPageService.removeWishlist;
-import static services.ui.payment.PaymentPageService.registrationOfPurchase;
-import static services.ui.payment.ShippingPageService.delivery;
-import static services.ui.product.BlousePageService.addToWishList;
-import static services.ui.product.BlousePageService.quitMessage;
-import static services.ui.product.CatalogPageService.*;
-import static services.ui.product.FadedShortSleeveTshirtsPageService.writeReview;
-import static services.ui.product.PrintedSummerDressPageService.*;
-import static services.ui.product.SummerDressesPageService.goToPrintedSummerDress;
+import static ui.config.AccountData.EMAIL_ADDRESS;
+import static ui.config.AccountData.PASSWORD_EMAIL;
+import static ui.services.authentication.AuthenticationPageService.initiationСreateNewAccount;
+import static ui.services.authentication.AuthenticationPageService.logIn;
+import static ui.services.authentication.CreateAccountPageService.registrationNewAccount;
+import static ui.services.main.ContactUsPageService.sendMessage;
+import static ui.services.main.MyAccountPageService.getWishlist;
+import static ui.services.main.MyAccountPageService.removeWishlist;
+import static ui.services.payment.PaymentPageService.registrationOfPurchase;
+import static ui.services.payment.ShippingPageService.delivery;
+import static ui.services.product.BlousePageService.addToWishList;
+import static ui.services.product.BlousePageService.quitMessage;
+import static ui.services.product.FadedShortSleeveTshirtsPageService.writeReview;
+import static ui.services.product.SummerDressesPageService.goToPrintedSummerDress;
 
-@Epic("Automationpractice site test")
-@Listeners({ScreenshotListener.class})
+@Epic("Automation practice site test")
 public class AutomationPracticeSiteTest extends BaseTest {
 
-    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeDataProvider.class, threadPoolSize = 3)
+    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeDataProvider.class)
     @Story("Create new account")
     @Description("Check possibility to create new account")
     @Severity(SeverityLevel.CRITICAL)
@@ -62,7 +56,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
                 "Welcome to your account. Here you can manage all of your personal information and orders.");
     }
 
-    @Test(threadPoolSize = 3)
+    @Test
     @Story("Order Evening Casual dress")
     @Description("Check the possibility to order Casual dress by bank wire")
     @Severity(SeverityLevel.CRITICAL)
@@ -79,9 +73,13 @@ public class AutomationPracticeSiteTest extends BaseTest {
 
         Assert.assertEquals(page.getOrderResult(), "Your order on My Store is complete.");
         Assert.assertEquals(page.getMessage(), "Your order will be sent as soon as we receive payment.");
+        Assert.assertEquals(page.getPrice(), "$28.00");
+        Assert.assertEquals(page.getNameOfAccountOwner(), "Pradeep Macharla");
+        Assert.assertEquals(page.getDetails(), "xyz");
+        Assert.assertEquals(page.getBankName(), "RTP");
     }
 
-    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeDataProvider.class, threadPoolSize = 3)
+    @Test(dataProvider = "getPersonalInformation", dataProviderClass = AutomationPracticeDataProvider.class)
     @Story("Send email to customer service")
     @Description("Check the possibility to send email to Customer Service")
     @Severity(SeverityLevel.NORMAL)
@@ -103,7 +101,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
                 "Your message has been successfully sent to our team.");
     }
 
-    @Test(threadPoolSize = 5)
+    @Test
     @Story("Write review about product")
     @Description("Check the possibility to write review about 'Faded Short Sleeve T-shirts'")
     @Severity(SeverityLevel.MINOR)
@@ -124,7 +122,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
                 "Your comment has been added and will be available once approved by a moderator");
     }
 
-    @Test(threadPoolSize = 5)
+    @Test
     @Story("Add blouse to wishlist")
     @Description("Check the possibility to add Blouse to wishlist")
     @Severity(SeverityLevel.MINOR)
@@ -148,7 +146,8 @@ public class AutomationPracticeSiteTest extends BaseTest {
                         "                                            "));
         removeWishlist();
     }
-    @Test(threadPoolSize = 5)
+
+    @Test
     @Story("Choose printed summer dress different colour")
     @Description("Check the possibility Printed Summer Dress page display for different colour dress")
     @Severity(SeverityLevel.NORMAL)

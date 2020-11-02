@@ -1,6 +1,6 @@
 package ui;
 
-import models.ui.PersonalInformation;
+import ui.models.PersonalInformation;
 import net.bytebuddy.utility.RandomString;
 import org.testng.annotations.DataProvider;
 
