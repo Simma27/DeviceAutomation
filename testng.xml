@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test name="parallel thread-count = 3" parallel="methods" thread-count="3" >
         <classes>
-            <class name="ui.AutomationPracticeSiteTest"></class>
+            <class name="ui.AutomationPracticeSiteTest"/>
         </classes>
     </test>
 </suite>

@@ -3,6 +3,8 @@ package ui.services.main;
 import io.qameta.allure.Step;
 import ui.pages.main.MyAccountPage;
 
+import static ui.services.main.HomePageService.submitMyAccount;
+
 /**
  * Class consist of methods to work with "Me account" page
  */
@@ -14,6 +16,7 @@ public class MyAccountPageService {
     @Step
     public static MyAccountPage getWishlist() {
         MyAccountPage page = new MyAccountPage();
+        submitMyAccount();
         page.submitMyWishlistButton();
         return page.submitGetwishlistButton();
     }

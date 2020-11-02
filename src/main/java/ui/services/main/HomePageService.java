@@ -15,7 +15,7 @@ public class HomePageService {
      * The method switch to Authentication page.
      */
     @Step
-    public static void sighIn() {
+    public static void signIn() {
         HomePage homePage = new HomePage();
         homePage.signIn();
     }
@@ -24,7 +24,7 @@ public class HomePageService {
      * The method switch to Evening Casual Dress page.
      */
     @Step
-    public static void submitCasualDresses() {
+    public static void chooseCasualDresses() {
         HomePage homePage = new HomePage();
         Actions actions = new Actions(DriverProvider.getDriver());
         actions.moveToElement(homePage.getDressesButton())
@@ -43,7 +43,7 @@ public class HomePageService {
      * The method switch to T-shirt page.
      */
     @Step
-    public static void submitTshirt() {
+    public static void chooseTshirt() {
         HomePage homePage = new HomePage();
         homePage.submitTshirtButton();
     }
@@ -51,7 +51,7 @@ public class HomePageService {
      * The method switch to Blouse page.
      */
     @Step
-    public static void submitBlouses() {
+    public static void chooseBlouses() {
         HomePage homePage = new HomePage();
         Actions actions = new Actions(DriverProvider.getDriver());
         actions.moveToElement(homePage.getWomenButton())
@@ -70,7 +70,7 @@ public class HomePageService {
      * The method switch to Summer dress page.
      */
     @Step
-    public static void submitSummerDresses() {
+    public static void chooseSummerDresses() {
         HomePage homePage = new HomePage();
         Actions actions = new Actions(DriverProvider.getDriver());
         actions.moveToElement(homePage.getDressesButton())

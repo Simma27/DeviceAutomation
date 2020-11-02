@@ -2,21 +2,16 @@ package ui.pages.product;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ui.pages.main.BasePage;
+import ui.base.BasePage;
+import ui.config.Colour;
+
+import static ui.providers.DriverProvider.getDriver;
 
 /**
  * The class describe WebElements Printed Summer Dress T-shirts page.
  */
 public class PrintedSummerDressPage extends BasePage {
 
-    @FindBy(id = "thumb_12")
-    private WebElement blackDress;
-    @FindBy(id = "thumb_13")
-    private WebElement orangeDress;
-    @FindBy(id = "thumb_14")
-    private WebElement blueDress;
-    @FindBy(id = "thumb_15")
-    private WebElement yellowDress;
     @FindBy(id = "color_11")
     private WebElement blackColour;
     @FindBy(id = "color_13")
@@ -28,39 +23,10 @@ public class PrintedSummerDressPage extends BasePage {
     @FindBy(id = "bigpic")
     private WebElement bigPicture;
 
-    public WebElement getBlackDress() {
-        return blackDress;
-    }
 
-    public WebElement getOrangeDress() {
-        return orangeDress;
-    }
 
-    public WebElement getBlueDress() {
-        return blueDress;
-    }
-
-    public WebElement getYellowDress() {
-        return yellowDress;
-    }
-
-    public PrintedSummerDressPage chooseBlackColour() {
-        blackColour.click();
-        return new PrintedSummerDressPage();
-    }
-
-    public PrintedSummerDressPage chooseOrangeColour() {
-        orangeColour.click();
-        return new PrintedSummerDressPage();
-    }
-
-    public PrintedSummerDressPage chooseBlueColour() {
-        blueColour.click();
-        return new PrintedSummerDressPage();
-    }
-
-    public PrintedSummerDressPage chooseYellowColour() {
-        yellowColour.click();
+    public static PrintedSummerDressPage chooseDressColour(Colour colour) {
+        getDriver().findElement(colour.getSelector()).click();
         return new PrintedSummerDressPage();
     }
 

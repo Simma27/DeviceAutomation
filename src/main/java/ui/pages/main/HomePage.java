@@ -3,6 +3,7 @@ package ui.pages.main;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ui.base.BasePage;
 import ui.pages.authentication.AuthenticationPage;
 import ui.pages.product.CatalogPage;
 
@@ -14,20 +15,28 @@ public class HomePage extends BasePage {
 
     @FindBy(css = ".login")
     private WebElement submitSignInButton;
+
     @FindBy(css = ".sf-menu > li:nth-child(2) > a:nth-child(1)")
     private WebElement dressesButton;
+
     @FindBy(css = ".sf-menu > li:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)")
     private WebElement casualDressesButton;
+
     @FindBy(css = ".sf-menu > li:nth-child(2) > ul:nth-child(2) > li:nth-child(3) > a:nth-child(1)")
     private WebElement summerDressesButton;
+
     @FindBy(css = "[title='Contact Us']")
     private WebElement contactUsButton;
+
     @FindBy(css = "#block_top_menu > ul > li:nth-child(3) > a")
     private WebElement tshirtButton;
+
     @FindBy(css = "[title='Women']")
     private WebElement womenButton;
+
     @FindBy(css = "[title='Blouses']")
     private WebElement blouseButton;
+
     @FindBy(css = ".account")
     private WebElement accountButton;
 

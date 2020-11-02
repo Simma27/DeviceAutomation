@@ -2,7 +2,7 @@ package ui.pages.payment;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ui.pages.main.BasePage;
+import ui.base.BasePage;
 
 /**
  * The class describe WebElements Payment page.
@@ -11,18 +11,25 @@ public class PaymentPage extends BasePage {
 
     @FindBy(css = ".bankwire")
     private WebElement payByBankWireButton;
+
     @FindBy(css = "button.button-medium > span")
     private WebElement confirmOrder;
+
     @FindBy(css = ".cheque-indent > strong:nth-child(1)")
     private WebElement orderResult;
+
     @FindBy(css = ".box > strong:nth-child(13)")
     private WebElement message;
+
     @FindBy(css = ".price strong")
     private WebElement price;
+
     @FindBy(css = "#center_column > div > strong:nth-child(5)")
     private WebElement nameOfAccountOwner;
+
     @FindBy(css = "#center_column > div > strong:nth-child(7)")
     private WebElement details;
+
     @FindBy(css = "#center_column > div > strong:nth-child(9)")
     private WebElement bankName;
 

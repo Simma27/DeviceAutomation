@@ -2,6 +2,8 @@ package ui.services.product;
 
 import ui.pages.product.FadedShortSleeveTshirtsPage;
 
+import static ui.services.product.CatalogPageService.goToFadedShortSleeveTshirtsPage;
+
 /**
  * The class consist of methods to work with Faded Short Sleeve T-shirts page.
  */
@@ -16,8 +18,8 @@ public class FadedShortSleeveTshirtsPageService {
      */
     public static FadedShortSleeveTshirtsPage writeReview(int stars, String title, String comment) {
         FadedShortSleeveTshirtsPage page = new FadedShortSleeveTshirtsPage();
+        goToFadedShortSleeveTshirtsPage();
         page.submitWriteReviewButton();
-        page.enterStarsQuality(stars);
         page.enterTitle(title);
         page.enterComment(comment);
         return page.submitSendButton();

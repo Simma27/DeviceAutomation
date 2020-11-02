@@ -8,20 +8,24 @@ import java.util.concurrent.TimeUnit;
 /**
  * The class provide WebDriver for testing framework.
  */
-public class DriverProvider {
+public final class DriverProvider {
+
+    private static volatile DriverProvider provider;
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
-    public static WebDriver initializeDriver() {
+    private DriverProvider(WebDriver driver) {
         System.setProperty("webdriver.chrome.driver", "C:\\work\\Drivers\\SeleniumWebDriver\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
         DRIVER.set(driver);
-        return DRIVER.get();
+        DRIVER.set(new ChromeDriver());
+        DRIVER.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        DRIVER.get().manage().window().maximize();
     }
 
     public static synchronized WebDriver getDriver() {
+        if (DRIVER.get() == null) {
+            provider = new DriverProvider(DRIVER.get());
+        }
         return DRIVER.get();
     }
 

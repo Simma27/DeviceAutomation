@@ -2,7 +2,7 @@ package ui.pages.payment;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ui.pages.main.BasePage;
+import ui.base.BasePage;
 
 /**
  * The class describe WebElements Addresses page.

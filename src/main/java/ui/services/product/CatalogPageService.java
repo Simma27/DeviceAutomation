@@ -5,6 +5,8 @@ import org.openqa.selenium.interactions.Actions;
 import ui.providers.DriverProvider;
 import ui.pages.product.CatalogPage;
 
+import static ui.services.main.HomePageService.chooseBlouses;
+
 /**
  * The class consist of methods to work with Catalog, switch to another product page.
  */
@@ -18,7 +20,8 @@ public class CatalogPageService {
         CatalogPage catalogPage = new CatalogPage();
         Actions actions = new Actions(DriverProvider.getDriver());
         actions.moveToElement(catalogPage.getPrintedDress())
-                .moveToElement(catalogPage.AddToCartButton()).click().build().perform();
+                .click(catalogPage.AddToCartButton())
+                .build().perform();
         catalogPage.submitProceedToCheckoutButton();
     }
 
@@ -40,6 +43,7 @@ public class CatalogPageService {
     @Step
     public static void goToBlousePage() {
         CatalogPage catalogPage = new CatalogPage();
+        chooseBlouses();
         Actions actions = new Actions(DriverProvider.getDriver());
         actions.moveToElement(catalogPage.getBlouse())
                 .click(catalogPage.getMoreBlouseButton())

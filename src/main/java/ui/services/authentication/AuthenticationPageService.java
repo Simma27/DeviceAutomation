@@ -1,7 +1,12 @@
 package ui.services.authentication;
 
 import io.qameta.allure.Step;
+import ui.models.PersonalInformation;
 import ui.pages.authentication.AuthenticationPage;
+import ui.pages.main.MyAccountPage;
+
+import static ui.services.authentication.CreateAccountPageService.registrationNewAccount;
+import static ui.services.main.HomePageService.signIn;
 
 
 /**
@@ -27,10 +32,17 @@ public class AuthenticationPageService {
      */
     @Step
     public static void logIn(String emailAddress, String password) {
+        signIn();
         AuthenticationPage authenticationPage = new AuthenticationPage();
         authenticationPage.enterEmailAddress(emailAddress);
         authenticationPage.enterPassword(password);
         authenticationPage.submitSignIn();
+    }
+
+    public static MyAccountPage createNewAccount(PersonalInformation personalInformation) {
+        signIn();
+        initiationСreateNewAccount(personalInformation.getEmail());
+        return registrationNewAccount(personalInformation);
     }
 
 }

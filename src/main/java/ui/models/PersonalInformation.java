@@ -11,6 +11,8 @@ public class PersonalInformation {
 
     private String customerLastname;
 
+    private String email;
+
     private String password;
 
     private String day;
@@ -62,6 +64,8 @@ public class PersonalInformation {
         return customerLastname;
     }
 
+    public String getEmail() { return email; }
+
     public String getPassword() {
         return password;
     }
@@ -105,7 +109,6 @@ public class PersonalInformation {
     public String getAddress1() {
         return address1;
     }
-
 
     public String getAddress2() {
         return address2;
@@ -171,6 +174,11 @@ public class PersonalInformation {
 
         public Builder withCustomerLastName(String customerLastName) {
             personalInformation.customerLastname = customerLastName;
+            return this;
+        }
+
+        public Builder withEmail(String email) {
+            personalInformation.email = email;
             return this;
         }
 

@@ -3,7 +3,7 @@ package ui.pages.authentication;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ui.pages.main.BasePage;
+import ui.base.BasePage;
 import ui.pages.main.MyAccountPage;
 
 /**
@@ -13,50 +13,76 @@ public class CreateAccountPage extends BasePage {
 
     @FindBy(id = "id_gender1")
     private WebElement mister;
+
     @FindBy(id = "id_gender2")
     private WebElement missis;
+
     @FindBy(id = "customer_firstname")
     private WebElement customerFirstname;
+
     @FindBy(id = "customer_lastname")
     private WebElement customerLastname;
+
+    @FindBy(id = "email")
+    private WebElement email;
+
     @FindBy(id = "passwd")
     private WebElement password;
+
     @FindBy(id = "days")
     private WebElement day;
+
     @FindBy(id = "months")
     private WebElement month;
+
     @FindBy(id = "years")
     private WebElement year;
+
     @FindBy(id = "newsletter")
     private WebElement checkbox;
+
     @FindBy(id = "optin")
     private WebElement optin;
+
     @FindBy(id = "firstname")
     private WebElement firstname;
+
     @FindBy(id = "lastname")
     private WebElement lastname;
+
     @FindBy(id = "company")
     private WebElement company;
+
     @FindBy(id = "address1")
     private WebElement address1;
+
     @FindBy(id = "address2")
     private WebElement address2;
+
     @FindBy(id = "city")
     private WebElement city;
+
     @FindBy(id = "id_country")
     private WebElement country;
+
     @FindBy(id = "id_state")
     private WebElement state;
+
     @FindBy(id = "postcode")
     private WebElement postcode;
+
     @FindBy(id = "other")
     private WebElement other;
+
     @FindBy(id = "phone")
     private WebElement phone;
+
     @FindBy(id = "phone_mobile")
     private WebElement phoneMobile;
+
     @FindBy(id = "alias")
     private WebElement alias;
+
     @FindBy(css = "#submitAccount > span")
     private WebElement submitRegisterButton;
 
@@ -184,4 +210,7 @@ public class CreateAccountPage extends BasePage {
         return new MyAccountPage();
     }
 
+    public void enterEmail(String emails) {
+         email.sendKeys(emails);
+    }
 }

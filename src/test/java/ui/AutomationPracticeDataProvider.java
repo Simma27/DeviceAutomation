@@ -1,8 +1,8 @@
 package ui;
 
-import ui.models.PersonalInformation;
 import net.bytebuddy.utility.RandomString;
 import org.testng.annotations.DataProvider;
+import ui.models.PersonalInformation;
 
 public class AutomationPracticeDataProvider {
 
@@ -12,6 +12,7 @@ public class AutomationPracticeDataProvider {
                 .withGender(true)
                 .withCustomerFirstName("Ivan")
                 .withCustomerLastName("Ivanov")
+                .withEmail(RandomString.make(5) + "@mail.com")
                 .withPassword("11111")
                 .withBirthdayDay("1")
                 .withBirthdayMonth("January")
@@ -28,7 +29,7 @@ public class AutomationPracticeDataProvider {
                 .withHomePhoneNumber("+375441111111")
                 .withMobilePhoneNumber("+375292222222")
                 .withAlias("18, Baker street")
-                .build(), RandomString.make(5)}
+                .build()}
         };
     }
 }

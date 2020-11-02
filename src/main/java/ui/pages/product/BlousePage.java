@@ -2,7 +2,7 @@ package ui.pages.product;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ui.pages.main.BasePage;
+import ui.base.BasePage;
 
 /**
  * The class describe WebElements Blouse page.
@@ -11,6 +11,7 @@ public class BlousePage extends BasePage {
 
     @FindBy(id = "wishlist_button")
     private WebElement wishlistButton;
+
     @FindBy(css = ".fancybox-error")
     private WebElement resultMessage;
 

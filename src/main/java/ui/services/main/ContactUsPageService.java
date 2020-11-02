@@ -3,6 +3,8 @@ package ui.services.main;
 import io.qameta.allure.Step;
 import ui.pages.main.ContactUsPage;
 
+import static ui.services.main.HomePageService.submitContactUs;
+
 /**
  * Class intended to work with CUSTOMER SERVICE on "Contact Us" page
  */
@@ -15,6 +17,7 @@ public class ContactUsPageService {
     @Step
     public static ContactUsPage sendMessage() {
         ContactUsPage contactUsPage = new ContactUsPage();
+        submitContactUs();
 //        Actions actions = new Actions(getDriver());
 //        actions.clickAndHold(contactUsPage.getSubjectHeading())
 //                .clickAndHold(contactUsPage.getCustomerService())

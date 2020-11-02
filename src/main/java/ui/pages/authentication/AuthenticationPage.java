@@ -3,7 +3,7 @@ package ui.pages.authentication;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import ui.pages.main.BasePage;
+import ui.base.BasePage;
 import ui.pages.main.MyAccountPage;
 
 /**
@@ -13,12 +13,16 @@ public class AuthenticationPage extends BasePage {
 
     @FindBy(id = "email_create")
     private WebElement newAccount;
+
     @FindBy(css = "#SubmitCreate > span")
     private WebElement submitCreateAnAccountButton;
+
     @FindBy(id = "email")
     private WebElement email;
+
     @FindBy(id = "passwd")
     private WebElement passwd;
+
     @FindBy(css = "#SubmitLogin > span")
     private WebElement signInButton;
 
@@ -26,9 +30,13 @@ public class AuthenticationPage extends BasePage {
         super();
     }
 
-    @Step("Enter account name")
-    public void enterAccountName(String accountName) {
-        newAccount.sendKeys(accountName + "@gmail.com");
+    /**
+     *
+     * @param accountEmail
+     */
+    @Step("Enter account email")
+    public void enterAccountName(String accountEmail) {
+        newAccount.sendKeys(accountEmail);
     }
 
     @Step
