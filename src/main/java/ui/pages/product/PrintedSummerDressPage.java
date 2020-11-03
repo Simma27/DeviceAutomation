@@ -8,7 +8,7 @@ import ui.models.Colour;
 import static ui.providers.DriverProvider.getDriver;
 
 /**
- * The class describe WebElements Printed Summer Dress T-shirts page.
+ * The class describe WebElements Printed Summer Dress page.
  */
 public class PrintedSummerDressPage extends BasePage {
 

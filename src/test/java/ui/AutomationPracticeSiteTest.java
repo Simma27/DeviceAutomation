@@ -38,7 +38,6 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Story("Create new account")
     @Description("Check possibility to create new account")
     @Severity(SeverityLevel.CRITICAL)
-    @Flaky
     public void newAccountTest(PersonalInformation personalInformation) {
 
         MyAccountPage page = createNewAccount(personalInformation);
@@ -61,7 +60,6 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Story("Order Evening Casual dress")
     @Description("Check the possibility to order Casual dress by bank wire")
     @Severity(SeverityLevel.CRITICAL)
-    @Flaky
     public void orderCasualDressTest() {
 
         logIn(EMAIL_ADDRESS, PASSWORD_EMAIL);
@@ -80,7 +78,6 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Story("Send email to customer service")
     @Description("Check the possibility to send email to Customer Service")
     @Severity(SeverityLevel.NORMAL)
-    @Flaky
     public void sendEmailToCustomerService(PersonalInformation personalInformation) {
         createNewAccount(personalInformation);
         chooseClothes(Clothes.CASUAL_DRESSES);
@@ -95,7 +92,6 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Story("Write review about product")
     @Description("Check the possibility to write review about 'Faded Short Sleeve T-shirts'")
     @Severity(SeverityLevel.MINOR)
-    @Flaky
     public void writeReviewTest() {
         int stars = 5;
         String title = "High quality product";
@@ -136,7 +132,6 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Story("Choose printed summer dress different colour")
     @Description("Check the possibility Printed Summer Dress page display for different colour dress")
     @Severity(SeverityLevel.NORMAL)
-    @Flaky
     public void differentColourPrintedSummerDressPageTest() {
 
         goToPrintedSummerDressPage();

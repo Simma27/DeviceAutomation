@@ -11,7 +11,10 @@ import static ui.services.main.HomePageService.chooseClothes;
 
 
 public class SummerDressesPageService {
-
+    /**
+     * Switch to printed summer dress page.
+     * @return page with information about printed summer dress.
+     */
     @Step("Switch to printed summer dress page")
     public static PrintedSummerDressPage goToPrintedSummerDressPage() {
         SummerDressesPage page = new SummerDressesPage();
