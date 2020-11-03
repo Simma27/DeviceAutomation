@@ -4,6 +4,7 @@ import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.base.BaseTest;
+import ui.models.Clothes;
 import ui.models.PersonalInformation;
 import ui.pages.main.ContactUsPage;
 import ui.pages.main.MyAccountPage;
@@ -12,13 +13,12 @@ import ui.pages.product.BlousePage;
 import ui.pages.product.FadedShortSleeveTshirtsPage;
 import ui.pages.product.PrintedSummerDressPage;
 
-import static ui.config.Colour.*;
+import static ui.models.Colour.*;
 import static ui.pages.product.PrintedSummerDressPage.chooseDressColour;
 import static ui.services.authentication.AuthenticationPageService.createNewAccount;
 import static ui.services.authentication.AuthenticationPageService.logIn;
 import static ui.services.main.ContactUsPageService.sendMessage;
-import static ui.services.main.HomePageService.chooseCasualDresses;
-import static ui.services.main.HomePageService.chooseTshirt;
+import static ui.services.main.HomePageService.chooseClothes;
 import static ui.services.main.MyAccountPageService.getWishlist;
 import static ui.services.main.MyAccountPageService.removeWishlist;
 import static ui.services.payment.PaymentPageService.registrationOfPurchase;
@@ -65,7 +65,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
     public void orderCasualDressTest() {
 
         logIn(EMAIL_ADDRESS, PASSWORD_EMAIL);
-        chooseCasualDresses();
+        chooseClothes(Clothes.CASUAL_DRESSES);
         PaymentPage page = registrationOfPurchase();
 
         Assert.assertEquals(page.getOrderResult(), "Your order on My Store is complete.");
@@ -83,7 +83,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Flaky
     public void sendEmailToCustomerService(PersonalInformation personalInformation) {
         createNewAccount(personalInformation);
-        chooseCasualDresses();
+        chooseClothes(Clothes.CASUAL_DRESSES);
         registrationOfPurchase();
         ContactUsPage contactUsPage = sendMessage();
 
@@ -103,7 +103,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
                 "Soft and stretchy material for a comfortable fit. " +
                 "Accessorize with a straw hat and you're ready for summer!";
         logIn(EMAIL_ADDRESS, PASSWORD_EMAIL);
-        chooseTshirt();
+        chooseClothes(Clothes.T_SHIRTS);
         FadedShortSleeveTshirtsPage page = writeReview(stars, title, comment);
 
         Assert.assertEquals(page.getResultMessage(),

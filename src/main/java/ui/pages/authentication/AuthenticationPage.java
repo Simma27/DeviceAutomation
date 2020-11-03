@@ -1,6 +1,5 @@
 package ui.pages.authentication;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ui.base.BasePage;
@@ -30,32 +29,23 @@ public class AuthenticationPage extends BasePage {
         super();
     }
 
-    /**
-     *
-     * @param accountEmail
-     */
-    @Step("Enter account email")
     public void enterAccountName(String accountEmail) {
         newAccount.sendKeys(accountEmail);
     }
 
-    @Step
     public void enterEmailAddress(String emailAddress) {
         email.sendKeys(emailAddress);
     }
 
-    @Step
     public void enterPassword(String password) {
         passwd.sendKeys(password);
     }
 
-    @Step("Create new account")
     public CreateAccountPage submitCreateNewAccount() {
         submitCreateAnAccountButton.click();
         return new CreateAccountPage();
     }
 
-    @Step("Log in")
     public MyAccountPage submitSignIn() {
         signInButton.click();
         return new MyAccountPage();

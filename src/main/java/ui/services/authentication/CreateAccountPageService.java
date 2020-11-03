@@ -16,7 +16,7 @@ public class CreateAccountPageService {
      * @param personalInformation is model with personal information for new account.
      * @return the page following the CreateAccountPage for managing my account.
      */
-    @Step
+    @Step("Register new an account.")
     public static MyAccountPage registrationNewAccount(PersonalInformation personalInformation) {
         CreateAccountPage accountPage = new CreateAccountPage();
         accountPage.isMister(personalInformation.isMister());

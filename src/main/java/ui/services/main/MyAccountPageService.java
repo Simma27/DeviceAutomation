@@ -13,7 +13,7 @@ public class MyAccountPageService {
      * The method unfold wishlist.
      * @return opened wishlist
      */
-    @Step
+    @Step("Get your wish list.")
     public static MyAccountPage getWishlist() {
         MyAccountPage page = new MyAccountPage();
         submitMyAccount();
@@ -24,7 +24,7 @@ public class MyAccountPageService {
     /**
      * The method remove wishlist
      */
-    @Step
+    @Step("Remove wish list.")
     public static void removeWishlist() {
         MyAccountPage page = new MyAccountPage();
         page.submitRemoveWishlistButton();

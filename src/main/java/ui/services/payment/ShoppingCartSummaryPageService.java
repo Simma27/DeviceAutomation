@@ -11,7 +11,7 @@ public class ShoppingCartSummaryPageService {
     /**
      * Method confirm product information, price, your delivery address and proceed checkout.
      */
-    @Step
+    @Step("Confirm shopping cart summary.")
     public static void submitProceedToCheckoutButton() {
         ShoppingCartSummaryPage shoppingCartSummaryPage = new ShoppingCartSummaryPage();
         shoppingCartSummaryPage.getProceedToCheckoutButton().click();

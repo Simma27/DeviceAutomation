@@ -1,4 +1,4 @@
-package ui.config;
+package ui.models;
 
 import org.openqa.selenium.By;
 
@@ -13,7 +13,7 @@ public enum Colour {
         return selector;
     }
 
-    By selector;
+    private By selector;
 
     Colour(By selector) {
         this.selector = selector;

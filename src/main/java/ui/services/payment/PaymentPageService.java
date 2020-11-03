@@ -15,7 +15,7 @@ public class PaymentPageService {
      * Method allows you to pay for the order by bank wire.
      * @return result information about order.
      */
-    @Step
+    @Step("Register purchase.")
     public static PaymentPage registrationOfPurchase() {
         PaymentPage paymentPage = new PaymentPage();
         goToPurchase();

@@ -11,7 +11,7 @@ public class ShippingPageService {
     /**
      * Method allow to agree to the terms of service
      */
-    @Step
+    @Step("Сonfirm delivery")
     public static void delivery() {
         ShippingPage shippingPage = new ShippingPage();
         shippingPage.getTermsOfServicecheckBox();

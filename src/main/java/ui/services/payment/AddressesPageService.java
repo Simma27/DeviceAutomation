@@ -11,7 +11,7 @@ public class AddressesPageService {
     /**
      * Method confirm address information and proceed checkout.
      */
-    @Step
+    @Step("Confirm Address")
     public static void submitProceedToCheckoutButton() {
         AddressesPage addressesPage = new AddressesPage();
         addressesPage.submitProceedToCheckoutButton();

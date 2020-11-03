@@ -12,7 +12,7 @@ public class BlousePageService {
      * Method allow to add blouse to your wishlist.
      * @return modal window with result adding blouse to wishlist
      */
-    @Step
+    @Step("Add to wish list.")
     public static BlousePage addToWishList() {
         BlousePage page = new BlousePage();
         return page.submitWishlistButton();
@@ -22,7 +22,7 @@ public class BlousePageService {
      * The method allows to exit the modal window with the result of adding to the wishlist.
      * @return Blouse page
      */
-    @Step
+    @Step("Quit message.")
     public static BlousePage quitMessage() {
         BlousePage page = new BlousePage();
         return page.submitQuitMessage();

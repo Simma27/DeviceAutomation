@@ -2,10 +2,11 @@ package ui.services.product;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.interactions.Actions;
-import ui.providers.DriverProvider;
+import ui.models.Clothes;
 import ui.pages.product.CatalogPage;
+import ui.providers.DriverProvider;
 
-import static ui.services.main.HomePageService.chooseBlouses;
+import static ui.services.main.HomePageService.chooseClothes;
 
 /**
  * The class consist of methods to work with Catalog, switch to another product page.
@@ -40,10 +41,10 @@ public class CatalogPageService {
     /**
      * Method switch to Blouse Page
      */
-    @Step
+    @Step("Switch to Blouse page.")
     public static void goToBlousePage() {
         CatalogPage catalogPage = new CatalogPage();
-        chooseBlouses();
+        chooseClothes(Clothes.BLOUSES);
         Actions actions = new Actions(DriverProvider.getDriver());
         actions.moveToElement(catalogPage.getBlouse())
                 .click(catalogPage.getMoreBlouseButton())

@@ -209,7 +209,7 @@ public class CreateAccountPage extends BasePage {
         submitRegisterButton.click();
         return new MyAccountPage();
     }
-
+    @Step("Enter email {0}.")
     public void enterEmail(String emails) {
          email.sendKeys(emails);
     }

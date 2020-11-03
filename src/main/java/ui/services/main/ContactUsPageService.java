@@ -14,20 +14,23 @@ public class ContactUsPageService {
      * Method fill message to Customer Service and send it.
      * @return modal window with result success sending message.
      */
-    @Step
+    @Step("Send message to customer service.")
     public static ContactUsPage sendMessage() {
         ContactUsPage contactUsPage = new ContactUsPage();
         submitContactUs();
 //        Actions actions = new Actions(getDriver());
-//        actions.clickAndHold(contactUsPage.getSubjectHeading())
-//                .clickAndHold(contactUsPage.getCustomerService())
-//                .clickAndHold(contactUsPage.getOrderReference())
-//                .clickAndHold(contactUsPage.getOrderNumber())
-//                .clickAndHold(contactUsPage.getProduct())
-//                .clickAndHold(contactUsPage.getProductName())
-//                .sendKeys(contactUsPage.getMessage(), "I have a problem with my order. Could you help me?")
-//                .clickAndHold(contactUsPage.getSendButton())
+//        actions.click(contactUsPage.getSubjectHeading())
+//                .click(contactUsPage.getCustomerService())
 //                .build().perform();
+//        actions.sendKeys(contactUsPage.getMessage(), "I have a problem with my order. Could you help me?")
+//                .click(contactUsPage.getOrderReference())
+//                .click(contactUsPage.getOrderNumber())
+//                .build().perform();
+//        actions.click(contactUsPage.getProduct())
+//                .click(contactUsPage.getProductName())
+//                .click(contactUsPage.getSendButton())
+//                .build()
+//                .perform();
         contactUsPage.getSubjectHeading().click();
         contactUsPage.getCustomerService().click();
         contactUsPage.getMessage().sendKeys("I have a problem with my order. Could you help me?");

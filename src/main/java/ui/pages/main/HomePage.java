@@ -1,6 +1,5 @@
 package ui.pages.main;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ui.base.BasePage;
@@ -45,7 +44,6 @@ public class HomePage extends BasePage {
         return new CatalogPage();
     }
 
-    @Step
     public CatalogPage submitCasualDresses() {
         casualDressesButton.click();
         return new CatalogPage();
@@ -59,13 +57,11 @@ public class HomePage extends BasePage {
         return casualDressesButton;
     }
 
-    @Step("Navigate to auntefication page")
     public AuthenticationPage signIn() {
         submitSignInButton.click();
         return new AuthenticationPage();
     }
 
-    @Step
     public void contactUs() {
         contactUsButton.click();
     }

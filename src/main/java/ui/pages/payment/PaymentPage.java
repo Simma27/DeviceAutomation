@@ -33,7 +33,6 @@ public class PaymentPage extends BasePage {
     @FindBy(css = "#center_column > div > strong:nth-child(9)")
     private WebElement bankName;
 
-
     public void submitPayByBankWireButton() {
         payByBankWireButton.click();
     }

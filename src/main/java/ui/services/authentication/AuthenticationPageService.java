@@ -18,19 +18,20 @@ public class AuthenticationPageService {
      *
      * @param accountEmail is email address for new account.
      */
-    @Step
+    @Step("Initiation create a new account.")
     public static void initiationСreateNewAccount(String accountEmail) {
         AuthenticationPage authenticationPage = new AuthenticationPage();
         authenticationPage.enterAccountName(accountEmail);
         authenticationPage.submitCreateNewAccount();
     }
+
     /**
      * Log in to automationpractice.com like user.
      *
      * @param emailAddress is existing email address.
-     * @param password is password your account.
+     * @param password     is password your account.
      */
-    @Step
+    @Step("Log in with email and password")
     public static void logIn(String emailAddress, String password) {
         signIn();
         AuthenticationPage authenticationPage = new AuthenticationPage();
@@ -39,6 +40,12 @@ public class AuthenticationPageService {
         authenticationPage.submitSignIn();
     }
 
+    /**
+     * Create a new account.
+     *
+     * @param personalInformation is model with personal information for new account.
+     */
+    @Step("Create a new account")
     public static MyAccountPage createNewAccount(PersonalInformation personalInformation) {
         signIn();
         initiationСreateNewAccount(personalInformation.getEmail());
