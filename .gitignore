@@ -3,6 +3,5 @@
 *.iml
 *.ipr
 .allure
-target/
 drivers
 allure-reports
