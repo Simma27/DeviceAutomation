@@ -3,6 +3,6 @@
 *.iml
 *.ipr
 .allure
-#target/
+target/
 drivers
-#allure-reports
+allure-reports

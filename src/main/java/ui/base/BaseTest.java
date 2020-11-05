@@ -9,7 +9,7 @@ import ui.listener.ScreenshotListener;
 import static ui.config.URLconfig.AUTOMATION_PRACTICE;
 import static ui.providers.DriverProvider.*;
 
-//@Listeners({ScreenshotListener.class})
+@Listeners({ScreenshotListener.class})
 public abstract class BaseTest {
 
     @BeforeMethod
