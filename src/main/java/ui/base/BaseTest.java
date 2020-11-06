@@ -19,7 +19,7 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void finish(ITestResult result) {
-        tearDown();
+//        tearDown();
     }
 
 }

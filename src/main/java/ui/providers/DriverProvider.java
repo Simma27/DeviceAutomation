@@ -1,5 +1,8 @@
 package ui.providers;
 
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -12,12 +15,14 @@ import java.util.concurrent.TimeUnit;
 /**
  * The class provide WebDriver for testing framework.
  */
+@Slf4j
 public final class DriverProvider {
 
 
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
     public static synchronized WebDriver getDriver() {
+        log.info("Get driver.");
         if (DRIVER.get() == null) {
             RemoteWebDriver remoteWebDriver;
             final DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -48,6 +53,7 @@ public final class DriverProvider {
 //    }
 
     public static void tearDown() {
+        log.info("Tear down WebDriver");
         if (DRIVER.get() != null) {
             DRIVER.get().quit();
             DRIVER.remove();

@@ -1,6 +1,8 @@
 package ui.services.product;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.interactions.Actions;
 import ui.models.Clothes;
 import ui.pages.product.CatalogPage;
@@ -11,13 +13,15 @@ import static ui.services.main.HomeService.chooseClothes;
 /**
  * The class consist of methods to work with Catalog, switch to another product page.
  */
+@Log4j2
 public class CatalogService {
 
     /**
      * Method allows to go to checkout
      */
-    @Step
+    @Step("Go to purchase")
     public static void goToPurchase() {
+        log.info("Go to purchase");
         CatalogPage catalogPage = new CatalogPage();
         catalogPage.submitAddToCartPrintesDressButton();
         catalogPage.submitProceedToCheckoutButton();
@@ -26,8 +30,9 @@ public class CatalogService {
     /**
      * Method switch to Faded Short Sleeve T-shirts Page
      */
-    @Step
+    @Step("Switch to Faded Short Sleeve T-shirts Page.")
     public static void goToFadedShortSleeveTshirtsPage() {
+        log.info("Switch to Faded Short Sleeve T-shirts Page.");
         CatalogPage catalogPage = new CatalogPage();
         catalogPage.submitMoreTshirtButton();
     }
@@ -37,6 +42,7 @@ public class CatalogService {
      */
     @Step("Switch to Blouse page.")
     public static void goToBlousePage() {
+        log.info("Switch to Blouse page.");
         CatalogPage catalogPage = new CatalogPage();
         chooseClothes(Clothes.BLOUSES);
         catalogPage.submitMoreBlouseButton();

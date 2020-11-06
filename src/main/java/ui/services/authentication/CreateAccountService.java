@@ -1,6 +1,9 @@
 package ui.services.authentication;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import ui.models.PersonalInformation;
 import ui.pages.authentication.CreateAccountPage;
 import ui.pages.main.MyAccountPage;
@@ -8,6 +11,7 @@ import ui.pages.main.MyAccountPage;
 /**
  * Class provide methods to work with page "Create new an account".
  */
+@Log4j2
 public class CreateAccountService {
 
     /**
@@ -18,6 +22,7 @@ public class CreateAccountService {
      */
     @Step("Register new an account.")
     public static MyAccountPage registrationNewAccount(PersonalInformation personalInformation) {
+        log.info("Register new an account.");
         CreateAccountPage accountPage = new CreateAccountPage();
         accountPage.isMister(personalInformation.isMister());
         accountPage.enterCustomerFirstName(personalInformation.getCustomerFirstname());

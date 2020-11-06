@@ -1,6 +1,9 @@
 package ui.services.main;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import ui.pages.main.ContactUsPage;
 
 import static ui.services.main.HomeService.submitContactUs;
@@ -8,6 +11,7 @@ import static ui.services.main.HomeService.submitContactUs;
 /**
  * Class intended to work with CUSTOMER SERVICE on "Contact Us" page
  */
+@Log4j2
 public class ContactUsService {
 
     /**
@@ -16,6 +20,7 @@ public class ContactUsService {
      */
     @Step("Send message to customer service.")
     public static ContactUsPage sendMessage() {
+        log.info("Send message to customer service.");
         ContactUsPage contactUsPage = new ContactUsPage();
         submitContactUs();
         contactUsPage.submitSubjectHeading();
