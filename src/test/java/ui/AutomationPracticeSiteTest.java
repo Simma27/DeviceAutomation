@@ -15,18 +15,18 @@ import ui.pages.product.PrintedSummerDressPage;
 
 import static ui.models.Colour.*;
 import static ui.pages.product.PrintedSummerDressPage.chooseDressColour;
-import static ui.services.authentication.AuthenticationPageService.createNewAccount;
-import static ui.services.authentication.AuthenticationPageService.logIn;
-import static ui.services.main.ContactUsPageService.sendMessage;
-import static ui.services.main.HomePageService.chooseClothes;
-import static ui.services.main.MyAccountPageService.getWishlist;
-import static ui.services.main.MyAccountPageService.removeWishlist;
-import static ui.services.payment.PaymentPageService.registrationOfPurchase;
-import static ui.services.product.BlousePageService.addToWishList;
-import static ui.services.product.BlousePageService.quitMessage;
-import static ui.services.product.CatalogPageService.goToBlousePage;
-import static ui.services.product.FadedShortSleeveTshirtsPageService.writeReview;
-import static ui.services.product.SummerDressesPageService.goToPrintedSummerDressPage;
+import static ui.services.authentication.AuthenticationService.createNewAccount;
+import static ui.services.authentication.AuthenticationService.logIn;
+import static ui.services.main.ContactUsService.sendMessage;
+import static ui.services.main.HomeService.chooseClothes;
+import static ui.services.main.MyAccountService.getWishlist;
+import static ui.services.main.MyAccountService.removeWishlist;
+import static ui.services.payment.PaymentService.registrationOfPurchase;
+import static ui.services.product.BlouseService.addToWishList;
+import static ui.services.product.BlouseService.quitMessage;
+import static ui.services.product.CatalogService.goToBlousePage;
+import static ui.services.product.FadedShortSleeveTshirtsService.writeReview;
+import static ui.services.product.SummerDressesService.goToPrintedSummerDressPage;
 
 @Epic("Automation practice site test")
 public class AutomationPracticeSiteTest extends BaseTest {
@@ -84,7 +84,7 @@ public class AutomationPracticeSiteTest extends BaseTest {
         registrationOfPurchase();
         ContactUsPage contactUsPage = sendMessage();
 
-        Assert.assertEquals(contactUsPage.getResultMessage().getText(),
+        Assert.assertEquals(contactUsPage.getResultMessage(),
                 "Your message has been successfully sent to our team.");
     }
 

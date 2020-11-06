@@ -5,14 +5,14 @@ import ui.models.PersonalInformation;
 import ui.pages.authentication.AuthenticationPage;
 import ui.pages.main.MyAccountPage;
 
-import static ui.services.authentication.CreateAccountPageService.registrationNewAccount;
-import static ui.services.main.HomePageService.signIn;
+import static ui.services.authentication.CreateAccountService.registrationNewAccount;
+import static ui.services.main.HomeService.signIn;
 
 
 /**
  * Class provide methods to work with Authentication Page.
  */
-public class AuthenticationPageService {
+public class AuthenticationService {
     /**
      * Method to create a new account and switch to CreateAccountPage.
      *

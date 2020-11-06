@@ -3,12 +3,12 @@ package ui.services.main;
 import io.qameta.allure.Step;
 import ui.pages.main.MyAccountPage;
 
-import static ui.services.main.HomePageService.submitMyAccount;
+import static ui.services.main.HomeService.submitMyAccount;
 
 /**
  * Class consist of methods to work with "Me account" page
  */
-public class MyAccountPageService {
+public class MyAccountService {
     /**
      * The method unfold wishlist.
      * @return opened wishlist
@@ -29,5 +29,5 @@ public class MyAccountPageService {
         MyAccountPage page = new MyAccountPage();
         page.submitRemoveWishlistButton();
         }
-    }
+}
 

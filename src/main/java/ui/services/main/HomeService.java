@@ -11,7 +11,7 @@ import static ui.providers.DriverProvider.getDriver;
 /**
  * Class provide methods to work with My Account page.
  */
-public class HomePageService {
+public class HomeService {
 
     /**
      * The method switch to Authentication page.
@@ -45,9 +45,7 @@ public class HomePageService {
     @Step("Choose {0}")
     public static void chooseClothes(Clothes clothes) {
         HomePage homePage = new HomePage();
-        Actions actions = new Actions(getDriver());
-        actions.moveToElement(homePage.getWomenButton())
-                .build().perform();
+        homePage.moveToWomenButton();
         getDriver().findElement(clothes.getSelector()).click();
     }
 

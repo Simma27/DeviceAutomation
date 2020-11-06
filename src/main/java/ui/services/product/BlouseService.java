@@ -6,7 +6,7 @@ import ui.pages.product.BlousePage;
 /**
  * The class consist of methods to work with Blouse page.
  */
-public class BlousePageService {
+public class BlouseService {
 
     /**
      * Method allow to add blouse to your wishlist.

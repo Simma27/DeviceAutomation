@@ -6,7 +6,7 @@ import ui.pages.payment.AddressesPage;
 /**
  * Class consist of methods to fill and check address information in payment.
  */
-public class AddressesPageService {
+public class AddressesService {
 
     /**
      * Method confirm address information and proceed checkout.

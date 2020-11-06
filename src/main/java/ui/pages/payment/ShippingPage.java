@@ -13,14 +13,14 @@ public class ShippingPage extends BasePage {
     private static WebElement proceedToCheckoutButton;
 
     @FindBy(id = "cgv")
-    private WebElement termsOfServicecheckBox;
+    private WebElement termsOfServiceCheckBox;
 
-    public static void submitProceedToCheckoutButton() {
+    public void submitProceedToCheckoutButton() {
         proceedToCheckoutButton.click();
     }
 
-    public void getTermsOfServicecheckBox() {
-        termsOfServicecheckBox.click();
+    public void submitTermsOfServiceCheckBox() {
+        termsOfServiceCheckBox.click();
     }
 
 }

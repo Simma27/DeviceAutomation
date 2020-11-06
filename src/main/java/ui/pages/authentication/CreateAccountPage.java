@@ -39,19 +39,20 @@ public class CreateAccountPage extends BasePage {
     private WebElement year;
 
     @FindBy(id = "newsletter")
-    private WebElement checkbox;
+    private WebElement checkBox;
 
     @FindBy(id = "optin")
     private WebElement optin;
 
     @FindBy(id = "firstname")
-    private WebElement firstname;
+    private WebElement firstName;
 
     @FindBy(id = "lastname")
-    private WebElement lastname;
+    private WebElement lastName;
 
     @FindBy(id = "company")
-    private WebElement company;
+    private WebElement company
+            ;
 
     @FindBy(id = "address1")
     private WebElement address1;
@@ -128,7 +129,7 @@ public class CreateAccountPage extends BasePage {
     @Step("Chose Sign up for our newsletter.")
     public void choseSignUpForOurNewsletter(boolean signUpGorOurNewsletter) {
         if (signUpGorOurNewsletter) {
-            checkbox.click();
+            checkBox.click();
         }
     }
 
@@ -141,12 +142,12 @@ public class CreateAccountPage extends BasePage {
 
     @Step("Enter first name {0}.")
     public void enterFirstName(String first_name) {
-        firstname.sendKeys(first_name);
+        firstName.sendKeys(first_name);
     }
 
     @Step("Enter first name {0}.")
     public void enterLastName(String last_name) {
-        lastname.sendKeys(last_name);
+        lastName.sendKeys(last_name);
     }
 
     @Step("Enter company name {0}.")

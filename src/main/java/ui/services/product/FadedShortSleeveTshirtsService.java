@@ -3,12 +3,12 @@ package ui.services.product;
 import io.qameta.allure.Step;
 import ui.pages.product.FadedShortSleeveTshirtsPage;
 
-import static ui.services.product.CatalogPageService.goToFadedShortSleeveTshirtsPage;
+import static ui.services.product.CatalogService.goToFadedShortSleeveTshirtsPage;
 
 /**
  * The class consist of methods to work with Faded Short Sleeve T-shirts page.
  */
-public class FadedShortSleeveTshirtsPageService {
+public class FadedShortSleeveTshirtsService {
 
     /**
      * The method fills in the review fields and sends it.

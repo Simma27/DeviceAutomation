@@ -3,13 +3,13 @@ package ui.services.payment;
 import io.qameta.allure.Step;
 import ui.pages.payment.PaymentPage;
 
-import static ui.services.payment.ShippingPageService.delivery;
-import static ui.services.product.CatalogPageService.goToPurchase;
+import static ui.services.payment.ShippingService.delivery;
+import static ui.services.product.CatalogService.goToPurchase;
 
 /**
  * The class consists of different payment methods for orders
  */
-public class PaymentPageService {
+public class PaymentService {
 
     /**
      * Method allows you to pay for the order by bank wire.
@@ -19,8 +19,8 @@ public class PaymentPageService {
     public static PaymentPage registrationOfPurchase() {
         PaymentPage paymentPage = new PaymentPage();
         goToPurchase();
-        ShoppingCartSummaryPageService.submitProceedToCheckoutButton();
-        AddressesPageService.submitProceedToCheckoutButton();
+        ShoppingCartSummaryService.submitProceedToCheckoutButton();
+        AddressesService.submitProceedToCheckoutButton();
         delivery();
         paymentPage.submitPayByBankWireButton();
         return paymentPage.submitConfirmOrder();

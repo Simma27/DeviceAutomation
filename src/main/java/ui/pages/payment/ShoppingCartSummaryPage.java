@@ -12,8 +12,8 @@ public class ShoppingCartSummaryPage extends BasePage {
     @FindBy(css = ".standard-checkout > span")
     private WebElement proceedToCheckoutButton;
 
-    public WebElement getProceedToCheckoutButton() {
-        return proceedToCheckoutButton;
+    public void getProceedToCheckoutButton() {
+        proceedToCheckoutButton.click();
     }
 
 }

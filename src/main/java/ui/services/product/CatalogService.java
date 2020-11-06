@@ -6,12 +6,12 @@ import ui.models.Clothes;
 import ui.pages.product.CatalogPage;
 import ui.providers.DriverProvider;
 
-import static ui.services.main.HomePageService.chooseClothes;
+import static ui.services.main.HomeService.chooseClothes;
 
 /**
  * The class consist of methods to work with Catalog, switch to another product page.
  */
-public class CatalogPageService {
+public class CatalogService {
 
     /**
      * Method allows to go to checkout
@@ -19,10 +19,7 @@ public class CatalogPageService {
     @Step
     public static void goToPurchase() {
         CatalogPage catalogPage = new CatalogPage();
-        Actions actions = new Actions(DriverProvider.getDriver());
-        actions.moveToElement(catalogPage.getPrintedDress())
-                .click(catalogPage.AddToCartButton())
-                .build().perform();
+        catalogPage.submitAddToCartPrintesDressButton();
         catalogPage.submitProceedToCheckoutButton();
     }
 
@@ -32,10 +29,7 @@ public class CatalogPageService {
     @Step
     public static void goToFadedShortSleeveTshirtsPage() {
         CatalogPage catalogPage = new CatalogPage();
-        Actions actions = new Actions(DriverProvider.getDriver());
-        actions.moveToElement(catalogPage.getTshirt())
-                .click(catalogPage.getMoreTshirtButton())
-                .build().perform();
+        catalogPage.submitMoreTshirtButton();
     }
 
     /**
@@ -45,10 +39,7 @@ public class CatalogPageService {
     public static void goToBlousePage() {
         CatalogPage catalogPage = new CatalogPage();
         chooseClothes(Clothes.BLOUSES);
-        Actions actions = new Actions(DriverProvider.getDriver());
-        actions.moveToElement(catalogPage.getBlouse())
-                .click(catalogPage.getMoreBlouseButton())
-                .build().perform();
+        catalogPage.submitMoreBlouseButton();
     }
 }
 

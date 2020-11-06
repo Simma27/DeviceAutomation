@@ -1,10 +1,13 @@
 package ui.pages.main;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import ui.base.BasePage;
 import ui.pages.authentication.AuthenticationPage;
 import ui.pages.product.CatalogPage;
+
+import static ui.providers.DriverProvider.getDriver;
 
 /**
  * Site home page.
@@ -28,7 +31,7 @@ public class HomePage extends BasePage {
     private WebElement contactUsButton;
 
     @FindBy(css = "#block_top_menu > ul > li:nth-child(3) > a")
-    private WebElement tshirtButton;
+    private WebElement tShirtButton;
 
     @FindBy(css = "[title='Women']")
     private WebElement womenButton;
@@ -40,21 +43,13 @@ public class HomePage extends BasePage {
     private WebElement accountButton;
 
     public CatalogPage submitTshirtButton() {
-        tshirtButton.click();
+        tShirtButton.click();
         return new CatalogPage();
     }
 
     public CatalogPage submitCasualDresses() {
         casualDressesButton.click();
         return new CatalogPage();
-    }
-
-    public WebElement getDressesButton() {
-        return dressesButton;
-    }
-
-    public WebElement getCasualDressesButton() {
-        return casualDressesButton;
     }
 
     public AuthenticationPage signIn() {
@@ -66,21 +61,15 @@ public class HomePage extends BasePage {
         contactUsButton.click();
     }
 
-    public WebElement getWomenButton() {
-        return womenButton;
-    }
-
-    public WebElement getBlouseButton() {
-        return blouseButton;
+    public void moveToWomenButton() {
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(womenButton)
+                .build().perform();
     }
 
     public MyAccountPage submitAccountButton() {
         accountButton.click();
         return new MyAccountPage();
-    }
-
-    public WebElement getSummerDressesButton() {
-        return summerDressesButton;
     }
 
 }

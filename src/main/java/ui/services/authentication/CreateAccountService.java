@@ -8,7 +8,7 @@ import ui.pages.main.MyAccountPage;
 /**
  * Class provide methods to work with page "Create new an account".
  */
-public class CreateAccountPageService {
+public class CreateAccountService {
 
     /**
      * The method fills in the profile data for a new account and registers the account.

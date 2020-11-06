@@ -17,7 +17,7 @@ public class MyAccountPage extends BasePage {
     private WebElement mainLogoBanner;
 
     @FindBy(id = "searchbox")
-    private WebElement searchbox;
+    private WebElement searchBox;
 
     @FindBy(css = ".page-heading")
     private WebElement myAccountLogo;
@@ -64,7 +64,7 @@ public class MyAccountPage extends BasePage {
 
     @Step("Searchbox is displayed")
     public boolean searchBoxIsDisplayed() {
-        return searchbox.isDisplayed();
+        return searchBox.isDisplayed();
     }
 
     @Step("My account logo is displayed")
@@ -118,7 +118,4 @@ public class MyAccountPage extends BasePage {
         removeWishlistButton.click();
     }
 
-    public WebElement getRemoveWishlistButton() {
-        return removeWishlistButton;
-    }
 }

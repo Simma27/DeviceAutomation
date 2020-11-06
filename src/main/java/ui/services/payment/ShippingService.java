@@ -6,7 +6,7 @@ import ui.pages.payment.ShippingPage;
 /**
  * The class consists of methods for selecting and checking product delivery.
  */
-public class ShippingPageService {
+public class ShippingService {
 
     /**
      * Method allow to agree to the terms of service
@@ -14,7 +14,7 @@ public class ShippingPageService {
     @Step("Сonfirm delivery")
     public static void delivery() {
         ShippingPage shippingPage = new ShippingPage();
-        shippingPage.getTermsOfServicecheckBox();
-        ShippingPage.submitProceedToCheckoutButton();
+        shippingPage.submitTermsOfServiceCheckBox();
+        shippingPage.submitProceedToCheckoutButton();
     }
 }

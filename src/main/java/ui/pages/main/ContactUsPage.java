@@ -36,40 +36,41 @@ public class ContactUsPage extends BasePage {
     @FindBy(css = ".alert")
     private WebElement resultMessage;
 
-    public WebElement getOrderReference() {
-        return orderReference;
+    public void submitOrderReference() {
+        orderReference.click();
     }
 
-    public WebElement getOrderNumber() {
-        return orderNumber;
+    public void submitOrderNumber() {
+        orderNumber.click();
     }
 
-    public WebElement getProductName() {
-        return productName;
+    public void submitProductName() {
+        productName.click();
     }
 
-    public WebElement getSubjectHeading() {
-        return subjectHeading;
+    public void submitSubjectHeading() {
+        subjectHeading.click();
     }
 
-    public WebElement getCustomerService() {
-        return customerService;
+    public void submitCustomerService() {
+        customerService.click();
     }
 
-    public WebElement getSendButton() {
-        return sendButton;
+    public ContactUsPage sumbitSendButton() {
+        sendButton.click();
+        return new ContactUsPage();
     }
 
-    public WebElement getProduct() {
-        return product;
+    public void submitProduct() {
+        product.click();
     }
 
-    public WebElement getMessage() {
-        return message;
+    public void enterMessage(String messag) {
+        message.sendKeys(messag);
     }
 
-    public WebElement getResultMessage() {
-        return resultMessage;
+    public String getResultMessage() {
+        return resultMessage.getText();
     }
 
 }
