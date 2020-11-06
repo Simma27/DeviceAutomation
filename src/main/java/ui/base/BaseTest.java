@@ -1,5 +1,6 @@
 package ui.base;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -19,7 +20,7 @@ public abstract class BaseTest {
 
     @AfterMethod
     public void finish(ITestResult result) {
-//        tearDown();
+        tearDown();
     }
 
 }
