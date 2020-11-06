@@ -12,18 +12,6 @@ import static ui.providers.DriverProvider.getDriver;
  */
 public class PrintedSummerDressPage extends BasePage {
 
-    @FindBy(id = "color_11")
-    private WebElement blackColour;
-
-    @FindBy(id = "color_13")
-    private WebElement orangeColour;
-
-    @FindBy(id = "color_14")
-    private WebElement blueColour;
-
-    @FindBy(id = "color_16")
-    private WebElement yellowColour;
-
     @FindBy(id = "bigpic")
     private WebElement bigPicture;
 
@@ -32,8 +20,14 @@ public class PrintedSummerDressPage extends BasePage {
         return new PrintedSummerDressPage();
     }
 
-    public WebElement getBigPicture() {
-        return bigPicture;
+    public String getAttributeBigPicture(String attribute) {
+        return bigPicture.getAttribute(attribute);
     }
+
+    public boolean isDisplayedBigPicture() {
+        return bigPicture.isDisplayed();
+    }
+
+
 
 }

@@ -133,25 +133,25 @@ public class AutomationPracticeSiteTest extends BaseTest {
     @Description("Check the possibility Printed Summer Dress page display for different colour dress")
     @Severity(SeverityLevel.NORMAL)
     public void differentColourPrintedSummerDressPageTest() {
-
+        String attribute = "src";
         goToPrintedSummerDressPage();
         PrintedSummerDressPage page = chooseDressColour(BLACK);
 
-        Assert.assertEquals(page.getBigPicture().getAttribute("src"),
+        Assert.assertEquals(page.getAttributeBigPicture(attribute),
                 "http://automationpractice.com/img/p/1/5/15-large_default.jpg");
-        Assert.assertTrue(page.getBigPicture().isDisplayed());
+        Assert.assertTrue(page.isDisplayedBigPicture());
         chooseDressColour(ORANGE);
-        Assert.assertEquals(page.getBigPicture().getAttribute("src"),
+        Assert.assertEquals(page.getAttributeBigPicture(attribute),
                 "http://automationpractice.com/img/p/1/4/14-large_default.jpg");
-        Assert.assertTrue(page.getBigPicture().isDisplayed());
+        Assert.assertTrue(page.isDisplayedBigPicture());
         chooseDressColour(BLUE);
-        Assert.assertEquals(page.getBigPicture().getAttribute("src"),
+        Assert.assertEquals(page.getAttributeBigPicture(attribute),
                 "http://automationpractice.com/img/p/1/3/13-large_default.jpg");
-        Assert.assertTrue(page.getBigPicture().isDisplayed());
+        Assert.assertTrue(page.isDisplayedBigPicture());
         chooseDressColour(YELLOW);
-        Assert.assertEquals(page.getBigPicture().getAttribute("src"),
+        Assert.assertEquals(page.getAttributeBigPicture(attribute),
                 "http://automationpractice.com/img/p/1/2/12-large_default.jpg");
-        Assert.assertTrue(page.getBigPicture().isDisplayed());
+        Assert.assertTrue(page.isDisplayedBigPicture());
     }
 
 }
