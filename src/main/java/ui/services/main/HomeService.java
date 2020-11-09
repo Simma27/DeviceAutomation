@@ -21,7 +21,7 @@ public class HomeService {
      */
     @Step("Press sign in button.")
     public static void signIn() {
-        log.info("Press sign in button.");
+        log.info("Step: Press sign in button, method: signIn()");
         HomePage homePage = new HomePage();
         homePage.signIn();
     }
@@ -31,7 +31,7 @@ public class HomeService {
      */
     @Step("Press Contact us button.")
     public static void submitContactUs() {
-        log.info("Press Contact us button.");
+        log.info("Step: Press Contact us button, method: submitContactUs()");
         HomePage homePage = new HomePage();
         homePage.contactUs();
     }
@@ -41,7 +41,7 @@ public class HomeService {
      */
     @Step("Press My account button.")
     public static MyAccountPage submitMyAccount() {
-        log.info("Press My account button.");
+        log.info("Step: Press My account button, method: submitMyAccount()");
         HomePage homePage = new HomePage();
         return homePage.submitAccountButton();
     }
@@ -50,7 +50,8 @@ public class HomeService {
      */
     @Step("Choose {0}")
     public static void chooseClothes(Clothes clothes) {
-        log.info("Choose clothes");
+        log.info("Step: Choose color, method: chooseClothes(Clothes clothes)" +
+                "input parameter: personalInformation " + clothes.name());
         HomePage homePage = new HomePage();
         homePage.moveToWomenButton();
         getDriver().findElement(clothes.getSelector()).click();

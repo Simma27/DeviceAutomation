@@ -16,7 +16,7 @@ public class ShoppingCartSummaryService {
      */
     @Step("Confirm shopping cart summary.")
     public static void submitProceedToCheckoutButton() {
-        log.info("Confirm shopping cart summary.");
+        log.info("Step: Confirm shopping cart summary, method: submitProceedToCheckoutButton()");
         ShoppingCartSummaryPage shoppingCartSummaryPage = new ShoppingCartSummaryPage();
         shoppingCartSummaryPage.getProceedToCheckoutButton();
     }

@@ -22,7 +22,8 @@ public class FadedShortSleeveTshirtsService {
      */
     @Step("Write review.")
     public static FadedShortSleeveTshirtsPage writeReview(int stars, String title, String comment) {
-        log.info("Write review.");
+        log.info("Step: Write review, method: writeReview(int stars, String title, String comment), " +
+                "input parameters: stars " + stars + ",title: " +title + ",comment: " + comment);
         FadedShortSleeveTshirtsPage page = new FadedShortSleeveTshirtsPage();
         goToFadedShortSleeveTshirtsPage();
         page.submitWriteReviewButton();

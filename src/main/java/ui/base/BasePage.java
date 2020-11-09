@@ -10,7 +10,7 @@ import static ui.providers.DriverProvider.getDriver;
  */
 public class BasePage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public BasePage() {
         this.driver = getDriver();

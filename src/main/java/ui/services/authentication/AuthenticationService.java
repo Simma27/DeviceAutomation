@@ -24,7 +24,8 @@ public class AuthenticationService {
      */
     @Step("Initiation create a new account.")
     public static void initiationСreateNewAccount(String accountEmail) {
-        log.info("Initiation create a new account.");
+        log.info("Step:Initiation create a new account, method: initiationСreateNewAccount(String accountEmail), " +
+                "input parameter: " + accountEmail);
         AuthenticationPage authenticationPage = new AuthenticationPage();
         authenticationPage.enterAccountName(accountEmail);
         authenticationPage.submitCreateNewAccount();
@@ -38,7 +39,8 @@ public class AuthenticationService {
      */
     @Step("Log in with email and password")
     public static void logIn(String emailAddress, String password) {
-        log.info("Log in with email and password");
+        log.info("Step: Log in with email and password, method: logIn(String emailAddress, String password), " +
+                "input parameters: emailAddress " + emailAddress + "password: " + password);
         signIn();
         AuthenticationPage authenticationPage = new AuthenticationPage();
         authenticationPage.enterEmailAddress(emailAddress);
@@ -53,7 +55,8 @@ public class AuthenticationService {
      */
     @Step("Create a new account")
     public static MyAccountPage createNewAccount(PersonalInformation personalInformation) {
-        log.info("Create a new account");
+        log.info("Step: Create a new account, method: initiationСreateNewAccount(String accountEmail), " +
+                "input parameter: personalInformation " + personalInformation.toString());
         signIn();
         initiationСreateNewAccount(personalInformation.getEmail());
         return registrationNewAccount(personalInformation);

@@ -21,7 +21,7 @@ public class CatalogService {
      */
     @Step("Go to purchase")
     public static void goToPurchase() {
-        log.info("Go to purchase");
+        log.info("Step: Go to purchase, method: goToPurchase()");
         CatalogPage catalogPage = new CatalogPage();
         catalogPage.submitAddToCartPrintesDressButton();
         catalogPage.submitProceedToCheckoutButton();
@@ -32,7 +32,7 @@ public class CatalogService {
      */
     @Step("Switch to Faded Short Sleeve T-shirts Page.")
     public static void goToFadedShortSleeveTshirtsPage() {
-        log.info("Switch to Faded Short Sleeve T-shirts Page.");
+        log.info("Step: Switch to Faded Short Sleeve T-shirts Page, method: goToFadedShortSleeveTshirtsPage()");
         CatalogPage catalogPage = new CatalogPage();
         catalogPage.submitMoreTshirtButton();
     }
@@ -42,7 +42,7 @@ public class CatalogService {
      */
     @Step("Switch to Blouse page.")
     public static void goToBlousePage() {
-        log.info("Switch to Blouse page.");
+        log.info("Step: Switch to Blouse page, method: goToBlousePage()");
         CatalogPage catalogPage = new CatalogPage();
         chooseClothes(Clothes.BLOUSES);
         catalogPage.submitMoreBlouseButton();

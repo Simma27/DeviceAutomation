@@ -20,7 +20,7 @@ public class PaymentService {
      */
     @Step("Register purchase.")
     public static PaymentPage registrationOfPurchase() {
-        log.info("Register purchase.");
+        log.info("Step: Register purchase, method: registrationOfPurchase()");
         PaymentPage paymentPage = new PaymentPage();
         goToPurchase();
         ShoppingCartSummaryService.submitProceedToCheckoutButton();

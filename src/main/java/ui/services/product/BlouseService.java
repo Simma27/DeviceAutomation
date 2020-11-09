@@ -17,7 +17,7 @@ public class BlouseService {
      */
     @Step("Add to wish list.")
     public static BlousePage addToWishList() {
-        log.info("Add to wish list.");
+        log.info("Step: Add to wish list, method: addToWishList()");
         BlousePage page = new BlousePage();
         return page.submitWishlistButton();
     }
@@ -28,7 +28,7 @@ public class BlouseService {
      */
     @Step("Quit message.")
     public static BlousePage quitMessage() {
-        log.info("Quit message.");
+        log.info("Step: Quit message, method: quitMessage()");
         BlousePage page = new BlousePage();
         return page.submitQuitMessage();
     }

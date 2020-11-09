@@ -16,7 +16,7 @@ public class AddressesService {
      */
     @Step("Confirm Address")
     public static void submitProceedToCheckoutButton() {
-        log.info("Confirm Address");
+        log.info("Step: Confirm Address, method: submitProceedToCheckoutButton()");
         AddressesPage addressesPage = new AddressesPage();
         addressesPage.submitProceedToCheckoutButton();
     }

@@ -16,7 +16,7 @@ public class ShippingService {
      */
     @Step("Сonfirm delivery")
     public static void delivery() {
-        log.info("Сonfirm delivery");
+        log.info("Step: Сonfirm delivery, method: delivery()");
         ShippingPage shippingPage = new ShippingPage();
         shippingPage.submitTermsOfServiceCheckBox();
         shippingPage.submitProceedToCheckoutButton();

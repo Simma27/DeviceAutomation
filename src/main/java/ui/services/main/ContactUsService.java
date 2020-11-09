@@ -20,7 +20,7 @@ public class ContactUsService {
      */
     @Step("Send message to customer service.")
     public static ContactUsPage sendMessage() {
-        log.info("Send message to customer service.");
+        log.info("Step: Send message to customer service., method: sendMessage()");
         ContactUsPage contactUsPage = new ContactUsPage();
         submitContactUs();
         contactUsPage.submitSubjectHeading();

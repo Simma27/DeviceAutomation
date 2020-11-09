@@ -154,6 +154,35 @@ public class PersonalInformation {
         this.alias = alias;
     }
 
+    @Override
+    public String toString() {
+        return "PersonalInformation{" +
+                "isMister=" + isMister +
+                ", customerFirstname='" + customerFirstname + '\'' +
+                ", customerLastname='" + customerLastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", day='" + day + '\'' +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
+                ", signUpGorOurNewsletter=" + signUpGorOurNewsletter +
+                ", receiveSpecialOffersFromOurPartners=" + receiveSpecialOffersFromOurPartners +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", company='" + company + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", state='" + state + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", other='" + other + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", alias='" + alias + '\'' +
+                '}';
+    }
+
     public static class Builder {
 
         private PersonalInformation personalInformation;

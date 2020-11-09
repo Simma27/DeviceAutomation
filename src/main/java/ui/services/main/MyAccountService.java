@@ -18,7 +18,7 @@ public class MyAccountService {
      */
     @Step("Get your wish list.")
     public static MyAccountPage getWishlist() {
-        log.info("Get your wish list.");
+        log.info("Step: Get your wish list, method: getWishlist()");
         MyAccountPage page = new MyAccountPage();
         submitMyAccount();
         page.submitMyWishlistButton();
@@ -30,7 +30,7 @@ public class MyAccountService {
      */
     @Step("Remove wish list.")
     public static void removeWishlist() {
-        log.info("Remove wish list.");
+        log.info("Step: Remove wish list, method: removeWishlist()");
         MyAccountPage page = new MyAccountPage();
         page.submitRemoveWishlistButton();
         }
