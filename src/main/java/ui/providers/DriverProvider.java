@@ -22,7 +22,7 @@ public final class DriverProvider {
     private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
 
     public static synchronized WebDriver getDriver() {
-        log.info("Get driver.");
+//        log.info("Get driver.");
         if (DRIVER.get() == null) {
             RemoteWebDriver remoteWebDriver;
             final DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -33,10 +33,10 @@ public final class DriverProvider {
             try {
                 remoteWebDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
                 remoteWebDriver.manage().window().maximize();
-                remoteWebDriver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+                remoteWebDriver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
                 DRIVER.set(remoteWebDriver);
             } catch (MalformedURLException e) {
-                e.printStackTrace();
+                log.error("");
             }
         }
         return DRIVER.get();
@@ -53,7 +53,7 @@ public final class DriverProvider {
 //    }
 
     public static void tearDown() {
-        log.info("Tear down WebDriver");
+//        log.info("Tear down WebDriver");
         if (DRIVER.get() != null) {
             DRIVER.get().quit();
             DRIVER.remove();

@@ -19,7 +19,6 @@ public class SummerDressesService {
     @Step("Switch to printed summer dress page")
     public static PrintedSummerDressPage goToPrintedSummerDressPage() {
         log.info("Step: Switch to printed summer dress page, method: goToPrintedSummerDressPage()");
-        log.info("Switch to printed summer dress page");
         SummerDressesPage page = new SummerDressesPage();
         chooseClothes(Clothes.SUMMER_DRESSES);
         return page.submitMoreButton();

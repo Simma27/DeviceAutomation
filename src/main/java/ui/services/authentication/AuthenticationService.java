@@ -1,9 +1,7 @@
 package ui.services.authentication;
 
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import ui.models.PersonalInformation;
 import ui.pages.authentication.AuthenticationPage;
 import ui.pages.main.MyAccountPage;
@@ -35,7 +33,7 @@ public class AuthenticationService {
      * Log in to automationpractice.com like user.
      *
      * @param emailAddress is existing email address.
-     * @param password     is password your account.
+     * @param password is password your account.
      */
     @Step("Log in with email and password")
     public static void logIn(String emailAddress, String password) {
